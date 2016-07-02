@@ -3,7 +3,7 @@ title: XP Blog
 SEOTitle: 小平的博客 | XP Blog
 header-img: img/home-bg.jpg
 email: xiaoping_1019@163.com
-description: "专注于后端与大数据设计 | 小平，ML & BigData Lover，Back-End Engineer，Architecturer | 这里是 @XP小平 的个人博客，与你一起发现更大的世界。"
+description: "专注于后端与大数据 | 小平，ML & BigData Lover，Back-End Engineer，Architecturer | 这里是 @XP小平 的个人博客，与你一起发现更大的世界。"
 keyword: "小平, XP小平, XP, shoppingwang, @shoppingwang, 小平的博客, XP Blog, 博客, 个人网站, 互联网, 后端, 大数据, 机器学习, 数据挖掘, 分布式计算"
 url: "http://shoppingwang.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
