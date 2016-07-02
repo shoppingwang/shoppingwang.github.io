@@ -1,22 +1,22 @@
 # Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+title: XP Blog
+SEOTitle: 小平的博客 | XP Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Front-End Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品, 肖玉, Lynn, 肖玉的男朋友"
-url: "http://huangxuan.me"              # your host, for absolute URL
+email: xiaoping_1019@163.com
+description: "专注于后端与大数据设计 | 小平，ML & BigData Lover，Back-End Engineer，Architecturer | 这里是 @XP小平 的个人博客，与你一起发现更大的世界。"
+keyword: "小平, XP小平, XP, shoppingwang, @shoppingwang, 小平的博客, XP Blog, 博客, 个人网站, 互联网, 后端, 大数据, 机器学习, 数据挖掘, 分布式计算"
+url: "http://shoppingwang.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
-github_username:    huxpro
-#twitter_username:  huxpro
-facebook_username:  huxpro
+weibo_username:     shoppingwang
+zhihu_username:     shoppingwang
+github_username:    shoppingwang
+#twitter_username:  shoppingwang
+facebook_username:  shoppingwang
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -51,7 +51,7 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog
+duoshuo_username: XPblog
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
@@ -63,14 +63,14 @@ duoshuo_share: true                     # set to false if you want to use Commen
 ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_domain: shoppingwang.github.io
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，我想去看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "写写代码，做做分析，看看产品。世界那么大，我想去看看。"
+sidebar-avatar: /img/avatar-xp.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
