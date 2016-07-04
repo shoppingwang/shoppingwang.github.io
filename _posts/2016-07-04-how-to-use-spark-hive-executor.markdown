@@ -71,7 +71,7 @@ usage: Spark4HiveQLExecutor
 此模式为默认执行模式，在未指定`-T,--export-type`参数或参数的值为`jdbc`的情况下将对SQL文件最后一行的执行结果导入指定的数据库中。
 
 - **--export-config-file**：指定导入数据库的默认连接信息的文件名，此文件中的连接信息将被以下命令行指定的同名信息所覆盖。
-- **-C,--connect-uri**：导入数据库的JDBC连接信息，例如：`--connect-uri", "jdbc:mysql://192.168.100.200:3306/test?useUnicode=true&characterEncoding=utf-8`。
+- **-C,--connect-uri**：导入数据库的JDBC连接信息，例如：`--connect-uri "jdbc:mysql://192.168.100.200:3306/test?useUnicode=true&characterEncoding=utf-8"`。
 - **-t,--table**：需要导入数据的表名。
 - **-u,--username**：数据库用户名。
 - **-P,--password**：数据库密码。
