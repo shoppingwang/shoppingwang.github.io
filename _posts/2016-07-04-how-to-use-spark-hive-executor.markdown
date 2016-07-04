@@ -67,7 +67,7 @@ usage: Spark4HiveQLExecutor
 - **-p,--sql-param**：需要传入SQL文件的参数，例如`--sql-param execDate=20160701`，若有多个SQL参数需要传入，则多次使用`--sql-param`参数。
 
 
-##jdbc模式参数说明
+## jdbc模式参数说明
 此模式为默认执行模式，在未指定`-T,--export-type`参数或参数的值为`jdbc`的情况下将对SQL文件最后一行的执行结果导入指定的数据库中。
 
 - **--export-config-file**：指定导入数据库的默认连接信息的文件名，此文件中的连接信息将被以下命令行指定的同名信息所覆盖。
