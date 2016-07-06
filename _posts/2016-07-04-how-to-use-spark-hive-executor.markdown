@@ -96,7 +96,30 @@ usage: Spark4HiveQLExecutor
 
 ## 使用示例
 ```bash
-spark-submit --master spark://nn.avcdata.com:7077 --name sparkAppName --driver-memory 2G --executor-memory 4G --verbose --driver-cores 2 --executor-cores 4 --num-executors 4 --total-executor-cores 24 --driver-java-options "-Dlog4j.configuration=classpath:log4j.properties" --class com.avcdata.etl.launcher.Spark4HiveQLExecutor etl-launcher-0.0.1-jar-with-dependencies.jar --sql-file hdfs:///user/hue/shichangluopanAPP/sql/avc_marketcompass_brandcompetition.hql --connect-uri 'jdbc:mysql://192.168.100.200:3306/AVCData?useUnicode=true&characterEncoding=utf-8' --username dbUser --password 'password' --table avc_marketcompass_brandcompetition --update-key 'category,brand,platform,startweek,endweek' --sql-param 'execDate=20160604' --sql-param 'yearOffset=0' --sql-param 'monthOffset=0' --sql-param 'dayOffset=0' --sql-param 'relativeStartWeekOffset=-7' --sql-param 'relativeEndWeekOffset=-7'
+spark-submit \
+--master spark://nn.avcdata.com:7077 \
+--name sparkAppName \
+--driver-memory 2G \
+--executor-memory 4G \
+--driver-cores 2 \
+--executor-cores 4 \
+--num-executors 4 \
+--total-executor-cores 24 \
+--driver-java-options "-Dlog4j.configuration=classpath:log4j.properties" \
+--class com.avcdata.etl.launcher.Spark4HiveQLExecutor \
+etl-launcher-0.0.1-jar-with-dependencies.jar \
+--sql-file hdfs:///user/hue/shichangluopanAPP/sql/avc_marketcompass_brandcompetition.hql \
+--connect-uri 'jdbc:mysql://192.168.100.200:3306/AVCData?useUnicode=true&characterEncoding=utf-8' \
+--username dbUser \
+--password 'password' \
+--table avc_marketcompass_brandcompetition \
+--update-key 'category,brand,platform,startweek,endweek' \
+--sql-param 'execDate=20160604' \
+--sql-param 'yearOffset=0' \
+--sql-param 'monthOffset=0' \
+--sql-param 'dayOffset=0' \
+--sql-param 'relativeStartWeekOffset=-7' \
+--sql-param 'relativeEndWeekOffset=-7'
 ```
 
 ## 其他
