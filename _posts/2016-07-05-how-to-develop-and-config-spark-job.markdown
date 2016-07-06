@@ -17,6 +17,12 @@ tags:
 > 此处主要说明AVCData数据开发人员在对数据任务进行开发和配置（当前针对[通用数据ETL](http://www.mllearn.com/2016/07/04/how-to-use-spark-hive-executor/)任务）时应当遵循的共同开发规范，若有问题，可与大家协商解决。
 
 
+## 项目依赖管理
+- 使用**Maven**作为依赖管理工具，即新建Spark工程为Maven工程。
+- 对于CDH发布包里包含的组件，使用对应版本的Artifact版本，现生产的版本为`CDH-5.7.0`，以`spark-core`包为例，则相应的依赖版本为`spark-core_2.10-1.6.0-cdh5.7.0`，具体版本对应如[Maven Artifacts for CDH 5.7.x Releases](http://www.cloudera.com/documentation/enterprise/release-notes/topics/cdh_vd_cdh5_maven_repo_57x.html)。
+- 工程内代码的命名方式基本与Java无太大差异，请遵循`驼峰式命名`规则。
+
+
 ## MySQL
 **数据库名**、**表名**、**字段名**全部`小写`，不同单词之间用`_`分隔，命名必须***见名知意***或是公司内***通用***的命名习惯及方式。
 
