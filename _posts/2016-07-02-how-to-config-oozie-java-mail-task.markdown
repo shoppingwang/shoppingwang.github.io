@@ -12,14 +12,18 @@ tags:
     - 文件处理
 ---
 
-> 一般在Linux下会使用sed命令来批量处理文件，这里我们在Mac下使用Sublime进行批量文件替换。
+> 在Oozie中配置Workflow时，针对任务处理的每一步，当任务失败后，失败的节点应流向邮件发送节点，即时发送邮件通知Workflow负责人进行处理。
 
-配置截图如下：
+### 配置截图
 
-![](/img/avc-oozie-send-mail-config.png)
-- 使用`Shift+Command+F`命令调出替换窗口（`Find->Find in files...`）
-- 在**Find**输入框中输入需要被替换的字符串（`Option+Command+R`可开启或关闭正则表达式模式匹配）
-- 在**Where**输入框的最右选择你需要处理的文件夹
-- 在**Replace**输入框中输入需要替换的字符串
-- 执行**Replace**操作
-- 使用`Option+Command+S`保存全部被更改的文件（`File->Save All`）
+![](http://www.mllearn.com/img/avc-oozie-send-mail-config.png)
+
+### 参数说明
+1. 任务的名称：avc\_dis\_plat\_trend\_daily-send-email（Workflow名称-任务名称）
+2. 执行的Jar路径：/user/avc_spark_etl/bin/etl-util-0.0.1-jar-with-dependencies.jar
+3. 执行的主类：com.avcdatae.etl.util.SendMail
+4. 邮件发送地址：http://mail.example.com/send
+5. 收件人地址，多个收件人用`,`分隔
+6. 邮件主题，建议为`The user ${wf:user()}'s task ${wf:name()} failed`
+7. 邮件内容，建议为`Task [User=${wf:user()}, TaskName=${wf:name()}] execute failed. Last error  message is [${wf:errorMessage(wf:lastErrorNode())}]. Execute time is [${timestamp()}].`
+8. 依赖的HDFS的执行JAR路径：/user/avc_spark_etl/bin/etl-util-0.0.1-jar-with-dependencies.jar
