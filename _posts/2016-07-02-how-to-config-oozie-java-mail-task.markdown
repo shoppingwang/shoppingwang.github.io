@@ -8,8 +8,10 @@ header-img: "img/home-bg-geek.jpg"
 header-mask: 0.3
 catalog:    true
 tags:
-    - Sublime
-    - 文件处理
+    - AVCData
+    - Hue
+    - Oozie
+    - Tool
 ---
 
 > 在Oozie中配置Workflow时，针对任务处理的每一步，当任务失败后，失败的节点应流向邮件发送节点，即时发送邮件通知Workflow负责人进行处理。
