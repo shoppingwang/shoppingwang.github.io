@@ -23,7 +23,7 @@ tags:
 ### 参数说明
 1. 任务的名称：avc\_dis\_plat\_trend\_daily-send-email（Workflow名称-任务名称）
 2. 执行的Jar路径：/user/avc_spark_etl/bin/etl-util-0.0.1-jar-with-dependencies.jar
-3. 执行的主类：com.avcdatae.etl.util.SendMail
+3. 执行的主类：com.avcdata.etl.util.SendMail
 4. 邮件发送地址：http://mail.example.com/send
 5. 收件人地址，多个收件人用`,`分隔
 6. 邮件主题，建议为`The user ${wf:user()}'s task ${wf:name()} failed`
