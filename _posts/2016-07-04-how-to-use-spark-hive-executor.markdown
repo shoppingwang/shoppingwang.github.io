@@ -29,6 +29,12 @@ usage: Spark4HiveQLExecutor
     --csv-include-header <true or false>      If the csv file includes
                                               header line.
     --csv-save-path <save-path>               Csv file save path.
+    --delete-key <col-name>                   Anchor column to use for
+                                              deletes. Default to
+                                              `update-key` Use a comma
+                                              separated list of columns if
+                                              there are more than one
+                                              column.
     --export-config-file <filename>           JDBC export config file from
                                               hdfs.
  -f,--sql-file <filename>                     SQL file from hdfs.
@@ -77,6 +83,7 @@ usage: Spark4HiveQLExecutor
 - **-P,--password**：数据库密码。
 - **-v,--verbose**：是否打印SQL详细执行结果信息。
 - **-k,--update-key**：指定导入表的主键，多列以`,`分隔，若指定，则会删除已经存在相同主键的数据记录然后导入数据，否则直接将数据导入至指定表中。
+- **--delete-key**：指定删除表数据的主键，多列以`,`分隔，若指定，则以删除键删除匹配的数据记录，否则删除键的值为`--update-key`的值。
 - **-m,--update-mode**：支持`updateonly`和`allowinsert`两种模式，默认为`allowinsert`模式，区别在于`allowinsert`模式会更新和插入新数据，而`updateonly`只会更新具有相同主键的数据。
 - **-c,--columns**：指定数据库需要插入的列名称，以英文逗号（`,`）进行分隔，即在生成的Insert语句将指定插入的列名，若未指定，则插入指定表的所有列。
 - **-b,--batch**：是否以批量模式还是单条插入模式导入数据，详见JDBC的BATCH操作。
