@@ -28,4 +28,4 @@ tags:
 5. 收件人地址，多个收件人用`,`分隔
 6. 邮件主题，建议为`The user ${wf:user()}'s task ${wf:name()} failed`
 7. 邮件内容，建议为`Task [User=${wf:user()}, TaskName=${wf:name()}] execute failed. Last error  message is [${wf:errorMessage(wf:lastErrorNode())}]. Execute time is [${timestamp()}].`
-8. 依赖的HDFS的执行JAR路径：/user/avc_spark_etl/bin/etl-util-0.0.1-jar-with-dependencies.jar
+8. 依赖的HDFS的执行Jar路径：/user/avc_spark_etl/bin/etl-util-0.0.1-jar-with-dependencies.jar
