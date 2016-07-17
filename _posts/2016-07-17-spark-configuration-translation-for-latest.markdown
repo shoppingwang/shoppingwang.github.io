@@ -35,8 +35,8 @@ val sc = new SparkContext(conf)
 
 在本地模式中，我们能使用多于1个的线程数据，比如在Spark Streaming应用中，实际上我们至少需要1个以上的线程来防止任何的线程饥饿问题。
 
-Properties that specify some time duration should be configured with a unit of time.
-The following format is accepted:
+一些需要指定持续时间的设置，可以使用相应的时间单位。
+可以使用下面的这些格式：
 
     25ms (milliseconds)
     5s (seconds)
@@ -46,8 +46,8 @@ The following format is accepted:
     1y (years)
 
 
-Properties that specify a byte size should be configured with a unit of size.
-The following format is accepted:
+一些需要指定文件字节大小的设置，可以使用相应的文件大小的单位。
+可以使用下面的这些格式：
 
     1b (bytes)
     1k or 1kb (kibibytes = 1024 bytes)
@@ -57,40 +57,28 @@ The following format is accepted:
     1p or 1pb (pebibytes = 1024 tebibytes)
 
 ## Dynamically Loading Spark Properties
-In some cases, you may want to avoid hard-coding certain configurations in a `SparkConf`. For
-instance, if you'd like to run the same application with different masters or different
-amounts of memory. Spark allows you to simply create an empty conf:
+在一些应用场景中，你想避免在`SparkConf`对某些参数进行硬编码。举个例子，你想使用不同的master或者不同的内存设置来跑同一个应用。Spark允许你简单的创建一个空的conf对象：
 
 {% highlight scala %}
 val sc = new SparkContext(new SparkConf())
 {% endhighlight %}
 
-Then, you can supply configuration values at runtime:
+然后，你就可以在运行时对参数的值进行设置：
 {% highlight bash %}
 ./bin/spark-submit --name "My app" --master local[4] --conf spark.eventLog.enabled=false
   --conf "spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps" myApp.jar
 {% endhighlight %}
 
-The Spark shell and [`spark-submit`](submitting-applications.html)
-tool support two ways to load configurations dynamically. The first are command line options,
-such as `--master`, as shown above. `spark-submit` can accept any Spark property using the `--conf`
-flag, but uses special flags for properties that play a part in launching the Spark application.
-Running `./bin/spark-submit --help` will show the entire list of these options.
+Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方式来支持配置的动态加载。第一种方式是通过命令行对参数进行设置，例如上面展示的`--master`参数。`spark-submit`使用`--conf`标记能够接受任意的Spark属性，但是为指定Spark属性使用特殊的标记将会成为启动Spark应用时的一部分。运行`./bin/spark-submit --help`命令将可以完整的展示出这些可选项参数。
 
-`bin/spark-submit` will also read configuration options from `conf/spark-defaults.conf`, in which
-each line consists of a key and a value separated by whitespace. For example:
+`bin/spark-submit`也会从`conf/spark-defaults.conf`文件中读取配置信息，文件中的每一行由空白字符分隔的键值对组成，比如：
 
     spark.master            spark://5.6.7.8:7077
     spark.executor.memory   4g
     spark.eventLog.enabled  true
     spark.serializer        org.apache.spark.serializer.KryoSerializer
 
-Any values specified as flags or in the properties file will be passed on to the application
-and merged with those specified through SparkConf. Properties set directly on the SparkConf
-take highest precedence, then flags passed to `spark-submit` or `spark-shell`, then options
-in the `spark-defaults.conf` file. A few configuration keys have been renamed since earlier
-versions of Spark; in such cases, the older key names are still accepted, but take lower
-precedence than any instance of the newer key.
+任何在命令行或者属性文件指定的参数都会传入到应用中，并且会在SparkConf对象中对参数进行合并。直接在SparkConf中设置的参数具有最高的优先级，其次是通过`spark-submit`和`spark-shell`设置的命令行参数，最后是`spark-defaults.conf`文件中的参数。在早期的Spark版本中，有一些配置的键已经被重命名了，在这种情况下，老的键的名称依然是可用的，只是它的优先级会低于它被命名后的新键。
 
 ## Viewing Spark Properties
 
