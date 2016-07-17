@@ -176,50 +176,37 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.driver.extraClassPath</code></td>
   <td>(none)</td>
   <td>
-    Extra classpath entries to prepend to the classpath of the driver.
+    被额外附加在driver上的classpath参数。
 
-    <br /><em>Note:</em> In client mode, this config must not be set through the <code>SparkConf</code>
-    directly in your application, because the driver JVM has already started at that point.
-    Instead, please set this through the <code>--driver-class-path</code> command line option or in
-    your default properties file.</td>
+    <br /><em>注意：</em>在客户端模式中，不能在应用的<code>SparkConf</code>中直接设置此变量，因为此时diver的JVM已经启动了。换句话说，请使用<code>--driver-class-path</code>命令行的方式或者使用默认的属性文件来设置此值。
+    </td>
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.extraJavaOptions</code></td>
   <td>(none)</td>
   <td>
-    A string of extra JVM options to pass to the driver. For instance, GC settings or other logging.
-    Note that it is illegal to set maximum heap size (-Xmx) settings with this option. Maximum heap
-    size settings can be set with <code>spark.driver.memory</code> in the cluster mode and through
-    the <code>--driver-memory</code> command line option in the client mode.
+    被额外传递给dirver的JVM选项字符串。例如，GC的设置或者其他的日志设置。注意，用这种方式设置最大的堆大小(-Xmx)是非法的。最大的堆大小设置，在cluster模式中可以通过<code>--driver-memory</code>命令行的选项进行设置。
 
-    <br /><em>Note:</em> In client mode, this config must not be set through the <code>SparkConf</code>
-    directly in your application, because the driver JVM has already started at that point.
-    Instead, please set this through the <code>--driver-java-options</code> command line option or in
-    your default properties file.
+    <br /><em>注意：</em>在客户端模式中，不能在应用的<code>SparkConf</code>中直接设置此变量，因为此时diver的JVM已经启动了。换句话说，请使用<code>--driver-java-options</code>命令行的方式或者使用默认的属性文件来设置此值。
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.extraLibraryPath</code></td>
   <td>(none)</td>
   <td>
-    Set a special library path to use when launching the driver JVM.
+    当dirver启动时，为JVM设置一个特殊的库路径。
 
-    <br /><em>Note:</em> In client mode, this config must not be set through the <code>SparkConf</code>
-    directly in your application, because the driver JVM has already started at that point.
-    Instead, please set this through the <code>--driver-library-path</code> command line option or in
-    your default properties file.</td>
+    <br /><em>注意：</em>在客户端模式中，不能在应用的<code>SparkConf</code>中直接设置此变量，因为此时diver的JVM已经启动了。换句话说，请使用<code>--driver-library-path</code>命令行的方式或者使用默认的属性文件来设置此值。
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.userClassPathFirst</code></td>
   <td>false</td>
   <td>
-    (Experimental) Whether to give user-added jars precedence over Spark's own jars when loading
-    classes in the driver. This feature can be used to mitigate conflicts between Spark's
-    dependencies and user dependencies. It is currently an experimental feature.
-
-    This is used in cluster mode only.
+    (Experimental) 当在driver中加载类时，是否让用户给定的jar文件优先于Spark自己的jar文件加载。这个特性可以用于规避Spark的依赖和用户依赖之间的冲突问题。这个特性现在只是一个实验性质的。
+    
+    只能被应用于cluster模式中。
   </td>
 </tr>
 <tr>
