@@ -213,80 +213,69 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.executor.extraClassPath</code></td>
   <td>(none)</td>
   <td>
-    Extra classpath entries to prepend to the classpath of executors. This exists primarily for
-    backwards-compatibility with older versions of Spark. Users typically should not need to set
-    this option.
+    额外附加给executor的classpath参数。现存的主要的参数是和Spark的旧版本向后兼容的。用户基本上不需要去设置这些参数。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.extraJavaOptions</code></td>
   <td>(none)</td>
   <td>
-    A string of extra JVM options to pass to executors. For instance, GC settings or other logging.
-    Note that it is illegal to set Spark properties or maximum heap size (-Xmx) settings with this
-    option. Spark properties should be set using a SparkConf object or the spark-defaults.conf file
-    used with the spark-submit script. Maximum heap size settings can be set with spark.executor.memory.
+    被额外传递给executors的JVM选项字符串。例如，GC的设置或者其他的日志设置。注意，用这种方式设置最大的堆大小(-Xmx)是非法的。Spark的属性应该使用SparkConf对象或者在使用spark-submit脚本时使用spark-defaults.conf文件进行设置。最大的堆大小设置可以使用spark.executor.memory选项进行设置。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.extraLibraryPath</code></td>
   <td>(none)</td>
   <td>
-    Set a special library path to use when launching executor JVM's.
+    当executor启动时，为JVM设置一个特殊的库路径。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.logs.rolling.maxRetainedFiles</code></td>
   <td>(none)</td>
   <td>
-    Sets the number of latest rolling log files that are going to be retained by the system.
-    Older log files will be deleted. Disabled by default.
+    设置系统保留最新滚动日志文件的个数。
+    旧的日志文件会被删除。默认此功能是禁用的。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.logs.rolling.maxSize</code></td>
   <td>(none)</td>
   <td>
-    Set the max size of the file in bytes by which the executor logs will be rolled over.
-    Rolling is disabled by default. See <code>spark.executor.logs.rolling.maxRetainedFiles</code>
-    for automatic cleaning of old logs.
+    设置executor日志文件的最大大小。
+    日志滚动替换默认是禁用的。
+    参见<code>spark.executor.logs.rolling.maxRetainedFiles</code>参数开启自动清理旧日志。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.logs.rolling.strategy</code></td>
   <td>(none)</td>
   <td>
-    Set the strategy of rolling of executor logs. By default it is disabled. It can
-    be set to "time" (time-based rolling) or "size" (size-based rolling). For "time",
-    use <code>spark.executor.logs.rolling.time.interval</code> to set the rolling interval.
-    For "size", use <code>spark.executor.logs.rolling.maxSize</code> to set
-    the maximum file size for rolling.
+    设置executor日志文件的滚动策略。此项设置默认是禁用的，可以被设置为"time"（基于时间的日志滚动）或者"size"（基本文件大小的滚动）。
+    如果是"time" ，使用<code>spark.executor.logs.rolling.time.interval</code>参数设置滚动间隔。
+    如果是"size"，使用<code>spark.executor.logs.rolling.maxSize</code>参数设置滚动文件最大大小。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.logs.rolling.time.interval</code></td>
   <td>daily</td>
   <td>
-    Set the time interval by which the executor logs will be rolled over.
-    Rolling is disabled by default. Valid values are <code>daily</code>, <code>hourly</code>, <code>minutely</code> or
-    any interval in seconds. See <code>spark.executor.logs.rolling.maxRetainedFiles</code>
-    for automatic cleaning of old logs.
+    设置executor日志文件轮换的时间间隔。
+    日志轮换默认是禁用的。可选的参数值有<code>daily</code>、<code>hourly</code>、<code>minutely</code>或者任何的以秒级时间间隔。参见<code>spark.executor.logs.rolling.maxRetainedFiles</code>开启自动清理旧日志。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.userClassPathFirst</code></td>
   <td>false</td>
   <td>
-    (Experimental) Same functionality as <code>spark.driver.userClassPathFirst</code>, but
-    applied to executor instances.
+    (Experimental) 和<code>spark.driver.userClassPathFirst</code>参数的功能一样，但是只是应用在executor实例上而已。
   </td>
 </tr>
 <tr>
   <td><code>spark.executorEnv.[EnvironmentVariableName]</code></td>
   <td>(none)</td>
   <td>
-    Add the environment variable specified by <code>EnvironmentVariableName</code> to the Executor
-    process. The user can specify multiple of these to set multiple environment variables.
+    通过指定<code>EnvironmentVariableName</code>参数给Executor进程增加环境变量。用户可以多个这样的参数从而设置多个这样的环境变量。
   </td>
 </tr>
 <tr>
@@ -335,7 +324,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.files</code></td>
   <td></td>
   <td>
-    Comma-separated list of files to be placed in the working directory of each executor.
+    以逗号分隔的传递给每个executor工作目录的文件列表。
   </td>
 </tr>
 <tr>
@@ -349,33 +338,28 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.jars</code></td>
   <td></td>
   <td>
-    Comma-separated list of local jars to include on the driver and executor classpaths.
+    以逗号分隔的传递给driver和executor的本地jar文件列表。
   </td>
 </tr>
 <tr>
   <td><code>spark.jars.packages</code></td>
   <td></td>
   <td>
-    Comma-separated list of maven coordinates of jars to include on the driver and executor
-    classpaths. Will search the local maven repo, then maven central and any additional remote
-    repositories given by <code>spark.jars.ivy</code>. The format for the coordinates should be
-    groupId:artifactId:version.
+    以逗号分隔的传递给driver和executor类路径的maven管理的依赖列表。会依次搜索本地maven仓库、maven中心仓库、任何在<code>spark.jars.ivy</code>中设置的远程仓库。依赖的格式是groupId:artifactId:version。
   </td>
 </tr>
 <tr>
   <td><code>spark.jars.excludes</code></td>
   <td></td>
   <td>
-    Comma-separated list of groupId:artifactId, to exclude while resolving the dependencies
-    provided in <code>spark.jars.packages</code> to avoid dependency conflicts.
+    以逗号分隔的groupId:artifactId格式的列表，用来排除在<code>spark.jars.packages</code>中指定的不需要的依赖，避免Jar冲突。
   </td>
 </tr>
 <tr>
   <td><code>spark.jars.ivy</code></td>
   <td></td>
   <td>
-    Comma-separated list of additional remote repositories to search for the coordinates given
-    with <code>spark.jars.packages</code>.
+    为搜索在<code>spark.jars.packages</code>中指定的依赖，以逗号分隔增加需要搜索的远程仓库列表。
   </td>
 </tr>
 </table>
