@@ -82,15 +82,11 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 
 ## Viewing Spark Properties
 
-The application web UI at `http://<driver>:4040` lists Spark properties in the "Environment" tab.
-This is a useful place to check to make sure that your properties have been set correctly. Note
-that only values explicitly specified through `spark-defaults.conf`, `SparkConf`, or the command
-line will appear. For all other configuration properties, you can assume the default value is used.
+在`http://<driver>:4040` 页面的"Environment"标签页中列出了Spark应用中的属性配置。在这里，你可以检查这些属性以确认你真的配置对了应用的属性。注意，只有显示的从`spark-defaults.conf`、`SparkConf` 、命令行中加载的参数才会被展示，对于其他的一些配置参数，你可以假定它使用的是默认参数值。
 
 ## Available Properties
 
-Most of the properties that control internal settings have reasonable default values. Some
-of the most common options to set are:
+大多数的控制内部行为的参数已经设置了合理的默认值。一些通用的配置项如下所示：
 
 #### Application Properties
 <table class="table">
@@ -99,97 +95,79 @@ of the most common options to set are:
   <td><code>spark.app.name</code></td>
   <td>(none)</td>
   <td>
-    The name of your application. This will appear in the UI and in log data.
+    应用的名称，将会出现在UI和日志文件中。
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.cores</code></td>
   <td>1</td>
   <td>
-    Number of cores to use for the driver process, only in cluster mode.
+    Driver进程使用的cpu个数，只在cluster模式中生效。
   </td>
 </tr>
   <td><code>spark.driver.maxResultSize</code></td>
   <td>1g</td>
   <td>
-    Limit of total size of serialized results of all partitions for each Spark action (e.g. collect).
-    Should be at least 1M, or 0 for unlimited. Jobs will be aborted if the total size
-    is above this limit.
-    Having a high limit may cause out-of-memory errors in driver (depends on spark.driver.memory
-    and memory overhead of objects in JVM). Setting a proper limit can protect the driver from
-    out-of-memory errors.
+    限定每个Spark action操作所能返回的最大的序列化结果集大小（例如collect操作）。至少设置为1M，或者设置为0表示无限制。如果返回数据集的大小超过此限制值，任务将忽略其余的数据。设置一个较高的限制可能会引发out-of-memory错误（依赖于spark.driver.memory的设置和JVM的对象内存限制）。正确设置此值能避免driver出现out-of-memory错误。
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.memory</code></td>
   <td>1g</td>
   <td>
-    Amount of memory to use for the driver process, i.e. where SparkContext is initialized.
-    (e.g. <code>1g</code>, <code>2g</code>).
+    Driver进程能使用的内存总量，比如，在SparkContext初始化完成后
+    (e.g. <code>1g</code>, <code>2g</code>)。
 
-    <br /><em>Note:</em> In client mode, this config must not be set through the <code>SparkConf</code>
-    directly in your application, because the driver JVM has already started at that point.
-    Instead, please set this through the <code>--driver-memory</code> command line option
-    or in your default properties file.
+    <br /><em>注意：</em>在client模式中，这个配置项不能通过<code>SparkConf</code>对象进行直接设置，因为driver的JVM在那个时候已经启动了。换言之，你可以通过<code>--driver-memory</code>命令行选项进行设置，或者使用默认的属性配置文件。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.memory</code></td>
   <td>1g</td>
   <td>
-    Amount of memory to use per executor process (e.g. <code>2g</code>, <code>8g</code>).
+    每个executor进程可以使用的内存总量(e.g. <code>2g</code>, <code>8g</code>)。
   </td>
 </tr>
 <tr>
   <td><code>spark.extraListeners</code></td>
   <td>(none)</td>
   <td>
-    A comma-separated list of classes that implement <code>SparkListener</code>; when initializing
-    SparkContext, instances of these classes will be created and registered with Spark's listener
-    bus.  If a class has a single-argument constructor that accepts a SparkConf, that constructor
-    will be called; otherwise, a zero-argument constructor will be called. If no valid constructor
-    can be found, the SparkContext creation will fail with an exception.
+    一个实现了<code>SparkListener</code>接口的以逗号分隔的类名称列表。当初始化SparkContext时，这些类会被实例化并被注册至Spark监听总线中。如果监听实现类中带有单个SparkConf参数的构造器，那么此构造器将会被调用，否则默认无参的构造器将会被调用。如果没有合法的构造器可以被使用，那么SparkContext的创建将会失败并且会抛出一个异常。
   </td>
 </tr>
 <tr>
   <td><code>spark.local.dir</code></td>
   <td>/tmp</td>
   <td>
-    Directory to use for "scratch" space in Spark, including map output files and RDDs that get
-    stored on disk. This should be on a fast, local disk in your system. It can also be a
-    comma-separated list of multiple directories on different disks.
+    在Spark中被"scratch"空间所使用的目录，包含了map操作的输出文件和保存在硬盘上的RDD。这个目录应该是你的系统中一个快速的本地磁盘。它也可以是一个由逗号分隔的不同磁盘上的不同目录列表。
 
-    NOTE: In Spark 1.0 and later this will be overridden by SPARK_LOCAL_DIRS (Standalone, Mesos) or
-    LOCAL_DIRS (YARN) environment variables set by the cluster manager.
+    注意：在Spark 1.0和以后的版本中，这个参数被SPARK_LOCAL_DIRS (Standalone, Mesos)或被集群管理器设置的环境变量LOCAL_DIRS (YARN)所覆盖。
   </td>
 </tr>
 <tr>
   <td><code>spark.logConf</code></td>
   <td>false</td>
   <td>
-    Logs the effective SparkConf as INFO when a SparkContext is started.
+    当SparkContext启动后，以INFO日志级别打印生效的SparkConf信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.master</code></td>
   <td>(none)</td>
   <td>
-    The cluster manager to connect to. See the list of
-    <a href="submitting-applications.html#master-urls"> allowed master URL's</a>.
+    集群管理器的连接地址。参见<a href="submitting-applications.html#master-urls">master允许的地址</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.submit.deployMode</code></td>
   <td>(none)</td>
   <td>
-    The deploy mode of Spark driver program, either "client" or "cluster",
-    Which means to launch driver program locally ("client")
-    or remotely ("cluster") on one of the nodes inside the cluster.
+    Spark driver的部署模式，可以为"client"或者"cluster"模式，意思就是以本地模式（"cliet"）或者在集群（"cluster"）的某一个远程节点中启动dirver程序。
   </td>
 </tr>
 </table>
 
-Apart from these, the following properties are also available, and may be useful in some situations:
+除了上面这些参数，下面的这些参数也是可用的，并且在某些场景下可能是有用的：
 
 #### Runtime Environment
 <table class="table">
