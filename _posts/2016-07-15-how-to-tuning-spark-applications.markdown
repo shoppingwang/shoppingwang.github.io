@@ -13,7 +13,7 @@ tags:
 
 > 原文连接[Tuning Spark Applications](http://www.cloudera.com/documentation/enterprise/latest/topics/admin_spark_tuning1.html)。
 >
-> 文中措词未加斟酌，望见谅。
+> 文中措词未加详细斟酌，望见谅。
 
 
 这个主题描述了各方面Spark应用程序调优的方法。在调试的过程中，你应该同时监控你的应用程序的行为以便知晓调优操作的结果是否有效。
