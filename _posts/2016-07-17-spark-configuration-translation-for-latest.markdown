@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Spark Configuration"
-subtitle:   "latest"
+title:      "Spark Configuration Translation"
+subtitle:   "for latest"
 date:       2016-07-17
 author:     "xp"
 header-img: "img/post-bg-universe.jpg"
@@ -14,26 +14,17 @@ tags:
 * This will become a table of contents (this text will be scraped).
 {:toc}
 
-Spark provides three locations to configure the system:
+Spark有三个地方来配置整个系统：
 
-* [Spark properties](#spark-properties) control most application parameters and can be set by using
-  a [SparkConf](api/scala/index.html#org.apache.spark.SparkConf) object, or through Java
-  system properties.
-* [Environment variables](#environment-variables) can be used to set per-machine settings, such as
-  the IP address, through the `conf/spark-env.sh` script on each node.
-* [Logging](#configuring-logging) can be configured through `log4j.properties`.
+* [Spark properties](#spark-properties) 可以配置大多数的系统参数，通过使用[SparkConf](api/scala/index.html#org.apache.spark.SparkConf)对象进行配置，或者使用Java系统参数进行配置。
+* [Environment variables](#environment-variables) 可以对每个机器进行配置，例如通过 `conf/spark-env.sh`脚本文件可配置每个机器的IP。
+* [Logging](#configuring-logging) 可以通过 `log4j.properties`文件进行配置。
 
 # Spark Properties
 
-Spark properties control most application settings and are configured separately for each
-application. These properties can be set directly on a
-[SparkConf](api/scala/index.html#org.apache.spark.SparkConf) passed to your
-`SparkContext`. `SparkConf` allows you to configure some of the common properties
-(e.g. master URL and application name), as well as arbitrary key-value pairs through the
-`set()` method. For example, we could initialize an application with two threads as follows:
+Spark properties控制着大多数据的应用参数设置，并且能对每个应用进行单独设置。这些参数能在[SparkConf](api/scala/index.html#org.apache.spark.SparkConf)直接进行设置然后被应用至`SparkContext`。`SparkConf`允许你设置一些通用的属性（比如master URL和应用名称），也可以通过`set()`方法设置任意的键值对参数。比如，我们可以像下面这样给应用程序初始化两个线程：
 
-Note that we run with local[2], meaning two threads - which represents "minimal" parallelism,
-which can help detect bugs that only exist when we run in a distributed context.
+我们使用local[2]来运行应用，这意味着有两个线程 - 代表了“最小的”并行化运行条件，它能帮我们检测出只有在分布式环境下才能出现的BUG。
 
 {% highlight scala %}
 val conf = new SparkConf()
@@ -42,8 +33,7 @@ val conf = new SparkConf()
 val sc = new SparkContext(conf)
 {% endhighlight %}
 
-Note that we can have more than 1 thread in local mode, and in cases like Spark Streaming, we may
-actually require more than 1 thread to prevent any sort of starvation issues.
+在本地模式中，我们能使用多于1个的线程数据，比如在Spark Streaming应用中，实际上我们至少需要1个以上的线程来防止任何的线程饥饿问题。
 
 Properties that specify some time duration should be configured with a unit of time.
 The following format is accepted:
