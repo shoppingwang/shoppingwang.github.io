@@ -15,8 +15,8 @@ tags:
 > 使用[SDK](https://github.com/aws/aws-sdk-java)访问AWS服务。
 
 
-###Importing the BOM
-```xml
+### Importing the BOM
+```
 <dependencyManagement>
   <dependencies>
     <dependency>
@@ -30,8 +30,8 @@ tags:
 </dependencyManagement>
 ```
 
-###Using the SDK Maven modules
-```xml
+### Using the SDK Maven modules
+```
 <dependencies>
   <dependency>
     <groupId>com.amazonaws</groupId>
@@ -48,7 +48,7 @@ tags:
 </dependencies>
 ```
 
-###Sample Code
+### Sample Code
 
 ```java
 import com.amazonaws.services.s3._, model._
@@ -65,5 +65,5 @@ val objs = s3.listObjects(request)
 sc.parallelize(objs.getObjectSummaries.map(_.getKey).toList).flatMap { key => Source.fromInputStream(s3.getObject(bucket, key).getObjectContent: InputStream).getLines }
 ```
 
-###Relative
+### Relative
 * [How NOT to pull from S3 using Apache Spark](http://tech.kinja.com/how-not-to-pull-from-s3-using-apache-spark-1704509219) 
