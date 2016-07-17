@@ -9,9 +9,10 @@ header-mask: 0.3
 catalog:    true
 tags:
     - Spark
+    - 译文
 ---
 
-> 原文连接[Tuning Spark Applications](http://www.cloudera.com/documentation/enterprise/latest/topics/admin_spark_tuning1.html)。
+> 原文链接[Tuning Spark Applications](http://www.cloudera.com/documentation/enterprise/latest/topics/admin_spark_tuning1.html)。
 >
 > 文中措词未加详细斟酌，望见谅。
 
