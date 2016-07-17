@@ -89,7 +89,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 大多数的控制内部行为的参数已经设置了合理的默认值。一些通用的配置项如下所示：
 
 #### Application Properties
-<table class="table">
+<table>
 <tr><th>Property Name</th><th>Default</th><th>Meaning</th></tr>
 <tr>
   <td><code>spark.app.name</code></td>
@@ -170,7 +170,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 除了上面这些参数，下面的这些参数也是可用的，并且在某些场景下可能是有用的：
 
 #### Runtime Environment
-<table class="table">
+<table>
 <tr><th>Property Name</th><th>Default</th><th>Meaning</th></tr>
 <tr>
   <td><code>spark.driver.extraClassPath</code></td>
