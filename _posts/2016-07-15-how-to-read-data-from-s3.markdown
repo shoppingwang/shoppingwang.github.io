@@ -10,6 +10,7 @@ catalog:    true
 tags:
     - AWS
     - S3
+    - Spark
 ---
 
 > 使用[SDK](https://github.com/aws/aws-sdk-java)访问AWS服务。
