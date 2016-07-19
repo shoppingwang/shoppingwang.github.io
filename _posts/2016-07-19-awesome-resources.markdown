@@ -10,9 +10,20 @@ catalog:    true
 tags:
     - Resource
 ---
+
 {:toc}
 
 > 汇集网络各种资源，包括但不限于框架、类库、软件等等。
+
+## Git
+
+### [闯过这 54 关，点亮你的 Git 技能树](https://www.v2ex.com/t/247270)
+如今， Git 大行其道，颇有一统天下之势。
+如果你的技能树上 Git 和 Github 的图标还没有点亮的话，你都不好意思说你是程序员。
+别说互联网企业，我接触到的许多传统企业都在从 SVN ， Clear Case 等迁移到 Git 上，甚至大厂还会有一个团队去定制适合自己企业的 Git 服务器。
+
+很多人简历上写的「精通 Git 与 Github 」，但如果你问他熟悉到什么程度的话，回答通常是「就是会用常用的 add，commit，push 操作」。
+
 
 ## Java
 
@@ -109,6 +120,15 @@ Dex : The data explorer is a data visualization tool written in Java/JavaFX capa
 ### [strman-java](https://github.com/shekhargulati/strman-java)
 --
 A Java 8 library for working with String. It is inspired by [dleitee/strman](https://github.com/dleitee/strman).
+
+
+### [ReactiveX文档中文翻译](https://www.gitbook.com/book/mcxiaoke/rxdocs/details)
+--
+ReactiveX和RxJava文档中文翻译 — mcxiaoke
+
+
+### [Awesome-RxJava](https://github.com/lzyzsd/Awesome-RxJava)
+RxJava resources.
 
 
 ## Spark
