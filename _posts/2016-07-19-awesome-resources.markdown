@@ -13,8 +13,6 @@ tags:
 * This will become a table of contents (this text will be scraped).
 {:toc}
 
-> 汇集网络各种资源，包括但不限于框架、类库、软件等等。
-
 
 ## Elasticsearch
 
@@ -210,3 +208,31 @@ Coolplay Spark 将包含 Spark 源代码解析、Spark 类库、Spark 代码等�
 ### [Spark与Scala学习](http://blog.csdn.net/jasonding1354/article/details/46899317)
 --
 Spark与Scala学习，内容相对比较多，也相对比较杂。
+
+
+
+## Storm
+
+### [《Storm入门》中文版](http://ifeve.com/getting-started-with-stom-index/)
+--
+本文翻译自《[Getting Started With Storm](http://ifeve.com/wp-content/uploads/2014/03/Getting-Started-With-Storm-Jonathan-Leibiusky-Gabriel-E_1276.pdf)》译者：吴京润    编辑：郭蕾 方腾飞
+
+
+### [Storm实时计算：流操作入门编程实践](http://shiyanjun.cn/archives/977.html)
+--
+Storm是一个分布式是实时计算系统，它设计了一种对流和计算的抽象，概念比较简单，实际编程开发起来相对容易。本文实现一个简单的WordCount的例子，及各个组件之间的连接方式。
+
+
+### [Kafka+Storm+HDFS整合实践](http://shiyanjun.cn/archives/934.html)
+--
+在基于Hadoop平台的很多应用场景中，我们需要对数据进行离线和实时分析，离线分析可以很容易地借助于Hive来实现统计分析，但是对于实时的需求Hive就不合适了。实时应用场景可以使用Storm，它是一个实时处理系统，它为实时处理类应用提供了一个计算模型，可以很容易地进行编程处理。为了统一离线和实时计算，一般情况下，我们都希望将离线和实时计算的数据源的集合统一起来作为输入，然后将数据的流向分别经由实时系统和离线分析系统，分别进行分析处理，这时我们可以考虑将数据源（如使用Flume收集日志）直接连接一个消息中间件，如Kafka，可以整合Flume+Kafka，Flume作为消息的Producer，生产的消息数据（日志数据、业务请求数据等等）发布到Kafka中，然后通过订阅的方式，使用Storm的Topology作为消息的Consumer，在Storm集群中分别进行处理。
+
+
+### [Storm归档目录-并发编程网](http://ifeve.com/category/storm/)
+--
+并发编程网的Storm相关文档。
+
+
+### [storm-kafka源码走读](http://blog.csdn.net/wzhg0508/article/details/40869937)
+--
+对Storm-kafka module的源码做一点简单的介绍。
