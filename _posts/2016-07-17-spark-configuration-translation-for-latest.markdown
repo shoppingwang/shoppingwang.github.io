@@ -682,8 +682,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 <tr>
   <td><code>spark.serializer</code></td>
   <td>
-    org.apache.spark.serializer.<br />JavaSerializer (org.apache.spark.serializer.<br />
-    KryoSerializer when using Spark SQL Thrift Server)
+    指定用来序列化的类库，包括通过网络传输数据或缓存数据时的序列化。默认的Java序列化对于任何可以被序列化的Java对象都适用，但是速度很慢。我们推荐在追求速度时使用org.apache.spark.serializer.KryoSerializer并对Kryo进行适当的调优。该项可以配置为任何org.apache.spark.Serializer的子类。
   </td>
   <td>
     Class to use for serializing objects that will be sent over the network or need to be cached
@@ -1087,8 +1086,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.speculation</code></td>
   <td>false</td>
   <td>
-    If set to "true", performs speculative execution of tasks. This means if one or more tasks are
-    running slowly in a stage, they will be re-launched.
+    设为true时开启任务预测执行机制。当出现比较慢的任务时，这种机制会在另外的节点上也尝试执行该任务的一个副本。打开此选项会帮助减少大规模集群中个别较慢的任务带来的影响。
   </td>
 </tr>
 <tr>
