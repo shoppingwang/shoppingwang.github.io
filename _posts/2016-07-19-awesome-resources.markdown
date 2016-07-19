@@ -10,8 +10,11 @@ catalog:    true
 tags:
     - Resource
 ---
+{:toc}
 
 > 汇集网络各种资源，包括但不限于框架、类库、软件等等。
+
+## Java
 
 ### [Awesome Java](https://github.com/akullpp/awesome-java)
 --
@@ -106,3 +109,13 @@ Dex : The data explorer is a data visualization tool written in Java/JavaFX capa
 ### [strman-java](https://github.com/shekhargulati/strman-java)
 --
 A Java 8 library for working with String. It is inspired by [dleitee/strman](https://github.com/dleitee/strman).
+
+
+## Spark
+### [Kafka-Spark-Consumer](https://github.com/dibbhatt/kafka-spark-consumer)
+--
+High Performance Kafka Consumer for Spark Streaming.
+
+
+### [Spark机器学习算法研究和源码分析](https://github.com/endymecy/spark-ml-source-analysis)
+本项目对spark ml包中各种算法的原理加以介绍并且对算法的代码实现进行详细分析，旨在加深自己对机器学习算法的理解，熟悉这些算法的分布式实现方式。
