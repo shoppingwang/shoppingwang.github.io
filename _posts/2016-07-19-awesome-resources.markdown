@@ -14,6 +14,29 @@ tags:
 {:toc}
 
 
+## [Awesome](https://github.com/search?o=desc&q=awesome&ref=searchresults&s=stars&type=Repositories&utf8=✓)
+
+### [Awesome](https://github.com/sindresorhus/awesome)
+----
+> A curated list of awesome lists
+
+- [What is an awesome list?](https://github.com/sindresorhus/awesome/blob/master/awesome.md)
+- [Contribution guide](https://github.com/sindresorhus/awesome/blob/master/contributing.md)
+- [Creating a list](https://github.com/sindresorhus/awesome/blob/master/create-list.md)
+- [Buy a sticker](https://www.stickermule.com/marketplace/10034-awesome)
+- [Chat](https://gitter.im/sindresorhus/awesome)
+
+
+### [Awesome Python](https://github.com/vinta/awesome-python)
+----
+A curated list of awesome Python frameworks, libraries, software and resources.
+
+
+### [Awesome Awesomeness](https://github.com/bayandin/awesome-awesomeness)
+----
+A curated list of amazingly awesome awesomeness.
+
+
 ## Elasticsearch
 
 ### [Elasticsearch权威指南（中文版）](https://www.gitbook.com/book/looly/elasticsearch-the-definitive-guide-cn/details)
