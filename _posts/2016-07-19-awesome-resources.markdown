@@ -15,14 +15,35 @@ tags:
 
 > 汇集网络各种资源，包括但不限于框架、类库、软件等等。
 
+
+## Elasticsearch
+
+### [Elasticsearch权威指南（中文版）](https://www.gitbook.com/book/looly/elasticsearch-the-definitive-guide-cn/details)
+--
+Elasticsearch权威指南（中文版） — Golden Looly
+
+
 ## Git
 
 ### [闯过这 54 关，点亮你的 Git 技能树](https://www.v2ex.com/t/247270)
+--
 如今， Git 大行其道，颇有一统天下之势。
 如果你的技能树上 Git 和 Github 的图标还没有点亮的话，你都不好意思说你是程序员。
 别说互联网企业，我接触到的许多传统企业都在从 SVN ， Clear Case 等迁移到 Git 上，甚至大厂还会有一个团队去定制适合自己企业的 Git 服务器。
 
 很多人简历上写的「精通 Git 与 Github 」，但如果你问他熟悉到什么程度的话，回答通常是「就是会用常用的 add，commit，push 操作」。
+
+
+### [GitHub Pages 指南](http://wiki.jikexueyuan.com/project/github-pages-basics/)
+--
+GitHub Pages 可以为你或者你的项目提供介绍网页，它是由 GitHub 官方托管和发布的。你可以使用 GitHub 提供的页面自动生成器，GitHub App 或者命令行来创建 GitHub Pages。
+
+本指南是 GitHub Pages 官网 [GitHub Pages Basics](https://help.github.com/categories/github-pages-basics/) 的中文翻译版本。
+
+
+### [Git下载单个文件夹](http://kinolien.github.io/gitzip/)
+--
+It can make sub-folder/sub-directory of github repository as zip and download it.
 
 
 ## Java
@@ -57,7 +78,7 @@ This is an adaptation of the [Ninety-Nine Prolog Problems](https://sites.google.
 From the original source:
 
 >The purpose of this problem collection is to give you the opportunity to practice your skills in logic programming. Your goal should be to find the most elegant solution of the given problems. Efficiency is important, but logical clarity is even more crucial. Some of the (easy) problems can be trivially solved using built-in predicates. However, in these cases, you learn more if you try to find your own solution.
-
+    
 >The problems have different levels of difficulty. Those marked with a single asterisk (\*) are easy. If you have successfully solved the preceding problems you should be able to solve them within a few (say 15) minutes. Problems marked with two asterisks (\*\*) are of intermediate difficulty. If you are a skilled programmer it shouldn't take you more than 30-90 minutes to solve them. Problems marked with three asterisks (***) are more difficult. You may need more time (i.e. a few hours or more) to find a good solution.
 
 
@@ -138,4 +159,15 @@ High Performance Kafka Consumer for Spark Streaming.
 
 
 ### [Spark机器学习算法研究和源码分析](https://github.com/endymecy/spark-ml-source-analysis)
+--
 本项目对spark ml包中各种算法的原理加以介绍并且对算法的代码实现进行详细分析，旨在加深自己对机器学习算法的理解，熟悉这些算法的分布式实现方式。
+
+
+### [Spark编程指引（中文翻译）](https://www.gitbook.com/book/endymecy/spark-programming-guide-zh-cn/details)
+--
+Spark guide chinese — 尹迪
+
+
+### [Spark源代码解析-酷玩](https://github.com/lw-lin/CoolplaySpark)
+--
+Coolplay Spark 将包含 Spark 源代码解析、Spark 类库、Spark 代码等。
