@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Spark Job Code Specification"
-subtitle:   "."
+subtitle:   "AVC data develop specification"
 date:       2016-07-21
 author:     "xp"
 header-img: "img/tag-bg.jpg"
