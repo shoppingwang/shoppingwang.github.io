@@ -32,11 +32,11 @@ tags:
 
 ### 规则
 
-1. 程序块要采用缩进风格编写，缩进的空格数为4个。
+- 程序块要采用缩进风格编写，缩进的空格数为4个。
 
 > **说明**：对于由开发工具自动生成的代码可以有不一致。
 
-2. 分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、try、catch语句中的程序都要采用如上的缩进方式。
+- 分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、try、catch语句中的程序都要采用如上的缩进方式。
 
 > **示例**
 > 
@@ -77,5 +77,17 @@ def example_fun():Unit
 }
 ```
 
-3. 较长的语句、表达式或参数（>80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。   示例：  if (filename != null  
-密级： 内部公开               2005-3-26, 11:27:38                                                        11      && new File(logPath + filename).length() < LogConfig.getFileSize()) {      ... // program code }   public static LogIterator read(String logType, Date startTime, Date endTime,                                                  int logLevel, String userName, int bufferNum)
+- 较长的语句、表达式或参数（>80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。
+
+> 示例
+
+```scala
+if (filename != null 
+    && new File(logPath + filename).length() < LogConfig.getFileSize()) 
+{
+    ... // program code
+}
+
+public static LogIterator read(String logType, Date startTime, Date endTime, 
+int logLevel, String userName, int bufferNum)
+```
