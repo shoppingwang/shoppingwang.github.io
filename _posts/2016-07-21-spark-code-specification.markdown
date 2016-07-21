@@ -250,7 +250,9 @@ package com.avcdata.streaming.evaluationbutler.processor
 ```
 
 ----
-文件注释内容：版权说明、描述信息、生成日期、修改历史。
+文件注释内容：
+
+    版权说明、描述信息、生成日期、修改历史。
 
 > 说明：文件名可选。
 > 
@@ -268,3 +270,208 @@ package com.avcdata.streaming.evaluationbutler.processor
  * 修改内容：〈修改内容〉
  */
 ```
+
+----
+类和接口的注释：
+
+    该注释放在 package 关键字之后，class 或者 trait 关键字之前。
+
+> 说明：方便JavaDoc收集。
+> 
+> 示例：
+
+```scala
+package com.avcdata.streaming.evaluationbutler.processor
+
+/**
+ * 注释内容 
+ */
+class EvaluationButlerProcessor
+```
+
+----
+类和接口的注释内容：
+
+    类的注释主要是一句话功能简述、功能详细描述。
+
+> 说明：可根据需要列出：版本号、生成日期、作者、内容、功能、与其它类的关系等。如果一个类存在Bug，请如实说明这些Bug。
+> 
+> 格式：
+
+```
+/**
+ * 〈一句话功能简述〉  
+ * 〈功能详细描述〉  
+ * @author      [作者]   
+ * @version     [版本号, YYYY-MM-DD]  
+ * @see         [相关类/方法]  
+ * @since       [产品/模块版本]   
+ * @deprecated  
+ */
+```  
+
+> 说明：描述部分说明该类或者接口的功能、作用、使用方法和注意事项，每次修改后增加作者和更新版本 号和日期，@since 表示从那个版本开始就有这个类或者接口，@deprecated 表示不建议使用该类或者接口。
+
+> 示例：
+
+```
+/**
+ * LogManager 类集中控制对日志读写的操作。   
+ * 全部为静态变量和静态方法，对外提供统一接口。分配对应日志类型的读写器，  
+ * 读取或写入符合条件的日志纪录。  
+ * 
+ * @author      张三，李四，王五 
+ * @version     1.2, 2015-03-25  
+ * @see         LogIteraotor  
+ * @see         BasicLog  
+ * @since       CommonLog1.0   
+ */
+```
+
+----
+类属性、公有和保护方法注释：
+    
+    写在类属性、公有和保护方法上面。
+
+> 示例：
+
+```
+/**
+ * 注释内容
+ */
+private val logType:String
+ 
+/**
+ * 注释内容  
+ */  
+def write(): Unit
+```
+
+----
+成员变量注释内容：
+
+    成员变量的意义、目的、功能，可能被用到的地方。
+    
+----
+公有和保护方法注释内容：
+
+    列出方法的一句话功能简述、功能详细描述、输入参数、输出参数、返回值、违例 等。  
+    
+> 格式：
+
+```
+/**
+ * 〈一句话功能简述〉  
+ * 〈功能详细描述〉   
+ * @param [参数1]     [参数1说明]  
+ * @param [参数2]     [参数2说明]  
+ * @return           [返回类型说明]   
+ * @exception/throws [违例类型] [违例说明]  
+ * @see              [类、类#方法、类#成员]  
+ * @deprecated  
+ */
+```
+
+> 说明：@since 表示从那个版本开始就有这个方法；@exception或throws 列出可能仍出的异常；@deprecated  表示不建议使用该方法。
+
+> 示例：
+
+```
+/**
+ * 根据日志类型和时间读取日志。
+ * 分配对应日志类型的LogReader，指定类型、查询时间段、条件和反复器缓冲数，
+ * 读取日志记录。查询条件为null或0的表示没有限制，反复器缓冲数为0读不到日志。
+ * 查询时间为左包含原则，即 [startTime, endTime) 。
+ * @param logTypeName   日志类型名（在配置文件中定义的）
+ * @param startTime     查询日志的开始时间      
+ * @param endTime       查询日志的结束时间      
+ * @param logLevel      查询日志的级别      
+ * @param userName      查询该用户的日志      
+ * @param bufferNum     日志反复器缓冲记录数
+ * @return              结果集，日志反复器      
+ * @since CommonLog1.0       
+ */ 
+public static LogIterator read(String logType, Date startTime,  Date endTime,
+int logLevel, String userName, int bufferNum)
+```
+
+----
+对于方法内部用throw语句抛出的异常，必须在方法的注释中标明，对于所调用的其他方法所抛出的异常，选择主要的在注释中说明。**对于非RuntimeException，即throws子句声明会抛出的异常，必须在方法的注释中标明。** 
+
+> 说明：异常注释用@exception或@throws表示，在JavaDoc中两者等价，但推荐用@exception标注Runtime异常，@throws标注非Runtime异常。异常的注释必须说明该异常的含义及什么条件下抛出该异常。
+
+----
+注释应与其描述的代码相近，对代码的注释应放在其上方或右方（对单条语句的注释）相邻位置，不可放在下面，如放于上方则需与其上面的代码用空行隔开。
+
+----
+注释与所描述内容进行同样的缩排。
+
+> 说明：可使程序排版整齐，并方便注释的阅读与理解。
+> 
+> 示例：如下例子，排版不整齐，阅读稍感不方便。
+
+```scala
+def example(): Unit
+{
+// 注释
+    val One: CodeBlock
+    
+        // 注释     
+    val Two: CodeBlock
+}
+```
+
+> 应改为如下布局。
+
+```scala
+def example(): Unit
+{
+    // 注释
+    val One: CodeBlock
+    
+    // 注释     
+    val Two: CodeBlock
+}
+```
+
+----
+将注释与其上面的代码用空行隔开。
+
+> 示例：如下例子，显得代码过于紧凑。
+
+```
+//注释  
+program code one 
+//注释  
+program code two
+```
+
+> 应如下书写：
+
+```
+//注释  
+program code one
+
+//注释  
+program code two
+```
+
+----
+对变量的定义和分支语句（条件分支、循环语句等）必须编写注释。
+
+> 说明：这些语句往往是程序实现某一特定功能的关键，对于维护人员来说，良好的注释帮助更好的理解程 序，有时甚至优于看设计文档。
+
+----
+边写代码边注释，修改代码同时修改相应的注释，以保证注释与代码的一致性。不再有用的注释要删除。
+
+----
+注释的内容要清楚、明了，含义准确，防止注释二义性。
+
+> 说明：错误的注释不但无益反而有害。
+
+----
+避免在注释中使用缩写，特别是不常用缩写。
+
+> 说明：在使用缩写时或之前，应对缩写进行必要的说明。
+
+### 建议
