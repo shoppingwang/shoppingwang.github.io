@@ -564,7 +564,36 @@ if (...)
 ## 命名规范
 
 ### 规则
+优先考虑使用val，而非var。
 
+----
+当引入多个包时，使用花括号。
+
+```
+import jxl.write.{WritableCell, Number, Label}
+```
+
+当引入的包超过6个时，应使用通配符_：
+
+```
+import org.scalatest.events._
+```
+
+----
+避免对简单的表达式采用花括号。
+
+```
+//suggestion
+def square(x: Int) = x * x
+
+//avoid
+def square(x: Int) = 
+{
+     x * x
+}
+```
+
+----
 包名采用域后缀倒置的加上自定义的包名，采用小写字母。在部门内部应该规划好包名的范围，防止产生冲突。部门内部产品使用部门的名称加上模块名称。产品线的产品使用产品的名称加上模块的名称。
 
 > 格式：
@@ -757,6 +786,10 @@ if (state == TRUNK_IDLE)
 
 > 说明：代码发布的时候可以统一关闭调试代码，定位问题的时候又可以打开开关。
 
+----
+定义隐式类时，应该将构造函数的参数声明为val。
+
+
 ### 建议
 
 记录异常不要保存exception.getMessage()，而要记录exception.toString()。
@@ -798,6 +831,7 @@ rect.width = 5
 
 > 说明：高技巧语句不等于高效率的程序，实际上程序的效率关键在于算法。
 
+
 ## 其他
 
 ### 规则
@@ -811,7 +845,7 @@ rect.width = 5
 - 不要定义不会被用到的局部变量、类私有属性、类私有方法和方法参数。
 - 不要使用System.getenv()方法。
 - 不要硬编码‘\n’和‘\r’作为换行符号。
-- 避免不必要的instanceof比较运算和类造型运算。
+- 避免不必要的isInstanceOf比较运算和类造型运算，使用模式匹配。
 - 在finalize()方法中一定要调用super.finalize()方法。
 - 在finalize()方法中的finally中调用super.finalize()方法。
 - 进行字符转换的时候应该尽可能的较少临时变量。
