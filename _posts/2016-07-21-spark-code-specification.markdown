@@ -29,13 +29,17 @@ tags:
 
 
 ## 排版规则
+
 ### 规则
+
 程序块要采用缩进风格编写，缩进的空格数为4个。
 
 > **说明**：对于由开发工具自动生成的代码可以有不一致。
 
 分界符（如大括号‘{’和‘}’）应各独占一行并且位于同一列，同时与引用它们的语句左对齐。在函数体的开始、类和接口的定义、以及if、for、do、while、try、catch语句中的程序都要采用如上的缩进方式。
-> **示例**：如下例子不符合规范。 <br/>
+
+> **示例**：如下例子不符合规范。
+
 ```java
 for (...) {<br/>
        ... // program code }   if (...)      {      ... // program code     }   void example_fun( void )     {      ... // program code     }   应如下书写。 for (...)  {      ... // program code }   if (...)  {      ... // program code }   void example_fun( void ) {      ... // program code }
