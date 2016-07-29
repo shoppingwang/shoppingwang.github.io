@@ -252,6 +252,10 @@ Coolplay Spark 将包含 Spark 源代码解析、Spark 类库、Spark 代码等�
 Spark与Scala学习，内容相对比较多，也相对比较杂。
 
 
+### [Databricks Spark Reference Applications](https://databricks.gitbooks.io/databricks-spark-reference-applications/content/index.html)
+----
+At Databricks, we are developing a set of reference applications that demonstrate how to use Apache Spark. This book/repo contains the reference applications.
+
 
 ## Storm
 
