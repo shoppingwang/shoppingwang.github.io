@@ -371,105 +371,83 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.reducer.maxSizeInFlight</code></td>
   <td>48m</td>
   <td>
-    Maximum size of map outputs to fetch simultaneously from each reduce task. Since
-    each output requires us to create a buffer to receive it, this represents a fixed memory
-    overhead per reduce task, so keep it small unless you have a large amount of memory.
+    每个reduce任务同时获取map输出数据的最大大小。由于每一个输出需要我们创建一个缓冲区来接收数据，这就意味着每一个reduce任务需要一个额外固定的内存，所以保持它为比较小的值直到你拥有较多的使用内存的时候。
   </td>
 </tr>
 <tr>
   <td><code>spark.reducer.maxReqsInFlight</code></td>
   <td>Int.MaxValue</td>
   <td>
-    This configuration limits the number of remote requests to fetch blocks at any given point.
-    When the number of hosts in the cluster increase, it might lead to very large number
-    of in-bound connections to one or more nodes, causing the workers to fail under load.
-    By allowing it to limit the number of fetch requests, this scenario can be mitigated.
+    这个配置限制了在某一给定的时间点，远程请求能获取的最大的block数量。当集群中的主机数量增加的时候，它将导致某一个或某些节点的接入请求非常大，然后工作节点因不堪重负会挂掉。通过限制fetch请求的连接数量，可以减轻这一状况的发生。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.compress</code></td>
   <td>true</td>
   <td>
-    Whether to compress map output files. Generally a good idea. Compression will use
-    <code>spark.io.compression.codec</code>.
+    是否压缩map的输出文件。这通常是一个比较好的主意。压缩将会使用<code>spark.io.compression.codec</code>的指定值。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.file.buffer</code></td>
   <td>32k</td>
   <td>
-    Size of the in-memory buffer for each shuffle file output stream. These buffers
-    reduce the number of disk seeks and system calls made in creating intermediate shuffle files.
+    针对每一个shuffle文件的输出的内存缓冲区大小。这些缓冲区在创建中间shuffle文件时能够减少磁盘寻道和系统调用次数。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.io.maxRetries</code></td>
   <td>3</td>
   <td>
-    (Netty only) Fetches that fail due to IO-related exceptions are automatically retried if this is
-    set to a non-zero value. This retry logic helps stabilize large shuffles in the face of long GC
-    pauses or transient network connectivity issues.
+    (Netty only) 如果这个值设置为一个非0值，那么当由于IO错误引发的数据获取失败时，fetch操作将自动重试。在面对长的GC暂定或者瞬时的网络连接问题时，这个尝试逻辑有助于巨大的shuffle操作稳定。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.io.numConnectionsPerPeer</code></td>
   <td>1</td>
   <td>
-    (Netty only) Connections between hosts are reused in order to reduce connection buildup for
-    large clusters. For clusters with many hard disks and few hosts, this may result in insufficient
-    concurrency to saturate all disks, and so users may consider increasing this value.
+    (Netty only) 在大的集群中主机之间的连接被复用可以减少建立连接的消耗。针对主机中有许多的硬盘和较少的主机，这将导致所有硬盘不饱和的并发，所以用户应该考虑增加这个值。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.io.preferDirectBufs</code></td>
   <td>true</td>
   <td>
-    (Netty only) Off-heap buffers are used to reduce garbage collection during shuffle and cache
-    block transfer. For environments where off-heap memory is tightly limited, users may wish to
-    turn this off to force all allocations from Netty to be on-heap.
-  </td>
+    (Netty only) 被用来shuffle和缓存block传输中的堆外缓冲，以止减少垃圾收集器的工作。在许多环境中堆外内存都是被严格限制的，用户可能希望关闭这一特性来强制使Netty分配的内存都在堆上。  </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.io.retryWait</code></td>
   <td>5s</td>
   <td>
-    (Netty only) How long to wait between retries of fetches. The maximum delay caused by retrying
-    is 15 seconds by default, calculated as <code>maxRetries * retryWait</code>.
+    (Netty only) 在进行fetch操作重试时等待多长时间。最大的延迟默认是重试15秒，计算公式为<code>maxRetries * retryWait</code>。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.service.enabled</code></td>
   <td>false</td>
   <td>
-    Enables the external shuffle service. This service preserves the shuffle files written by
-    executors so the executors can be safely removed. This must be enabled if
-    <code>spark.dynamicAllocation.enabled</code> is "true". The external shuffle service
-    must be set up in order to enable it. See
-    <a href="job-scheduling.html#configuration-and-setup">dynamic allocation
-    configuration and setup documentation</a> for more information.
+    是否开启外部的shuffle服务。这个服务保存由executor写入的shuffle文件，所以executor能被安全的移除。这个特性必须被打开当<code>spark.dynamicAllocation.enabled</code>设置为"true"时。为了启用它，外部shuffle服务必须设置。参见<a href="job-scheduling.html#configuration-and-setup">动态资源分配和设置</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.service.port</code></td>
   <td>7337</td>
   <td>
-    Port on which the external shuffle service will run.
+    外部shuffle服务运行的端口号。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.sort.bypassMergeThreshold</code></td>
   <td>200</td>
   <td>
-    (Advanced) In the sort-based shuffle manager, avoid merge-sorting data if there is no
-    map-side aggregation and there are at most this many reduce partitions.
+    (Advanced) 在依赖排序的shuffle管理器中，如果没有map端的聚合并且有很多的reduce分区，避免合并-排序数据。
   </td>
 </tr>
 <tr>
   <td><code>spark.shuffle.spill.compress</code></td>
   <td>true</td>
   <td>
-    Whether to compress data spilled during shuffles. Compression will use
-    <code>spark.io.compression.codec</code>.
+    当在shuffle操作溢出到磁盘时是否开启压缩。压缩将会使用<code>spark.io.compression.codec</code>属性的值。
   </td>
 </tr>
 </table>
