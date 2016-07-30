@@ -549,133 +549,102 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.broadcast.compress</code></td>
   <td>true</td>
   <td>
-    Whether to compress broadcast variables before sending them. Generally a good idea.
+    在发送广播变量前是否进行压缩，通常这是一个不错的主意。
   </td>
 </tr>
 <tr>
   <td><code>spark.io.compression.codec</code></td>
   <td>lz4</td>
   <td>
-    The codec used to compress internal data such as RDD partitions, broadcast variables and
-    shuffle outputs. By default, Spark provides three codecs: <code>lz4</code>, <code>lzf</code>,
-    and <code>snappy</code>. You can also use fully qualified class names to specify the codec,
-    e.g.
+    内部数据使用的压缩方式，比如RDD的分区、广播变量和shuffle的输出。默认，Spark提供三种压缩方式：<code>lz4</code>, <code>lzf</code>和<code>snappy</code>。你也可能使用类全名指定特定的压缩器，例如：
     <code>org.apache.spark.io.LZ4CompressionCodec</code>,
     <code>org.apache.spark.io.LZFCompressionCodec</code>,
-    and <code>org.apache.spark.io.SnappyCompressionCodec</code>.
+    和<code>org.apache.spark.io.SnappyCompressionCodec</code>。
   </td>
 </tr>
 <tr>
   <td><code>spark.io.compression.lz4.blockSize</code></td>
   <td>32k</td>
   <td>
-    Block size used in LZ4 compression, in the case when LZ4 compression codec
-    is used. Lowering this block size will also lower shuffle memory usage when LZ4 is used.
+    当LZ4压缩启用时，在LZ4的压缩方式中块的大小。当LZ4压缩开启时，减少这个块的大小也将减小shuffle的内存使用。
   </td>
 </tr>
 <tr>
   <td><code>spark.io.compression.snappy.blockSize</code></td>
   <td>32k</td>
   <td>
-    Block size used in Snappy compression, in the case when Snappy compression codec
-    is used. Lowering this block size will also lower shuffle memory usage when Snappy is used.
+    当Snappy压缩启用时，在Snappy的压缩方式中块的大小。当Snappy压缩开启时，减少这个块的大小也将减小shuffle的内存使用。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryo.classesToRegister</code></td>
   <td>(none)</td>
   <td>
-    If you use Kryo serialization, give a comma-separated list of custom class names to register
-    with Kryo.
-    See the <a href="tuning.html#data-serialization">tuning guide</a> for more details.
+    如果你使用Kyro序列化，使用逗号分隔需要注册到Kyro的自定义类列表。参见<a href="tuning.html#data-serialization">调调优</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryo.referenceTracking</code></td>
   <td>true (false when using Spark SQL Thrift Server)</td>
   <td>
-    Whether to track references to the same object when serializing data with Kryo, which is
-    necessary if your object graphs have loops and useful for efficiency if they contain multiple
-    copies of the same object. Can be disabled to improve performance if you know this is not the
-    case.
+    当开启使用Kyro序列化时，是否跟踪同一个对像的引用，在你的对象图中有循环或者它们包含了多个对象的副本时是非常有用的。若你知道不会有这个的情况，那么关闭这个特性将会提升你应用程序的性能。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryo.registrationRequired</code></td>
   <td>false</td>
   <td>
-    Whether to require registration with Kryo. If set to 'true', Kryo will throw an exception
-    if an unregistered class is serialized. If set to false (the default), Kryo will write
-    unregistered class names along with each object. Writing class names can cause
-    significant performance overhead, so enabling this option can enforce strictly that a
-    user has not omitted classes from registration.
+    使用Kryo序列化时是否需要进行注册。如果设置为true，若未注册的类需要序列化，Kyro将会抛出异常。如果设置为false（默认值），Kryo将会对未注册类的每个对象写入对应的类全名。写入类名称将会有显著的性能开销，所以开启这个选项将严格的强制用户不能忽略类的注册。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryo.registrator</code></td>
   <td>(none)</td>
   <td>
-    If you use Kryo serialization, give a comma-separated list of classes that register your custom classes with Kryo. This
-    property is useful if you need to register your classes in a custom way, e.g. to specify a custom
-    field serializer. Otherwise <code>spark.kryo.classesToRegister</code> is simpler. It should be
-    set to classes that extend
+    如果你使用Kryo序列化，使用逗号分隔的自定义类列表来向Kryo注册你的自定义类。当你需要使用你自己的方式注册自己的自定义类时，这个属性就会很有用，例如：为了指定一个自定义字段序列化器。其他情况下，使用<code>spark.kryo.classesToRegister</code>是更简单的。若要设置这个属性，那么类应该继承自
     <a href="api/scala/index.html#org.apache.spark.serializer.KryoRegistrator">
     <code>KryoRegistrator</code></a>.
-    See the <a href="tuning.html#data-serialization">tuning guide</a> for more details.
+    参见<a href="tuning.html#data-serialization">调优指南</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryoserializer.buffer.max</code></td>
   <td>64m</td>
   <td>
-    Maximum allowable size of Kryo serialization buffer. This must be larger than any
-    object you attempt to serialize. Increase this if you get a "buffer limit exceeded" exception
-    inside Kryo.
+    Kryo序列化缓冲区允许的最大大小。这个缓冲区必须比尝试序列化的最大对象还要大。当你在Kryo中获取到一个"buffer limit exceeded"的异常，你就应该增加这个值。
   </td>
 </tr>
 <tr>
   <td><code>spark.kryoserializer.buffer</code></td>
   <td>64k</td>
   <td>
-    Initial size of Kryo's serialization buffer. Note that there will be one buffer
-     <i>per core</i> on each worker. This buffer will grow up to
-     <code>spark.kryoserializer.buffer.max</code> if needed.
+    Kryo序列化缓冲区初始化大小。注意这是每一个核一个缓冲区。如果需要的话，这个缓冲区将会增长到
+     <code>spark.kryoserializer.buffer.max</code>属性配置的大小。
   </td>
 </tr>
 <tr>
   <td><code>spark.rdd.compress</code></td>
   <td>false</td>
   <td>
-    Whether to compress serialized RDD partitions (e.g. for
-    <code>StorageLevel.MEMORY_ONLY_SER</code> in Java
-    and Scala or <code>StorageLevel.MEMORY_ONLY</code> in Python).
-    Can save substantial space at the cost of some extra CPU time.
+    是否序列化RDD的分区。(例如：属性
+    <code>StorageLevel.MEMORY_ONLY_SER</code>在Java和Scala或者 <code>StorageLevel.MEMORY_ONLY</code>在PYTHON中).
+    在浪费一些额外的CPU周期的前提下可以实质性的减少内存空间的使用。
   </td>
 </tr>
 <tr>
   <td><code>spark.serializer</code></td>
   <td>
-    指定用来序列化的类库，包括通过网络传输数据或缓存数据时的序列化。默认的Java序列化对于任何可以被序列化的Java对象都适用，但是速度很慢。我们推荐在追求速度时使用org.apache.spark.serializer.KryoSerializer并对Kryo进行适当的调优。该项可以配置为任何org.apache.spark.Serializer的子类。
+    org.apache.spark.serializer.KryoSerializer
   </td>
   <td>
-    Class to use for serializing objects that will be sent over the network or need to be cached
-    in serialized form. The default of Java serialization works with any Serializable Java object
-    but is quite slow, so we recommend <a href="tuning.html">using
-    <code>org.apache.spark.serializer.KryoSerializer</code> and configuring Kryo serialization</a>
-    when speed is necessary. Can be any subclass of
-    <a href="api/scala/index.html#org.apache.spark.serializer.Serializer">
-    <code>org.apache.spark.Serializer</code></a>.
+  指定用来序列化的类库，包括通过网络传输数据或缓存数据时的序列化。默认的Java序列化对于任何可以被序列化的Java对象都适用，但是速度很慢。我们推荐在追求速度时使用org.apache.spark.serializer.KryoSerializer并对Kryo进行适当的调优。该项可以配置为任何org.apache.spark.Serializer的子类。
   </td>
 </tr>
 <tr>
   <td><code>spark.serializer.objectStreamReset</code></td>
   <td>100</td>
   <td>
-    When serializing using org.apache.spark.serializer.JavaSerializer, the serializer caches
-    objects to prevent writing redundant data, however that stops garbage collection of those
-    objects. By calling 'reset' you flush that info from the serializer, and allow old
-    objects to be collected. To turn off this periodic reset set it to -1.
-    By default it will reset the serializer every 100 objects.
+    当使用org.apache.spark.serializer.JavaSerializer进行序列化时，序列化器缓存这些对象来防止写入重复数据，然而也阻止了垃圾收集器收集到这些对象。通过调用‘reset’，你可以在序列化器中刷出那些对象，并且允许旧的对象被回收。关闭这个重置调用间隔可以把这个属性值设置为-1。默认的，每100个对象序列化器将会被重置。
   </td>
 </tr>
 </table>
