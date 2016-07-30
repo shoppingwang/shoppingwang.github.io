@@ -459,54 +459,49 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.eventLog.compress</code></td>
   <td>false</td>
   <td>
-    Whether to compress logged events, if <code>spark.eventLog.enabled</code> is true.
+    若<code>spark.eventLog.enabled</code>为true，则表示是否压缩事件日志。
   </td>
 </tr>
 <tr>
   <td><code>spark.eventLog.dir</code></td>
   <td>file:///tmp/spark-events</td>
   <td>
-    Base directory in which Spark events are logged, if <code>spark.eventLog.enabled</code> is true.
-    Within this base directory, Spark creates a sub-directory for each application, and logs the
-    events specific to the application in this directory. Users may want to set this to
-    a unified location like an HDFS directory so history files can be read by the history server.
+    若<code>spark.eventLog.enabled</code>为true，则表示Spark事件日志的基目录。在这个基目录下，Spark为每一个应用创建一个日志子目录，并且在这个目录中记录特定的应用日志事件。用户可能想要设置一个统一的目录位置，例如HDFS目录，这样就能通过历史服务器读取历史日志了。
   </td>
 </tr>
 <tr>
   <td><code>spark.eventLog.enabled</code></td>
   <td>false</td>
   <td>
-    Whether to log Spark events, useful for reconstructing the Web UI after the application has
-    finished.
+    决定是否开启Spark事件日志记录，应用完成后，在WEB UI有助于重现应用状况。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.killEnabled</code></td>
   <td>true</td>
   <td>
-    Allows stages and corresponding jobs to be killed from the web ui.
+    是否允许从WEB UI终止掉stages和相关的jobs。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.port</code></td>
   <td>4040</td>
   <td>
-    Port for your application's dashboard, which shows memory and workload data.
+    应用程序画板的端口号，用来展示使用的内存和工作负载数据。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.retainedJobs</code></td>
   <td>1000</td>
   <td>
-    How many jobs the Spark UI and status APIs remember before garbage
-    collecting.
+    在垃圾收集之前，允许多少个job的Spark UI和status API保留。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.retainedStages</code></td>
   <td>1000</td>
   <td>
-    How many stages the Spark UI and status APIs remember before garbage
+    在垃圾收集之前，保留多少个stage的Spark UI和status API.
     collecting.
   </td>
 </tr>
@@ -514,35 +509,35 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.worker.ui.retainedExecutors</code></td>
   <td>1000</td>
   <td>
-    How many finished executors the Spark UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，保留多少个已经完成的executor的Spark UI和status API。
   </td>
 </tr>
 <tr>
   <td><code>spark.worker.ui.retainedDrivers</code></td>
   <td>1000</td>
   <td>
-    How many finished drivers the Spark UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，保留多少个已经完成的driver的Spark UI和status API。
   </td>
 </tr>
 <tr>
   <td><code>spark.sql.ui.retainedExecutions</code></td>
   <td>1000</td>
   <td>
-    How many finished executions the Spark UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，保留多少个执行完成的execution的Spark UI和status API。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.ui.retainedBatches</code></td>
   <td>1000</td>
   <td>
-    How many finished batches the Spark UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，保留多少个batch的Spark UI和status API。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.retainedDeadExecutors</code></td>
   <td>100</td>
   <td>
-    How many dead executors the Spark UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，保留多少个已经挂掉的executor的Spark UI和status API。
   </td>
 </tr>
 </table>
