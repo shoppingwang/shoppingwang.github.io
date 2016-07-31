@@ -733,105 +733,80 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.broadcast.blockSize</code></td>
   <td>4m</td>
   <td>
-    Size of each piece of a block for <code>TorrentBroadcastFactory</code>.
-    Too large a value decreases parallelism during broadcast (makes it slower); however, if it is
-    too small, <code>BlockManager</code> might take a performance hit.
+    <code>TorrentBroadcastFactory</code>的每一个分块的大小。
+    如果太大，在进行广播时将会降低并发度；然而，如果太小，<code>BlockManager</code>也可能会带来性能的影响。
   </td>
 </tr>
 <tr>
   <td><code>spark.executor.cores</code></td>
   <td>
-    1 in YARN mode, all the available cores on the worker in
-    standalone and Mesos coarse-grained modes.
+    YARN模式中为1个，在standalone和Mesos的粗粒度模式中是所有的可用的核数。
   </td>
   <td>
-    The number of cores to use on each executor.
+    每个executor可用的核的数量。
 
-    In standalone and Mesos coarse-grained modes, setting this
-    parameter allows an application to run multiple executors on the
-    same worker, provided that there are enough cores on that
-    worker. Otherwise, only one executor per application will run on
-    each worker.
+    在standalone和Mesos粗粒度模式中，设置这个值可以让多个executor同时跑在一个work上，依赖于运行的worker有足够的核数来运行多个executor。否则，每个应用只有一个executor运行在每个worker上。
   </td>
 </tr>
 <tr>
   <td><code>spark.default.parallelism</code></td>
   <td>
-    For distributed shuffle operations like <code>reduceByKey</code> and <code>join</code>, the
-    largest number of partitions in a parent RDD.  For operations like <code>parallelize</code>
-    with no parent RDDs, it depends on the cluster manager:
+    针对分布式的shuffle操作，比如<code>reduceByKey</code>和<code>join</code>，在它们的父RDD中有着大量的分区。针对像<code>parallelize</code>没有父RDD的操作，它的行为将依赖于集群管理器：
     <ul>
-      <li>Local mode: number of cores on the local machine</li>
-      <li>Mesos fine grained mode: 8</li>
-      <li>Others: total number of cores on all executor nodes or 2, whichever is larger</li>
+      <li>本地模式：本地机器的核心数量</li>
+      <li>Mesos的细粒度模式：8</li>
+      <li>其他：所有executor节点可能核心的数量或者为2，哪个值大用哪个</li>
     </ul>
   </td>
   <td>
-    Default number of partitions in RDDs returned by transformations like <code>join</code>,
-    <code>reduceByKey</code>, and <code>parallelize</code> when not set by user.
+    在进行<code>join</code>,
+    <code>reduceByKey</code>和<code>parallelize</code>的转换操作时，若用户没有设置并行度，将使用此处理设置的默认并行度。
   </td>
 </tr>
 <tr>
     <td><code>spark.executor.heartbeatInterval</code></td>
     <td>10s</td>
-    <td>Interval between each executor's heartbeats to the driver.  Heartbeats let
-    the driver know that the executor is still alive and update it with metrics for in-progress
-    tasks.</td>
+    <td>每个executor汇报给驱动的心跳间隔时间。心跳可以让驱动知道哪些executor依然活着并且在处理进度属性中更新它的任务状态。</td>
 </tr>
 <tr>
   <td><code>spark.files.fetchTimeout</code></td>
   <td>60s</td>
   <td>
-    Communication timeout to use when fetching files added through SparkContext.addFile() from
-    the driver.
+    当从driver调用SparkContext.addFile()增加文件时的超时时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.files.useFetchCache</code></td>
   <td>true</td>
   <td>
-    If set to true (default), file fetching will use a local cache that is shared by executors
-    that belong to the same application, which can improve task launching performance when
-    running many executors on the same host. If set to false, these caching optimizations will
-    be disabled and all executors will fetch their own copies of files. This optimization may be
-    disabled in order to use Spark local directories that reside on NFS filesystems (see
-    <a href="https://issues.apache.org/jira/browse/SPARK-6313">SPARK-6313</a> for more details).
+    如果设置为true（默认），文件的获取将会使用属于同一个应用的被许多executor共享的本地缓存。当许多executor运行在同一台主机时，这样能提升任务运行的效率。如果设置为false，这些缓存优化将会不起作用，并且所有的executor将会获取他们自己的文件的拷贝。为了使用Spark在NFS文件系统上的本地目录，这种优化可能会被禁用。(参见
+    <a href="https://issues.apache.org/jira/browse/SPARK-6313">SPARK-6313</a>获取更多信息)。
   </td>
 </tr>
 <tr>
   <td><code>spark.files.overwrite</code></td>
   <td>false</td>
   <td>
-    Whether to overwrite files added through SparkContext.addFile() when the target file exists and
-    its contents do not match those of the source.
+    当文件已经存在时并且它的内存和源文件的内容不匹配，是否覆写已经通过SparkContext.addFile()增加的文件。
   </td>
 </tr>
 <tr>
     <td><code>spark.hadoop.cloneConf</code></td>
     <td>false</td>
-    <td>If set to true, clones a new Hadoop <code>Configuration</code> object for each task.  This
-    option should be enabled to work around <code>Configuration</code> thread-safety issues (see
-    <a href="https://issues.apache.org/jira/browse/SPARK-2546">SPARK-2546</a> for more details).
-    This is disabled by default in order to avoid unexpected performance regressions for jobs that
-    are not affected by these issues.</td>
+    <td>如果设置为true，会为每一个任务克隆一份Hadoop<code>Configuration</code>。这个选项应该在需要使用<code>Configuration</code>有线程安全问题时打开(参见<a href="https://issues.apache.org/jira/browse/SPARK-2546">SPARK-2546</a>获取更多细节)。这个选项默认是关闭的，是为了避免任务的不可预期的性能下降而又不是由这个问题引起的。
+    </td>
 </tr>
 <tr>
     <td><code>spark.hadoop.validateOutputSpecs</code></td>
     <td>true</td>
-    <td>If set to true, validates the output specification (e.g. checking if the output directory already exists)
-    used in saveAsHadoopFile and other variants. This can be disabled to silence exceptions due to pre-existing
-    output directories. We recommend that users do not disable this except if trying to achieve compatibility with
-    previous versions of Spark. Simply use Hadoop's FileSystem API to delete output directories by hand.
-    This setting is ignored for jobs generated through Spark Streaming's StreamingContext, since
-    data may need to be rewritten to pre-existing output directories during checkpoint recovery.</td>
+    <td>如果设置为true，将会在saveAsHadoopFile和其他变化中的检查输出的合法性(例如，检查输出目录是否已经存在)。如果想让程序在遇到已经存在的目录只打印异常信息时，可以将此选项禁用掉。我们建议用户不要禁用此选项，除非是为了尝试和之前的Spark版本进行适配。最简单的方式就是顺手使用Hadoop的文件系统API删除已经存在的目录。这个选项在Spark Streaming的StreamingContext生成任务的情下会被忽略，由于检查点恢复机制，因为数据可能已经被写入已经存在的输出目录了。
+    </td>
 </tr>
 <tr>
   <td><code>spark.storage.memoryMapThreshold</code></td>
   <td>2m</td>
   <td>
-    Size of a block above which Spark memory maps when reading a block from disk.
-    This prevents Spark from memory mapping very small blocks. In general, memory
-    mapping has high overhead for blocks close to or below the page size of the operating system.
+    当从磁盘读取至少多大的数据再进行map内存映射操作。这将阻止Spark在非常小的块上进行内存中的mapping操作。通常情况下，内存映射会因为块数据的关闭或者把数据扇进系统页会有较高的系统开销。
   </td>
 </tr>
 </table>
