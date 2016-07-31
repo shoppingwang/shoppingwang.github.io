@@ -656,50 +656,37 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.memory.fraction</code></td>
   <td>0.6</td>
   <td>
-    Fraction of (heap space - 300MB) used for execution and storage. The lower this is, the
-    more frequently spills and cached data eviction occur. The purpose of this config is to set
-    aside memory for internal metadata, user data structures, and imprecise size estimation
-    in the case of sparse, unusually large records. Leaving this at the default value is
-    recommended. For more detail, including important information about correctly tuning JVM
-    garbage collection when increasing this value, see
-    <a href="tuning.html#memory-management-overview">this description</a>.
+    用来执行和存储占（heap space - 300MB）内存的比例。这个比例越低，那么将会发生更频繁的磁盘溢出和更多的磁盘数据交换。这个配置项的目的是在于为内部元数据、用户数据结构和在很少的、不经常使用的大的无法精确估计记录的大小。推荐保持这个配置项的默认值。想要获取更多细节，包括当增加这个值时关于如何正确的对JVM的垃圾收集进行调优参见
+    <a href="tuning.html#memory-management-overview">描述</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.memory.storageFraction</code></td>
   <td>0.5</td>
   <td>
-    Amount of storage memory immune to eviction, expressed as a fraction of the size of the
-    region set aside by <code>s​park.memory.fraction</code>. The higher this is, the less
-    working memory may be available to execution and tasks may spill to disk more often.
-    Leaving this at the default value is recommended. For more detail, see
-    <a href="tuning.html#memory-management-overview">this description</a>.
+    为防止内存数据被清除而设置的总的能被使用的存储内存大小，它的比例大小设置不依赖于<code>s​park.memory.fraction</code>。这个值设置得越大，那执行任务可用的内存将会更小，也将会导致数据更频繁的向磁盘溢出。推荐保持这个配置项的默认值。想要获取更多细节，参见
+    <a href="tuning.html#memory-management-overview">描述</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.memory.offHeap.enabled</code></td>
   <td>false</td>
   <td>
-    If true, Spark will attempt to use off-heap memory for certain operations. If off-heap memory use is enabled, then <code>spark.memory.offHeap.size</code> must be positive.
+    如果为true，Spark将会尝试使用堆外内存来做确定的操作。如果堆外内存使用是被开启的，那么这个参数<code>spark.memory.offHeap.size</code>的值必须大于0。
   </td>
 </tr>
 <tr>
   <td><code>spark.memory.offHeap.size</code></td>
   <td>0</td>
   <td>
-    The absolute amount of memory in bytes which can be used for off-heap allocation.
-    This setting has no impact on heap memory usage, so if your executors' total memory consumption must fit within some hard limit then be sure to shrink your JVM heap size accordingly.
-    This must be set to a positive value when <code>spark.memory.offHeap.enabled=true</code>.
+    堆外内存分配的绝对大小，以bytes为单位。这个参数已经对堆内存的利用没有影响了，所以如果你的executor的总内存消耗是被严格限制的，确保能正确的缩小你的JVM堆内存的大小。 当 <code>spark.memory.offHeap.enabled=true</code>时，这个值必须大于0。
   </td>
 </tr>
 <tr>
   <td><code>spark.memory.useLegacyMode</code></td>
   <td>false</td>
   <td>
-    ​Whether to enable the legacy memory management mode used in Spark 1.5 and before.
-    The legacy mode rigidly partitions the heap space into fixed-size regions,
-    potentially leading to excessive spilling if the application was not tuned.
-    The following deprecated memory fraction configurations are not read unless this is enabled:
+    是否在Spark 1.5及之前的版本中使用旧的内存管理机制。旧的机制会严格的对堆内存大小进行固定的大小分区，如果应用没有进行调优，这将会导致潜在的过多的数据溢出。在这个选项开启前，下面的这些配置是未生效的：
     <code>spark.shuffle.memoryFraction</code><br>
     <code>spark.storage.memoryFraction</code><br>
     <code>spark.storage.unrollFraction</code>
