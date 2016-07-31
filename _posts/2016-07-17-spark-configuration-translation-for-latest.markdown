@@ -818,83 +818,77 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.rpc.message.maxSize</code></td>
   <td>128</td>
   <td>
-    Maximum message size (in MB) to allow in "control plane" communication; generally only applies to map
-    output size information sent between executors and the driver. Increase this if you are running
-    jobs with many thousands of map and reduce tasks and see messages about the RPC message size.
+    被允许在“控制面板”沟通过程中使用的最大的消息大小（MB）；通常只是应用在executor和driver之间发送map输出大小信息上。如果你正在运行的任务有几千个map和reduce任务增加这个属性的值，并且查看RPC消息的大小。
   </td>
 </tr>
 <tr>
   <td><code>spark.blockManager.port</code></td>
   <td>(random)</td>
   <td>
-    Port for all block managers to listen on. These exist on both the driver and the executors.
+    所有的块管理器的监听端口。这些既存在于driver端，也存在于executor端。
   </td>
 </tr>
 <tr>
   <td><code>spark.driver.host</code></td>
   <td>(local hostname)</td>
   <td>
-    Hostname or IP address for the driver to listen on.
-    This is used for communicating with the executors and the standalone Master.
-  </td>
+    Driver需要监听的主机名或者IP地址。
+    这个通常用于与executor和standalone Master进行沟通。
+    </td>
 </tr>
 <tr>
   <td><code>spark.driver.port</code></td>
   <td>(random)</td>
   <td>
-    Port for the driver to listen on.
-    This is used for communicating with the executors and the standalone Master.
+    Driver的监听端口。
+    这个通常用于与executor和standalone Master进行沟通。
   </td>
 </tr>
 <tr>
   <td><code>spark.network.timeout</code></td>
   <td>120s</td>
   <td>
-    Default timeout for all network interactions. This config will be used in place of
+    默认的所有的网络交互的超时时间。若如下参数未进行配置，这个配置将会被以下配置中所使用：
     <code>spark.core.connection.ack.wait.timeout</code>,
     <code>spark.storage.blockManagerSlaveTimeoutMs</code>,
     <code>spark.shuffle.io.connectionTimeout</code>, <code>spark.rpc.askTimeout</code> or
-    <code>spark.rpc.lookupTimeout</code> if they are not configured.
+    <code>spark.rpc.lookupTimeout</code>。
   </td>
 </tr>
 <tr>
   <td><code>spark.port.maxRetries</code></td>
   <td>16</td>
   <td>
-    Maximum number of retries when binding to a port before giving up.
-    When a port is given a specific value (non 0), each subsequent retry will
-    increment the port used in the previous attempt by 1 before retrying. This
-    essentially allows it to try a range of ports from the start port specified
-    to port + maxRetries.
+    尝试绑定一个端口的最大重试次数。当一个端口被给定的值为非0值时，每一次后续的重试之前都会在之前重试的端口的值上加1。这个本质上是让它能够尝试从一个起始端口到起始端口+重试次数的端口范围内进行重试。
   </td>
 </tr>
 <tr>
   <td><code>spark.rpc.numRetries</code></td>
   <td>3</td>
   <td>
-    Number of times to retry before an RPC task gives up.
-    An RPC task will run at most times of this number.
+    RPC任务在失败放弃之前的最大重试次数。
+    一个RPC任务最多会运行此选项指定的次数。
   </td>
 </tr>
 <tr>
   <td><code>spark.rpc.retry.wait</code></td>
   <td>3s</td>
   <td>
-    Duration for an RPC ask operation to wait before retrying.
+    RPC等待最长的响应时间，否则进行重试。
   </td>
 </tr>
 <tr>
   <td><code>spark.rpc.askTimeout</code></td>
   <td>120s</td>
   <td>
-    Duration for an RPC ask operation to wait before timing out.
+    RPC请求响应的最大超时时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.rpc.lookupTimeout</code></td>
   <td>120s</td>
   <td>
-    Duration for an RPC remote endpoint lookup operation to wait before timing out.
+    RPC远程端点查找操作的最大等待超时时间。
   </td>
 </tr>
 </table>
