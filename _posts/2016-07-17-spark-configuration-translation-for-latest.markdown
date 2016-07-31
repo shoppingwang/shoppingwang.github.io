@@ -900,84 +900,66 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.cores.max</code></td>
   <td>(not set)</td>
   <td>
-    When running on a <a href="spark-standalone.html">standalone deploy cluster</a> or a
-    <a href="running-on-mesos.html#mesos-run-modes">Mesos cluster in "coarse-grained"
-    sharing mode</a>, the maximum amount of CPU cores to request for the application from
-    across the cluster (not from each machine). If not set, the default will be
-    <code>spark.deploy.defaultCores</code> on Spark's standalone cluster manager, or
-    infinite (all available cores) on Mesos.
+    当程序运行在一个<a href="spark-standalone.html">standalone集群部署模式</a>或者一个
+    <a href="running-on-mesos.html#mesos-run-modes">Mesos集群粗粒度模式</a>时，应用程序可以从集群申请到的最大的CPU核心数量（不是每台机器）。如果没有设置，默认值在Spark的standalone集群模式下将会是
+    <code>spark.deploy.defaultCores</code>指定的值，或者在Mesos下为无限（所有可用的核心）。 
   </td>
 </tr>
 <tr>
   <td><code>spark.locality.wait</code></td>
   <td>3s</td>
   <td>
-    How long to wait to launch a data-local task before giving up and launching it
-    on a less-local node. The same wait will be used to step through multiple locality levels
-    (process-local, node-local, rack-local and then any). It is also possible to customize the
-    waiting time for each level by setting <code>spark.locality.wait.node</code>, etc.
-    You should increase this setting if your tasks are long and see poor locality, but the
-    default usually works well.
+    在缺少本地化节点时启动一个数据本地化的任务前等待多久后放弃。同样的等待设置将会逐个应用于多个本地化级别（进程本地化、节点本地化、机架本地化和其他）。你也可以对每一种级别单独自定义设置等待时间，例如<code>spark.locality.wait.node</code>等等。如果你的任务很长并且很少本地化，那么你可以增加此设置的时间，但是通常情况下这也工作得很好。
   </td>
 </tr>
 <tr>
   <td><code>spark.locality.wait.node</code></td>
   <td>spark.locality.wait</td>
   <td>
-    Customize the locality wait for node locality. For example, you can set this to 0 to skip
-    node locality and search immediately for rack locality (if your cluster has rack information).
+    自定义任务节点本地化的等待时间。例如，你可以设置这项为0来跳过节点的本地化并且立即搜索机架 的本地化（假设你的集群有机架的信息）。
   </td>
 </tr>
 <tr>
   <td><code>spark.locality.wait.process</code></td>
   <td>spark.locality.wait</td>
   <td>
-    Customize the locality wait for process locality. This affects tasks that attempt to access
-    cached data in a particular executor process.
+    自定义进程本地化等待时间。这个参数尝试在一个特定的executor进程中获取缓存数据。
   </td>
 </tr>
 <tr>
   <td><code>spark.locality.wait.rack</code></td>
   <td>spark.locality.wait</td>
   <td>
-    Customize the locality wait for rack locality.
+    自定义机架本地化等待时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.scheduler.maxRegisteredResourcesWaitingTime</code></td>
   <td>30s</td>
   <td>
-    Maximum amount of time to wait for resources to register before scheduling begins.
+    在调度开始之前等待资源注册的最大时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.scheduler.minRegisteredResourcesRatio</code></td>
-  <td>0.8 for YARN mode; 0.0 for standalone mode and Mesos coarse-grained mode</td>
+  <td>YARN模式为0.8;standalone械和Mesos粗粒度模式为0.0</td>
   <td>
-    The minimum ratio of registered resources (registered resources / total expected resources)
-    (resources are executors in yarn mode, CPU cores in standalone mode and Mesos coarsed-grained
-     mode ['spark.cores.max' value is total expected resources for Mesos coarse-grained mode] )
-    to wait for before scheduling begins. Specified as a double between 0.0 and 1.0.
-    Regardless of whether the minimum ratio of resources has been reached,
-    the maximum amount of time it will wait before scheduling begins is controlled by config
-    <code>spark.scheduler.maxRegisteredResourcesWaitingTime</code>.
+    在任务调度开始前等待最小的注册资源比例(注册的资源/期望得到的资源)
+    (在YARN模式下的资源是指executor，在standalone模式和Mesos粗粒度模式下是CPU的核心数['spark.cores.max'的值是在Mesos粗粒度模式下总的期望得到的资源] )无论最小的资源比例是否已经获得，在调度开始前仍然会等待由<code>spark.scheduler.maxRegisteredResourcesWaitingTime</code>指定的时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.scheduler.mode</code></td>
   <td>FIFO</td>
   <td>
-    The <a href="job-scheduling.html#scheduling-within-an-application">scheduling mode</a> between
-    jobs submitted to the same SparkContext. Can be set to <code>FAIR</code>
-    to use fair sharing instead of queueing jobs one after another. Useful for
-    multi-user services.
+    提交给同一个SparkContext任务的<a href="job-scheduling.html#scheduling-within-an-application">调度模式</a>。此属性能够被设置为<code>FAIR</code>模式来资源进行公平调度替代队列的方式。在多用户服务下有用。
   </td>
 </tr>
 <tr>
   <td><code>spark.scheduler.revive.interval</code></td>
   <td>1s</td>
   <td>
-    The interval length for the scheduler to revive the worker resource offers to run tasks.
+    调度器接收worker提供运行任务资源的时间间隔。
   </td>
 </tr>
 <tr>
@@ -991,36 +973,35 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.speculation.interval</code></td>
   <td>100ms</td>
   <td>
-    How often Spark will check for tasks to speculate.
+    检查任务推测执行的时间间隔。
   </td>
 </tr>
 <tr>
   <td><code>spark.speculation.multiplier</code></td>
   <td>1.5</td>
   <td>
-    How many times slower a task is than the median to be considered for speculation.
+    当任务慢于多少个任务之后考虑使用推测执行。
   </td>
 </tr>
 <tr>
   <td><code>spark.speculation.quantile</code></td>
   <td>0.75</td>
   <td>
-    Percentage of tasks which must be complete before speculation is enabled for a particular stage.
+    对于一个特定的stage在开始执行推测任务之前，任务必须完成的百分比数。
   </td>
 </tr>
 <tr>
   <td><code>spark.task.cpus</code></td>
   <td>1</td>
   <td>
-    Number of cores to allocate for each task.
+    每个任务分配的CPU核心数。
   </td>
 </tr>
 <tr>
   <td><code>spark.task.maxFailures</code></td>
   <td>4</td>
   <td>
-    Number of individual task failures before giving up on the job.
-    Should be greater than or equal to 1. Number of allowed retries = this value - 1.
+    JOB的每一个单独的任务在放弃前允许失败的次数。这个值应该大于或者等于1.允许重试的次数=这个值 - 1。
   </td>
 </tr>
 </table>
