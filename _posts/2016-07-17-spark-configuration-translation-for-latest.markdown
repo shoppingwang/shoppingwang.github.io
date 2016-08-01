@@ -1013,15 +1013,13 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.dynamicAllocation.enabled</code></td>
   <td>false</td>
   <td>
-    Whether to use dynamic resource allocation, which scales the number of executors registered
-    with this application up and down based on the workload. 
-    For more detail, see the description
-    <a href="job-scheduling.html#dynamic-resource-allocation">here</a>.
+    是否启用动态资源分配，使应用基于其负载调整注册的executor个数。更多信息，参见描述
+    <a href="job-scheduling.html#dynamic-resource-allocation">这里</a>。
     <br><br>
-    This requires <code>spark.shuffle.service.enabled</code> to be set.
-    The following configurations are also relevant:
+    使用这个选项需要设置<code>spark.shuffle.service.enabled</code>这个参数。
+    下面是一些相关的配置选项:
     <code>spark.dynamicAllocation.minExecutors</code>,
-    <code>spark.dynamicAllocation.maxExecutors</code>, and
+    <code>spark.dynamicAllocation.maxExecutors</code>, 和
     <code>spark.dynamicAllocation.initialExecutors</code>
   </td>
 </tr>
@@ -1029,60 +1027,54 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.dynamicAllocation.executorIdleTimeout</code></td>
   <td>60s</td>
   <td>
-    If dynamic allocation is enabled and an executor has been idle for more than this duration,
-    the executor will be removed. For more detail, see this
-    <a href="job-scheduling.html#resource-allocation-policy">description</a>.
+    如果开启动态资源分配，并且executor已经超出配置的闲置时间，那么此executor将会被移除。更多信息，参见
+    <a href="job-scheduling.html#resource-allocation-policy">描述</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.cachedExecutorIdleTimeout</code></td>
   <td>infinity</td>
   <td>
-    If dynamic allocation is enabled and an executor which has cached data blocks has been idle for more than this duration,
-    the executor will be removed. For more details, see this
-    <a href="job-scheduling.html#resource-allocation-policy">description</a>.
+    如果开启动态资源分配，如果一个缓存了数据块的executor闲置的时间超过了此配置的时间，那么此executor将会被移除。更多信息，参见
+    <a href="job-scheduling.html#resource-allocation-policy">描述</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.initialExecutors</code></td>
   <td><code>spark.dynamicAllocation.minExecutors</code></td>
   <td>
-    Initial number of executors to run if dynamic allocation is enabled.
+    在开启动态资源分配的情况下，初始化指定数量的eecutor。
     <br /><br />
-    If `--num-executors` (or `spark.executor.instances`) is set and larger than this value, it will
-    be used as the initial number of executors.
+    如果设置了`--num-executors` (or `spark.executor.instances`)参数，如果设置的值大于这个值，那么它将使用此配置项的值来初始化executor个数。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.maxExecutors</code></td>
   <td>infinity</td>
   <td>
-    Upper bound for the number of executors if dynamic allocation is enabled.
+    在开启动态资源分配开启的情况下，应用能申请到的executor数量的上限。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.minExecutors</code></td>
   <td>0</td>
   <td>
-    Lower bound for the number of executors if dynamic allocation is enabled.
+    在开启动态资源分配开启的情况下，应用能申请到的executor数量的下限。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.schedulerBacklogTimeout</code></td>
   <td>1s</td>
   <td>
-    If dynamic allocation is enabled and there have been pending tasks backlogged for more than
-    this duration, new executors will be requested. For more detail, see this
-    <a href="job-scheduling.html#resource-allocation-policy">description</a>.
+    在开启动态资源分配开启的情况下，如果有等待任务的时间超过此时间值，则会申请新的executor执行任务。更多信息，参见<a href="job-scheduling.html#resource-allocation-policy">描述</a>。
   </td>
 </tr>
 <tr>
   <td><code>spark.dynamicAllocation.sustainedSchedulerBacklogTimeout</code></td>
   <td><code>schedulerBacklogTimeout</code></td>
   <td>
-    Same as <code>spark.dynamicAllocation.schedulerBacklogTimeout</code>, but used only for
-    subsequent executor requests. For more detail, see this
-    <a href="job-scheduling.html#resource-allocation-policy">description</a>.
+    和<code>spark.dynamicAllocation.schedulerBacklogTimeout</code>参数的意义一样，但是只是用于子executor的请求。更多信息，参见
+    <a href="job-scheduling.html#resource-allocation-policy">描述</a>。
   </td>
 </tr>
 </table>
