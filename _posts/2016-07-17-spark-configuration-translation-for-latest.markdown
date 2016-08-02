@@ -1289,7 +1289,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 
 
 #### Spark SQL
-Running the <code>SET -v</code> command will show the entire list of the SQL configuration.
+运行<code>SET -v</code>命令将会显示SQL的所有配置实体信息。
 
 <div class="codetabs">
 <div data-lang="scala"  markdown="1">
