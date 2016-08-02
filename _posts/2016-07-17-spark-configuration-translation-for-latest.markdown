@@ -1296,6 +1296,7 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
 
 {% highlight scala %}
 // spark is an existing SparkSession
+
 spark.sql("SET -v").show(numRows = 200, truncate = false)
 {% endhighlight %}
 
@@ -1337,116 +1338,91 @@ showDF(properties, numRows = 200, truncate = FALSE)
   <td><code>spark.streaming.backpressure.enabled</code></td>
   <td>false</td>
   <td>
-    Enables or disables Spark Streaming's internal backpressure mechanism (since 1.5).
-    This enables the Spark Streaming to control the receiving rate based on the
-    current batch scheduling delays and processing times so that the system receives
-    only as fast as the system can process. Internally, this dynamically sets the
-    maximum receiving rate of receivers. This rate is upper bounded by the values
-    <code>spark.streaming.receiver.maxRate</code> and <code>spark.streaming.kafka.maxRatePerPartition</code>
-    if they are set (see below).
+    开启或禁用Spark Streaming的内部背压机制（since 1.5）。这个可以让Spark Streaming控制接收数据的速率，这个速率是基于当前批处理调度的延迟和处理时间来的，所以系统会尽可能接收系统能够处理的数据。在内部，这个接收器动态的设置最大接收数据的速率。这个速率的上限是由
+    <code>spark.streaming.receiver.maxRate</code>和<code>spark.streaming.kafka.maxRatePerPartition</code>
+指定的(如下所示)。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.backpressure.initialRate</code></td>
   <td>not set</td>
   <td>
-    This is the initial maximum receiving rate at which each receiver will receive data for the
-    first batch when the backpressure mechanism is enabled.
+    当背压机制开启时，接收器第一次接收批处理时初始化最大的接收速率。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.blockInterval</code></td>
   <td>200ms</td>
   <td>
-    Interval at which data received by Spark Streaming receivers is chunked
-    into blocks of data before storing them in Spark. Minimum recommended - 50 ms. See the
-    <a href="streaming-programming-guide.html#level-of-parallelism-in-data-receiving">performance
-     tuning</a> section in the Spark Streaming programing guide for more details.
+    Spark Streaming接收数据时间隔多长时间将收到的数据块存入Spark的block中。最小值建议是-50ms。参见Spark Streaming
+    <a href="streaming-programming-guide.html#level-of-parallelism-in-data-receiving">性能调优</a>章节获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.receiver.maxRate</code></td>
   <td>not set</td>
   <td>
-    Maximum rate (number of records per second) at which each receiver will receive data.
-    Effectively, each stream will consume at most this number of records per second.
-    Setting this configuration to 0 or a negative number will put no limit on the rate.
-    See the <a href="streaming-programming-guide.html#deploying-applications">deployment guide</a>
-    in the Spark Streaming programing guide for mode details.
+    每一个接收器接收数据最大的速率(每秒接收数据的数量)。
+    实际上，每个流每秒将会消耗最多它能消耗的数据。将这个配置设置为0或者一个负数，那么数据接收速率将没有限制。
+    参见Spark Streaming编程指引中的<a href="streaming-programming-guide.html#deploying-applications">部署指引</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.receiver.writeAheadLog.enable</code></td>
   <td>false</td>
   <td>
-    Enable write ahead logs for receivers. All the input data received through receivers
-    will be saved to write ahead logs that will allow it to be recovered after driver failures.
-    See the <a href="streaming-programming-guide.html#deploying-applications">deployment guide</a>
-    in the Spark Streaming programing guide for more details.
+    针对接收器开启WAL。所有通过接收器的数据将会先写入到日志中，这样允许当驱动错误发生时可以从日志中恢复数据。
+    参见Spark Streaming编程指引中的<a href="streaming-programming-guide.html#deploying-applications">部署指引</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.unpersist</code></td>
   <td>true</td>
   <td>
-    Force RDDs generated and persisted by Spark Streaming to be automatically unpersisted from
-    Spark's memory. The raw input data received by Spark Streaming is also automatically cleared.
-    Setting this to false will allow the raw data and persisted RDDs to be accessible outside the
-    streaming application as they will not be cleared automatically. But it comes at the cost of
-    higher memory usage in Spark.
+    强制Spark Streaming生成的RDD持久化并且能自动的从Spark的内存中自动去持久化。Spark Streaming原始接收的输入数据也将会被自动清除。将这个属性设置为false将会允许原始数据持久化并能被外部的streaming应用所访问，它也不会自动被清除。但是这将会在Spark中使用过高的内存。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.stopGracefullyOnShutdown</code></td>
   <td>false</td>
   <td>
-    If <code>true</code>, Spark shuts down the <code>StreamingContext</code> gracefully on JVM
-    shutdown rather than immediately.
+    如果设置为<code>true</code>，比起直接停止的方式，Spark在JVM中将会优雅的停止。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.kafka.maxRatePerPartition</code></td>
   <td>not set</td>
   <td>
-    Maximum rate (number of records per second) at which data will be read from each Kafka
-    partition when using the new Kafka direct stream API. See the
-    <a href="streaming-kafka-integration.html">Kafka Integration guide</a>
-    for more details.
+    当使用新的Kafka流API时，每一个Kafka分区中接收数据的最大速率（每秒接收数据的数量）。参见
+    <a href="streaming-kafka-integration.html">Kafka集成指引</a>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.kafka.maxRetries</code></td>
   <td>1</td>
   <td>
-    Maximum number of consecutive retries the driver will make in order to find
-    the latest offsets on the leader of each partition (a default value of 1
-    means that the driver will make a maximum of 2 attempts). Only applies to
-    the new Kafka direct stream API.
+    针对Kafka中每个分区查找它的最新的offset信息的连续重试的最大次数（默认值为1意味着driver最多会做两次尝试）。此项只能应用于新的Kafka流API。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.ui.retainedBatches</code></td>
   <td>1000</td>
   <td>
-    How many batches the Spark Streaming UI and status APIs remember before garbage collecting.
+    在垃圾收集之前，Spark Web UI中保存多少Spark Streaming UI和status APIs信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.driver.writeAheadLog.closeFileAfterWrite</code></td>
   <td>false</td>
   <td>
-    Whether to close the file after writing a write ahead log record on the driver. Set this to 'true'
-    when you want to use S3 (or any file system that does not support flushing) for the metadata WAL
-    on the driver.
+    在Driver写入一条WAL记录后是否关闭文件。当你想要使用S3（或者其他不支持flushing的文件系统）设置这个为true。
   </td>
 </tr>
 <tr>
   <td><code>spark.streaming.receiver.writeAheadLog.closeFileAfterWrite</code></td>
   <td>false</td>
   <td>
-    Whether to close the file after writing a write ahead log record on the receivers. Set this to 'true'
-    when you want to use S3 (or any file system that does not support flushing) for the data WAL
-    on the receivers.
+    当接收器写入一条WAL记录后是否关闭文件。当你想要使用S3（或者其他不支持flushing的文件系统）设置这个为true。
   </td>
 </tr>
 </table>
