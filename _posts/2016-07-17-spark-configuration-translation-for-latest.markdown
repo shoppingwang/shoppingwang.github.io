@@ -1460,18 +1460,22 @@ showDF(properties, numRows = 200, truncate = FALSE)
   <tr>
     <td><code>spark.deploy.recoveryMode</code></td>
     <td>NONE</td>
-    <td>The recovery mode setting to recover submitted Spark jobs with cluster mode when it failed and relaunches.
-    This is only applicable for cluster mode when running with Standalone or Mesos.</td>
+    <td>在cluster模式下已经提交的Spark jobs当运行失败或者重新运行时的恢复模式。
+    这个只适用于运行在Standalone或者Mesos的cluster模式下。
+    </td>
   </tr>
   <tr>
     <td><code>spark.deploy.zookeeper.url</code></td>
     <td>None</td>
-    <td>When `spark.deploy.recoveryMode` is set to ZOOKEEPER, this configuration is used to set the zookeeper URL to connect to.</td>
+    <td>
+    当`spark.deploy.recoveryMode`被设置为ZOOKEEPER时，这个属性用来设置zookeeper的连接URL地址。
+    </td>
   </tr>
   <tr>
     <td><code>spark.deploy.zookeeper.dir</code></td>
     <td>None</td>
-    <td>When `spark.deploy.recoveryMode` is set to ZOOKEEPER, this configuration is used to set the zookeeper directory to store recovery state.</td>
+    <td>当`spark.deploy.recoveryMode`被设置为ZOOKEEPER时，这个属性被用来设置存储恢复状态的zookeeper目录。
+    </td>
   </tr>
 </table>
 
