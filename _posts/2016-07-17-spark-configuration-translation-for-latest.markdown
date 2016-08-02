@@ -1481,8 +1481,7 @@ showDF(properties, numRows = 200, truncate = FALSE)
 
 
 #### Cluster Managers
-Each cluster manager in Spark has additional configuration options. Configurations
-can be found on the pages for each mode:
+每一个Spark的集群管理器都有它额外的配置选项。每一种模式的选项可以在如下页面中找到：
 
 ##### [YARN](running-on-yarn.html#configuration)
 
