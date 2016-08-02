@@ -1205,94 +1205,84 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
         <td><code>spark.ssl.enabled</code></td>
         <td>false</td>
         <td>
-            <p>Whether to enable SSL connections on all supported protocols.</p>
+            <p>在所有支持SSL协议的情况下是否开启SSL连接。</p>
 
-            <p>All the SSL settings like <code>spark.ssl.xxx</code> where <code>xxx</code> is a
-            particular configuration property, denote the global configuration for all the supported
-            protocols. In order to override the global configuration for the particular protocol,
-            the properties must be overwritten in the protocol-specific namespace.</p>
+            <p>所有的SSL设置比如<code>spark.ssl.xxx</code>，这里的<code>xxx</code>是配置属性的一部分，注意支持所有协议的全局配置。为了覆盖某一个特定的协议，被覆盖的属性必须覆盖协议命名空间。</p>
 
-            <p>Use <code>spark.ssl.YYY.XXX</code> settings to overwrite the global configuration for
-            particular protocol denoted by <code>YYY</code>. Currently <code>YYY</code> can be
-            only <code>fs</code> for file server.</p>
+            <p>使用<code>spark.ssl.YYY.XXX</code>设置来针对某一个特定的协议来覆盖全局配置项中的<code>YYY</code>。当前<code>YYY</code>只能应用于文件系统中的<code>fs</code>。</p>
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.enabledAlgorithms</code></td>
         <td>Empty</td>
         <td>
-            A comma separated list of ciphers. The specified ciphers must be supported by JVM.
-            The reference list of protocols one can find on
-            <a href="https://blogs.oracle.com/java-platform-group/entry/diagnosing_tls_ssl_and_https">this</a>
-            page.
-            Note: If not set, it will use the default cipher suites of JVM.
+            以逗号分隔的密码列表。指定的密码必须是被JVM所支持的。协议引用列表可在
+            <a href="https://blogs.oracle.com/java-platform-group/entry/diagnosing_tls_ssl_and_https">这里</a>找到。
+            注意：如果没有设置，将会使用JVM默认的密码套件。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.keyPassword</code></td>
         <td>None</td>
         <td>
-            A password to the private key in key-store.
+            key-store中的私钥。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.keyStore</code></td>
         <td>None</td>
         <td>
-            A path to a key-store file. The path can be absolute or relative to the directory where
-            the component is started in.
+            key-store的文件路径。这个路径可以是绝对的或者是相对于组件的起始路径。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.keyStorePassword</code></td>
         <td>None</td>
         <td>
-            A password to the key-store.
+            key-store的密码。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.keyStoreType</code></td>
         <td>JKS</td>
         <td>
-            The type of the key-store.
+            key-store的类型。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.protocol</code></td>
         <td>None</td>
         <td>
-            A protocol name. The protocol must be supported by JVM. The reference list of protocols
-            one can find on <a href="https://blogs.oracle.com/java-platform-group/entry/diagnosing_tls_ssl_and_https">this</a>
-            page.
+            协议的名称。此协议必须被JVM所支持。支持协议的引用列表可以在<a href="https://blogs.oracle.com/java-platform-group/entry/diagnosing_tls_ssl_and_https">这里</a>
+            找到。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.needClientAuth</code></td>
         <td>false</td>
         <td>
-            Set true if SSL needs client authentication.
+            如果SSL需要客户端鉴权则设置为true。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.trustStore</code></td>
         <td>None</td>
         <td>
-            A path to a trust-store file. The path can be absolute or relative to the directory
-            where the component is started in.
+            trust-store文件的路径。这个路径可以是绝对路径或者相对于组件起始的相对路径。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.trustStorePassword</code></td>
         <td>None</td>
         <td>
-            A password to the trust-store.
+            trust-store的密码。
         </td>
     </tr>
     <tr>
         <td><code>spark.ssl.trustStoreType</code></td>
         <td>JKS</td>
         <td>
-            The type of the trust-store.
+            trust-store的类型。
         </td>
     </tr>
 </table>
