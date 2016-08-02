@@ -1086,125 +1086,94 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.acls.enable</code></td>
   <td>false</td>
   <td>
-    Whether Spark acls should be enabled. If enabled, this checks to see if the user has
-    access permissions to view or modify the job.  Note this requires the user to be known,
-    so if the user comes across as null no checks are done. Filters can be used with the UI
-    to authenticate and set the user.
+    是否开启Spark acls。如果开启，将会检查用户是否有察看或者修改JOB的权限。注意这个要求用户必须是已知的，如果用户的身份为空，那么将不会对用户身份做检查。可以在UI上进行过滤来设置用户的身份来解决这个问题。
   </td>
 </tr>
 <tr>
   <td><code>spark.admin.acls</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of users/administrators that have view and modify access to all Spark jobs.
-    This can be used if you run on a shared cluster and have a set of administrators or devs who
-    help debug when things do not work. Putting a "*" in the list means any user can have the
-    privilege of admin.
+    以逗号进行分隔的可以查看全部任务和修改所有任务的用户/管理员列表。这个可以用在当你的任务运行在一个共享的集群上，当你的任务不生效时，会有很多的管理员和开发者来帮你调试任务。如果设置为*则表示任务一个用户都具有管理员的权限。
   </td>
 </tr>
 <tr>
   <td><code>spark.admin.acls.groups</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of groups that have view and modify access to all Spark jobs.
-    This can be used if you have a set of administrators or developers who help maintain and debug
-    the underlying infrastructure. Putting a "*" in the list means any user in any group can have
-    the privilege of admin. The user groups are obtained from the instance of the groups mapping
-    provider specified by <code>spark.user.groups.mapping</code>. Check the entry
-    <code>spark.user.groups.mapping</code> for more details.
+    以逗号进行分隔的可以查看全部任务和修改所有任务的组列表。这在当你有一系列的管理者和开发者帮你维护和调试底层基础架构时有用。如果设置为*则表示任务一个用户都具有管理员的权限。这个用户组的列表是从<code>spark.user.groups.mapping</code>属性中指定的属性映射中获取的。检查这个配置<code>spark.user.groups.mapping</code>获取更多信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.user.groups.mapping</code></td>
   <td><code>org.apache.spark.security.ShellBasedGroupsMappingProvider</code></td>
   <td>
-    The list of groups for a user are determined by a group mapping service defined by the trait
-    org.apache.spark.security.GroupMappingServiceProvider which can configured by this property.
-    A default unix shell based implementation is provided <code>org.apache.spark.security.ShellBasedGroupsMappingProvider</code>
-    which can be specified to resolve a list of groups for a user.
-    <em>Note:</em> This implementation supports only a Unix/Linux based environment. Windows environment is
-    currently <b>not</b> supported. However, a new platform/protocol can be supported by implementing
-    the trait <code>org.apache.spark.security.GroupMappingServiceProvider</code>.
+    一个实现了org.apache.spark.security.GroupMappingServiceProvider接口的组的映射配置，决定用户所属组的列表。默认提供的是一个unix shell的实现<code>org.apache.spark.security.ShellBasedGroupsMappingProvider</code>，这个可能为某一个用户获取他所属的组列表。
+    <em>注意：</em>这个实现只支持在UNIX/LINUX下进行配置。WINDOWS环境下暂时还不支持。然而，你可以实现<code>org.apache.spark.security.GroupMappingServiceProvider</code>接口来支持一个新的平台/协议。
   </td>
 </tr>
 <tr>
   <td><code>spark.authenticate</code></td>
   <td>false</td>
   <td>
-    Whether Spark authenticates its internal connections. See
-    <code>spark.authenticate.secret</code> if not running on YARN.
+    是否加密spark的内部连接。如果没运行在YARN上，参见
+    <code>spark.authenticate.secret</code>。
   </td>
 </tr>
 <tr>
   <td><code>spark.authenticate.secret</code></td>
   <td>None</td>
   <td>
-    Set the secret key used for Spark to authenticate between components. This needs to be set if
-    not running on YARN and authentication is enabled.
+    设置SPARK在不同的容器之间的安全KEY。如果没有运行在YARN上并且鉴权是启用的，那么必须设置这个属性。
   </td>
 </tr>
 <tr>
   <td><code>spark.authenticate.enableSaslEncryption</code></td>
   <td>false</td>
   <td>
-    Enable encrypted communication when authentication is enabled. This option is currently
-    only supported by the block transfer service.
+    当鉴权开启后开启加密通讯。这个选项现在只支持block传输服务。
   </td>
 </tr>
 <tr>
   <td><code>spark.network.sasl.serverAlwaysEncrypt</code></td>
   <td>false</td>
   <td>
-    Disable unencrypted connections for services that support SASL authentication. This is
-    currently supported by the external shuffle service.
+    在支持SASL鉴权情况下，禁止服务间的未加密的连接。当前外部shuffle服务支持此特性。
   </td>
 </tr>
 <tr>
   <td><code>spark.core.connection.ack.wait.timeout</code></td>
   <td>60s</td>
   <td>
-    How long for the connection to wait for ack to occur before timing
-    out and giving up. To avoid unwilling timeout caused by long pause like GC,
-    you can set larger value.
+    在连接等待响应发生前的超时和放弃的时间。为了避免意外的由于较长时间GC带来的超时，你可以设置一个较大的值。
   </td>
 </tr>
 <tr>
   <td><code>spark.core.connection.auth.wait.timeout</code></td>
   <td>30s</td>
   <td>
-    How long for the connection to wait for authentication to occur before timing
-    out and giving up.
+    在连接等待鉴权发生前的超时和放弃的时间。
   </td>
 </tr>
 <tr>
   <td><code>spark.modify.acls</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of users that have modify access to the Spark job. By default only the
-    user that started the Spark job has access to modify it (kill it for example). Putting a "*" in
-    the list means any user can have access to modify it.
+    具有访问Spark Job权限的用户列表，以逗号分隔。默认的只有启动Spark Job的用户才会有修改（例如kill）掉自己Job的权限。如果设置为*则表示任务用户都有权限对Job进行修改。
   </td>
 </tr>
 <tr>
   <td><code>spark.modify.acls.groups</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of groups that have modify access to the Spark job. This can be used if you
-    have a set of administrators or developers from the same team to have access to control the job.
-    Putting a "*" in the list means any user in any group has the access to modify the Spark job.
-    The user groups are obtained from the instance of the groups mapping provider specified by
-    <code>spark.user.groups.mapping</code>. Check the entry <code>spark.user.groups.mapping</code>
-    for more details.
+    具有访问Spark Job权限的组列表，以逗号分隔。这个可用于当你有一系列的管理员或者开发者来自同一个团队并且对Job具有相同的控制权限时。当设置为*时表示任何用户任何组都有修改Spark Job的权限。用户组映射的信息是从<code>spark.user.groups.mapping</code>属性中获取的。检查这个配置<code>spark.user.groups.mapping</code>以获取更多的信息。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.filters</code></td>
   <td>None</td>
   <td>
-    Comma separated list of filter class names to apply to the Spark web UI. The filter should be a
-    standard <a href="http://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html">
-    javax servlet Filter</a>. Parameters to each filter can also be specified by setting a
-    java system property of: <br />
+    以逗号分隔的应用在 Spark UI上的过滤器类列表。这个过滤器必须是标准的<a href="http://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html">
+    javax servlet过滤器</a>。每一个过滤器的参数可以指定可以指定一个Java系统参数：<br />
     <code>spark.&lt;class name of filter&gt;.params='param1=value1,param2=value2'</code><br />
     For example: <br />
     <code>-Dspark.ui.filters=com.test.filter1</code> <br />
@@ -1215,21 +1184,15 @@ Spark shell和[`spark-submit`](submitting-applications.html)工具有两种方�
   <td><code>spark.ui.view.acls</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of users that have view access to the Spark web ui. By default only the
-    user that started the Spark job has view access. Putting a "*" in the list means any user can
-    have view access to this Spark job.
+    以逗号分隔的有查看Spark web uiL界面的用户列表。默认情况下只有启动这个Spark job的用户才有相应的控制权限。设置为*时意味着任何用户都有权限访问这个Spark job。
   </td>
 </tr>
 <tr>
   <td><code>spark.ui.view.acls.groups</code></td>
   <td>Empty</td>
   <td>
-    Comma separated list of groups that have view access to the Spark web ui to view the Spark Job
-    details. This can be used if you have a set of administrators or developers or users who can
-    monitor the Spark job submitted. Putting a "*" in the list means any user in any group can view
-    the Spark job details on the Spark web ui. The user groups are obtained from the instance of the
-    groups mapping provider specified by <code>spark.user.groups.mapping</code>. Check the entry
-    <code>spark.user.groups.mapping</code> for more details.
+    以逗号分隔的访问Spark web ui的组列表。这个可以用于当你有一个管理员或者开发者用户集合时能帮你监控Spark任务的提交。设置为*意味着任何组的任何用户可以查看Spark job的详情。用户的组映射信息是从<code>spark.user.groups.mapping</code>配置实体中获取的。检查这个配置
+    <code>spark.user.groups.mapping</code>以获取更多的信息。
   </td>
 </tr>
 </table>
