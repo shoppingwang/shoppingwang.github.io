@@ -1491,22 +1491,18 @@ showDF(properties, numRows = 200, truncate = FALSE)
 
 # Environment Variables
 
-Certain Spark settings can be configured through environment variables, which are read from the
-`conf/spark-env.sh` script in the directory where Spark is installed (or `conf/spark-env.cmd` on
-Windows). In Standalone and Mesos modes, this file can give machine specific information such as
-hostnames. It is also sourced when running local Spark applications or submission scripts.
+某些Spark的环境变量设置可以通过变量进行配置，这些是从`conf/spark-env.sh`Spark安装目录的脚本文件中读取的(或者在WINDOWS中是`conf/spark-env.cmd`)。在Standalone和Mesos模式中，这些文件能提供针对机器的相关信息，例如主机名。在运行本地Spark任务或者提交脚本时，这个文件将会被引入。
 
-Note that `conf/spark-env.sh` does not exist by default when Spark is installed. However, you can
-copy `conf/spark-env.sh.template` to create it. Make sure you make the copy executable.
+注意`conf/spark-env.sh`文件在Spark安装后是不存在的。然而，你可以复制`conf/spark-env.sh.template`文件来创建它。确保你复制的文件是可执行的。
 
-The following variables can be set in `spark-env.sh`:
+下面的这些变量可以在`spark-env.sh`中进行配置:
 
 
 <table class="table">
   <tr><th style="width:21%">Environment Variable</th><th>Meaning</th></tr>
   <tr>
     <td><code>JAVA_HOME</code></td>
-    <td>Location where Java is installed (if it's not on your default <code>PATH</code>).</td>
+    <td>Java的安装位置。(如果它没有在你的默认<code>PATH</code>下)。</td>
   </tr>
   <tr>
     <td><code>PYSPARK_PYTHON</code></td>
@@ -1522,46 +1518,37 @@ The following variables can be set in `spark-env.sh`:
   </tr>
   <tr>
     <td><code>SPARK_LOCAL_IP</code></td>
-    <td>IP address of the machine to bind to.</td>
+    <td>需要绑定的该机器的IP地址。</td>
   </tr>
   <tr>
     <td><code>SPARK_PUBLIC_DNS</code></td>
-    <td>Hostname your Spark program will advertise to other machines.</td>
+    <td>你的Spark程序广播给其他主机时的主机名。</td>
   </tr>
 </table>
 
-In addition to the above, there are also options for setting up the Spark
-[standalone cluster scripts](spark-standalone.html#cluster-launch-scripts), such as number of cores
-to use on each machine and maximum memory.
+除了上面的配置，这里还有其他的一些Spark选项可以被设置
+[standalone cluster scripts](spark-standalone.html#cluster-launch-scripts)，例如CPU的数目，使用每台机器的最大的内存数。
 
-Since `spark-env.sh` is a shell script, some of these can be set programmatically -- for example, you might
-compute `SPARK_LOCAL_IP` by looking up the IP of a specific network interface.
+由于`spark-env.sh`是一个shell脚本，这里面某些选项能被自动设置 -- 例如，你可以通过寻找指定网络接口来计算`SPARK_LOCAL_IP`的值。
 
-Note: When running Spark on YARN in `cluster` mode, environment variables need to be set using the `spark.yarn.appMasterEnv.[EnvironmentVariableName]` property in your `conf/spark-defaults.conf` file.  Environment variables that are set in `spark-env.sh` will not be reflected in the YARN Application Master process in `cluster` mode.  See the [YARN-related Spark Properties](running-on-yarn.html#spark-properties) for more information.
+注意：当在YARN的`cluster`模式上上运行Spark任务时，环境变量的设置需要在`conf/spark-defaults.conf`使用`spark.yarn.appMasterEnv.[EnvironmentVariableName]`的方式设置。在`spark-env.sh`设置的环境变量不会在YARN的`cluster`模式应用的Master进程中生效。参见[YARN-related Spark Properties](running-on-yarn.html#spark-properties)获取更多信息。
 
 # Configuring Logging
 
-Spark uses [log4j](http://logging.apache.org/log4j/) for logging. You can configure it by adding a
-`log4j.properties` file in the `conf` directory. One way to start is to copy the existing
-`log4j.properties.template` located there.
+Spark使用[log4j](http://logging.apache.org/log4j/)来记录日志。你可以在`conf`目录中增加配置`log4j.properties`文件来增加你自己的配置。一种方式是拷贝
+`log4j.properties.template`文件来实现。
 
 # Overriding configuration directory
 
-To specify a different configuration directory other than the default "SPARK_HOME/conf",
-you can set SPARK_CONF_DIR. Spark will use the configuration files (spark-defaults.conf, spark-env.sh, log4j.properties, etc)
-from this directory.
+为指定一个不同于"SPARK_HOME/conf"默认的的配置目录，你可以设置SPARK_CONF_DIR属性。Spark将使用这个目录中的配置文件(spark-defaults.conf, spark-env.sh, log4j.properties等等)。
 
 # Inheriting Hadoop Cluster Configuration
 
-If you plan to read and write from HDFS using Spark, there are two Hadoop configuration files that
-should be included on Spark's classpath:
+你如果你计划使用Spark来读写HDFS中的数据，这里有两个Hadoop的配置文件需要被包含在Spark的 classpath:
 
-* `hdfs-site.xml`, which provides default behaviors for the HDFS client.
-* `core-site.xml`, which sets the default filesystem name.
+* `hdfs-site.xml`, 提供HDFS客户端的默认行为。
+* `core-site.xml`, 提供默认的文件系统名称。
 
-The location of these configuration files varies across CDH and HDP versions, but
-a common location is inside of `/etc/hadoop/conf`. Some tools, such as Cloudera Manager, create
-configurations on-the-fly, but offer a mechanisms to download copies of them.
+这些配置文件在CDH和HDP版本里的位置是不同的，但是一个共同点都是在`/etc/hadoop/conf`目录中。在一些工具中，像Cloudera Manager，在系统启动时会创建配置文件，但是只提供了一种机制去下载它们的香醇。
 
-To make these files visible to Spark, set `HADOOP_CONF_DIR` in `$SPARK_HOME/spark-env.sh`
-to a location containing the configuration files.
+为了使这些文件对Spark是可见的，`$SPARK_HOME/spark-env.sh`中设置`HADOOP_CONF_DIR`来包含这些需要的配置文件。
