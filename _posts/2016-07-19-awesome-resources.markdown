@@ -37,6 +37,13 @@ A curated list of awesome Python frameworks, libraries, software and resources.
 A curated list of amazingly awesome awesomeness.
 
 
+## Docker
+
+### [Docker —— 从入门到实践](https://yeasy.gitbooks.io/docker_practice/content/)
+----
+本书既适用于具备基础 Linux 知识的 Docker 初学者，也希望可供理解原理和实现的高级用户参考。同时，书中给出的实践案例，可供在进行实际部署时借鉴。
+
+
 ## Elasticsearch
 
 ### [Elasticsearch权威指南（中文版）](https://www.gitbook.com/book/looly/elasticsearch-the-definitive-guide-cn/details)
