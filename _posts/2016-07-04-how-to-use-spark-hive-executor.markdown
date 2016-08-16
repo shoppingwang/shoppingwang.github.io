@@ -39,6 +39,8 @@ usage: Spark4HiveQLExecutor
                                               hdfs.
  -f,--sql-file <filename>                     SQL file from hdfs.
  -h,--help                                    Lists short help.
+    --insert-sql <insert-sql>                 The self-define SQL for
+                                              insert operation.
  -k,--update-key <col-name>                   Anchor column to use for
                                               updates. Use a comma
                                               separated list of columns if
@@ -60,6 +62,8 @@ usage: Spark4HiveQLExecutor
                                               default is jdbc.
  -t,--table <table-name>                      Table to populate.
  -u,--username <username>                     Set authentication username.
+    --update-sql <update-sql>                 The self-define SQL for
+                                              update operation.
  -v,--verbose <verbose>                       Print more information while
                                               working.
 ```
