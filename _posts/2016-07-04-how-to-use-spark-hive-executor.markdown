@@ -74,7 +74,7 @@ usage: Spark4HiveQLExecutor
 - **-h,--help**：打印命令使用帮助详细信息。
 - **-f,--sql-file**：需要执行的Hive SQL文件。
 - **-T,--export-type**：SQL执行结果的导出类型，默认为***jdbc***，另支持***none***、***csv***、***hive***模式，后续将对这几种导出模式作说明。
-- **-p,--sql-param**：需要传入SQL文件的参数，例如`--sql-param execDate=20160701`，若有多个SQL参数需要传入，则多次使用`--sql-param`参数。
+- **-p,--sql-param**：需要传入SQL文件的参数，例如`--sql-param execDate=20160701`，若有多个SQL参数需要传入，则多次使用`--sql-param`参数，`注意`：不能使用工具的关键字，例如`table`等。
 
 
 ## jdbc模式参数说明
@@ -83,9 +83,11 @@ usage: Spark4HiveQLExecutor
 - **--export-config-file**：指定导入数据库的默认连接信息的文件名，此文件中的连接信息将被以下命令行指定的同名信息所覆盖。
 - **-C,--connect-uri**：导入数据库的JDBC连接信息，例如：`--connect-uri "jdbc:mysql://192.168.100.200:3306/test?useUnicode=true&characterEncoding=utf-8"`。
 - **-t,--table**：需要导入数据的表名。
+- **--insert-sql**：自定义使用的插入SQL
 - **-u,--username**：数据库用户名。
 - **-P,--password**：数据库密码。
 - **-v,--verbose**：是否打印SQL详细执行结果信息。
+- **--update-sql**：自定义使用的更新SQL
 - **-k,--update-key**：指定导入表的主键，多列以`,`分隔，若指定，则会删除已经存在相同主键的数据记录然后导入数据，否则直接将数据导入至指定表中。
 - **--delete-key**：指定删除表数据的主键，多列以`,`分隔，若指定，则以删除键删除匹配的数据记录，否则删除键的值为`--update-key`的值。
 - **-m,--update-mode**：支持`updateonly`和`allowinsert`两种模式，默认为`allowinsert`模式，区别在于`allowinsert`模式会更新和插入新数据，而`updateonly`只会更新具有相同主键的数据。
