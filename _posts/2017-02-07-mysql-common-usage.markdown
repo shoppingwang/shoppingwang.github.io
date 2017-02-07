@@ -322,3 +322,63 @@ WHERE
 
 SHOW INDEX FROM employees FROM employees;
 ```
+
+## 性能指标计算方式
+```sql
+-- 统计性能指标前先开启下列参数,该参数使用IS数据库来存放数据库信息,由于使用PS库存放还存在BUG,信息统计不全
+show variables like 'show_compatibility_56';
+set global show_compatibility_56=on;
+show variables like 'show_compatibility_56';
+
+-- QPS 计算(针对MyISAM引擎为主)
+select variable_value into @v_questions from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Questions';
+select variable_value into @v_uptime from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Uptime';
+select round(@v_questions/@v_uptime,3) as "MyISAM/QPS";
+
+-- QPS 计算(针对InnoDB引擎为主)
+select variable_value into @v_com_update from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_update';
+select variable_value into @v_com_select from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_select';
+select variable_value into @v_com_insert from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_insert';
+select variable_value into @v_com_delete from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_delete';
+select variable_value into @v_uptime from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Uptime';
+select round((@v_com_update+@v_com_select+@v_com_insert+@v_com_delete)/@v_uptime,3) as "InnoDB/QPS";
+
+-- TPS 计算 (每秒事务数)
+select variable_value into @v_com_commit from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_commit';
+select variable_value into @v_com_rollback from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Com_rollback';
+select variable_value into @v_uptime from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Uptime';
+select round((@v_com_commit+@v_com_rollback)/@v_uptime,3) as "InnoDB/TPS (每秒事务数)";
+
+-- InnoDB 缓存命中率
+select variable_value into @v_read_requests from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Innodb_buffer_pool_read_requests';
+select variable_value into @v_read_ahead from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Innodb_buffer_pool_read_ahead';
+select variable_value into @v_reads from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Innodb_buffer_pool_reads';
+select concat(round(@v_read_requests/(@v_read_requests+@v_read_ahead+@v_reads)*100,3),"%") as "InnoDB 缓存命中率";
+
+-- Thread Cache命中率
+select variable_value into @v_threads_created from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Threads_created';
+select variable_value into @v_connections from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Connections';
+select concat(round((1-@v_threads_created/@v_connections)*100,3),"%") as "线程缓存命中率";
+
+-- 临时表使用情况
+select variable_value into @v_Created_tmp_disk_tables from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Created_tmp_disk_tables';
+select variable_value into @v_Created_tmp_files from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Created_tmp_files';
+select variable_value into @v_Created_tmp_tables from INFORMATION_SCHEMA.global_status t1 where t1.variable_name='Created_tmp_tables';
+select variable_value/1024/1024 into @v_tmp_table_size from INFORMATION_SCHEMA.GLOBAL_VARIABLES where VARIABLE_NAME='tmp_table_size';
+select @v_tmp_table_size as "tmp_table_size(M)",@v_Created_tmp_disk_tables as Created_tmp_disk_tables,@v_Created_tmp_tables as Created_tmp_tables,@v_Created_tmp_files as Created_tmp_files,concat(round(@v_Created_tmp_disk_tables/@v_Created_tmp_tables*100,3),"%") as "临时表磁盘使用率";
+
+-- 连接比率
+select VARIABLE_VALUE into @v_max_conn from  INFORMATION_SCHEMA.GLOBAL_VARIABLES where VARIABLE_NAME='max_connections';
+select VARIABLE_VALUE into @v_top_con from  INFORMATION_SCHEMA.GLOBAL_STATUS where VARIABLE_NAME='Max_used_connections';
+select count(*) into @v_current_con from performance_schema.threads where type = 'FOREGROUND';
+select @v_current_con as "当前连接数",@v_max_conn as "最大连接数",@v_top_con as "连接数最大峰值";
+
+-- Innodb log buffer size的大小设置
+select VARIABLE_VALUE/1024/1024 into @v_innodb_log_buffer_size from  INFORMATION_SCHEMA.GLOBAL_VARIABLES where VARIABLE_NAME='innodb_log_buffer_size';
+select VARIABLE_VALUE into @Innodb_log_waits from  INFORMATION_SCHEMA.GLOBAL_STATUS where VARIABLE_NAME='Innodb_log_waits';
+select @v_innodb_log_buffer_size as "日志缓存区大小(M)",@Innodb_log_waits as Innodb_log_waits;
+
+-- 统计存储引擎分布情况
+SELECT COUNT(*), engine FROM information_schema.TABLES WHERE table_schema NOT IN ('information_schema' , 'performance_schema', 'sys', 'mysql') GROUP BY engine;
+SELECT COUNT(*),table_schema,engine FROM information_schema.TABLES WHERE table_schema NOT IN ('information_schema' , 'performance_schema', 'sys', 'mysql') GROUP BY table_schema,engine;
+```
