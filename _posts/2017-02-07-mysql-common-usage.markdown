@@ -196,7 +196,7 @@ FROM
 WHERE
     table_name = 'employees'
         AND table_schema = 'employees';
-show columns from employees from employees;
+SHOW COLUMNS FROM employees FROM employees;
 
 DESC employeees.employees;
 ```
