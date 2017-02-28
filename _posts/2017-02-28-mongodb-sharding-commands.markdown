@@ -17,6 +17,6 @@ tags:
 
 * Adding a single database instance as a shard
 
-    { addShard: "<hostname><:port>", maxSize: <size>, name: "<shard_name>" }
+    > { addShard: "<hostname><:port>", maxSize: <size>, name: "<shard_name>" }
 
 * Adding a replica set as a shard
