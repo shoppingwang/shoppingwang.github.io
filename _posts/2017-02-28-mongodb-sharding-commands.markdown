@@ -30,11 +30,11 @@ tags:
 * The following command adds the database instance running on port **27027** on the host **mongodb0.example.net** as a shard
 
     > use admin
-    
+    > 
     > db.runCommand({addShard: "mongodb0.example.net:27027"})
     
 * The following command adds a replica set as a shard
 
     > use admin
-    
+    >
     > db.runCommand( { addShard: "repl0/mongodb3.example.net:27327"} )
