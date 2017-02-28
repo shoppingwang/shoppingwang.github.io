@@ -57,6 +57,36 @@ The enableSharding command enables sharding on a per-database level.
     
 ### Example
 
+* The following example returns the list of shards
+
     > use admin
     > 
     > db.getSiblingDB("admin").runCommand( { listShards: 1 } )
+    
+## [shardCollection](https://docs.mongodb.com/manual/reference/command/shardCollection/)
+
+### Definition
+
+* To run shardCollection, use the db.runCommand( { <command> } ) method
+
+    > {
+    > 
+    > shardCollection: "\<database\>.\<collection\>",
+    >
+    > key: \<shardkey\>,
+    >
+    > unique: \<boolean\>,
+    >
+    > numInitialChunks: \<integer\>,
+    >
+    > collation: { locale: "simple" }
+    >
+    > }
+
+### Example
+
+* The following operation enables sharding for the **people** collection in the records database and uses the **zipcode** field as the _shard key_
+
+    > use admin
+    >
+    > db.runCommand( { shardCollection: "records.people", key: { zipcode: 1 } } )
