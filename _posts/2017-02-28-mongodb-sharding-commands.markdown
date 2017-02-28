@@ -46,3 +46,17 @@ The enableSharding command enables sharding on a per-database level.
 > use admin
 > 
 > db.runCommand({ enableSharding: "\<database name\>" })
+
+## [listShards](https://docs.mongodb.com/manual/reference/command/listShards/)
+
+### Definition
+
+* Returns a list of the configured shards
+
+    > { listShards: 1 }
+    
+### Example
+
+    > use admin
+    > 
+    > db.getSiblingDB("admin").runCommand( { listShards: 1 } )
