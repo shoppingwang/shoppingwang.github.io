@@ -38,3 +38,11 @@ tags:
     > use admin
     >
     > db.runCommand( { addShard: "repl0/mongodb3.example.net:27327"} )
+    
+## [enableSharding](https://docs.mongodb.com/manual/reference/command/enableSharding/)
+
+The enableSharding command enables sharding on a per-database level.
+
+> use admin
+> 
+> db.runCommand({ enableSharding: "\<database name\>" })
