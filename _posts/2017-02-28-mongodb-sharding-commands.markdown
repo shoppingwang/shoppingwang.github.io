@@ -16,7 +16,7 @@ tags:
 ### [addShard](https://docs.mongodb.com/manual/reference/command/addShard/)
 
 * Adding a single database instance as a shard
-    ```js
+
     { addShard: "<hostname><:port>", maxSize: <size>, name: "<shard_name>" }
-    ```
+
 * Adding a replica set as a shard
