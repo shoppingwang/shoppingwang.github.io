@@ -77,7 +77,7 @@ def example_fun():Unit
 ```
 
 ----
-较长的语句、表达式或参数（>80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。
+较长的语句、表达式或参数（>140字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。
 
 > 示例
 
@@ -130,7 +130,7 @@ if(log.getLevel() < LogConfig.getRecordLevel())
 }
 
 val writer: LogWriter = null
-val index:Int = 0
+val index = 0
 ```
 
 ----
@@ -163,11 +163,9 @@ val index:Int = 0
     
     a = b ^ 2
     
-- "!"、"~"、"++"、"--"、"&"（地址运算符）等单目操作符前后不加空格。
+- "!"、"~"、"&"（地址运算符）等单目操作符前后不加空格。
 
     flag = !isEmpty // 非操作"!"与内容之间 
-    
-    i++             // "++","--"与内容之间
     
 - "."前后不加空格。
 
@@ -211,7 +209,7 @@ val index:Int = 0
 
 > 说明：方便JavaDoc收集。
 
-> 示例：com/avcdata/streaming/evaluationbutler/processor/package.html
+> 示例：com/avcdata/data/spark/streaming/evaluationbutler/processor/package.html
 
 ----
 包的注释内容：
@@ -391,8 +389,8 @@ def write(): Unit
  * @return              结果集，日志反复器      
  * @since CommonLog1.0       
  */ 
-public static LogIterator read(String logType, Date startTime,  Date endTime,
-int logLevel, String userName, int bufferNum)
+def read(logType: String, startTime: Date,  endTime: Date,
+logLevel Int, userName: String, bufferNum: Int): LogIterator
 ```
 
 ----
@@ -695,13 +693,13 @@ def TopoNode
     
     def toString(): String
     {
-        return "NodeName : " + nodeName
+        "NodeName : " + nodeName
     }
 }
 ```
 
 ----
-数据库操作、IO操作等需要使用结束close()的对象必须在try -catch-finally 的finally中close()。
+数据库操作、IO操作等需要使用结束close()的对象必须在try -catch-finally 的finally中close()。或者使用借贷模式（建议）。
 
 ----
 异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace()。
