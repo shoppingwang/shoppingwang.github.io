@@ -2,7 +2,7 @@
 layout:     post
 title:      "Greenplum System Catalogs Definitions"
 subtitle:   ""
-date:       2017-02-07
+date:       2017-06-26
 author:     "xp"
 header-img: "img/post-bg-alitrip.jpg"
 header-mask: 0.3
@@ -20,4 +20,4 @@ The **gp\_configuration\_history** table contains information about system chang
 ## gp\_db\_interfaces
 包含segmengs节点网络相关的一些信息。
 
-The **gp\_db\_interfaces** table contains information about the relationship of segments to network interfaces. This information, joined with data from *gp\_interfaces*, is used by the system to optimize the usage of available network interfaces for various purposes, including fault detection.
+The **gp\_db\_interfaces** table contains information about the relationship of segments to network interfaces. This information, joined with data from ***gp\_interfaces***, is used by the system to optimize the usage of available network interfaces for various purposes, including fault detection.
