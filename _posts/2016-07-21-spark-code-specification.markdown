@@ -88,7 +88,7 @@ if (filename != null
     ... // program code
 }
 
-public static LogIterator read(String logType, Date startTime, Date endTime, 
+def LogIterator read(String logType, Date startTime, Date endTime, 
 int logLevel, String userName, int bufferNum)
 ```
 
@@ -337,7 +337,7 @@ class EvaluationButlerProcessor
 /**
  * 注释内容
  */
-private val logType:String
+private val logType: String
  
 /**
  * 注释内容  
@@ -870,7 +870,6 @@ rect.width = 5
 - 不要使用嵌套赋值，即在一个表达式中使用多个=。
 - 不要在抽象类的构建器中调用抽象方法。
 - 重载equals()方法的同时，也应该重载hashCode()方法。
-- 工具类（Utility）不要定义构建器，包括私有构建器。
 - 把main()方法放在类的最后。
 - 声明方法违例的时候不要使用Exception，应该使用它的子类。
 - 不要直接扔出一个Error，应该扔出它的子类。
