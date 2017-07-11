@@ -198,3 +198,221 @@ When a **pg_cast** entry has different source and target types and a function th
 系统目录表pg_class对表和大部分其他具有列或与表类似的其他目录进行编目。
 
 The system catalog table **pg_class** catalogs tables and most everything else that has columns or is otherwise similar to a table (also known as relations). This includes indexes (see also ***pg_index***), sequences, views, composite types, and `TOAST` tables. Not all columns are meaningful for all relation types.
+
+## pg_compression
+描述系统可用压缩方法的系统目录表。
+
+## pg_constraint
+此系统表存储了表的检查、主键、唯一键和外键的约束信息。
+
+The **pg_constraint** system catalog table stores check, primary key, unique, and foreign key constraints on tables. Column constraints are not treated specially. Every column constraint is equivalent to some table constraint. Not-null constraints are represented in the ***pg_attribute*** catalog table. Check constraints on domains are stored here, too.
+
+## pg_conversion
+此系统表存储了可用编码转换的存储过程。
+
+The **pg_conversion** system catalog table describes the available encoding conversion procedures as defined by CREATE CONVERSION.
+
+## pg_database
+可用的数据库相关存储信息。
+
+The **pg_database** system catalog table stores information about the available databases. Databases are created with the CREATE DATABASE SQL command. Unlike most system catalogs, pg_database is shared across all databases in the system. There is only one copy of pg_database per system, not one per database.
+
+## pg_depend
+此系统表记录了数据库之间的依赖关系。
+
+The **pg_depend** system catalog table records the dependency relationships between database objects. This information allows `DROP` commands to find which other objects must be dropped by `DROP CASCADE` or prevent dropping in the `DROP RESTRICT` case. See also ***pg_shdepend***, which performs a similar function for dependencies involving objects that are shared across a Greenplum system.
+
+## pg_description
+此系统表对对每个数据库对象存储了可选的描述信息。
+
+The **pg_description** system catalog table stores optional descriptions (comments) for each database object. Descriptions can be manipulated with the `COMMENT` command and viewed with `psql's` `\d` meta-commands. Descriptions of many built-in system objects are provided in the initial contents of **pg_description**. See also ***pg_shdescription***, which performs a similar function for descriptions involving objects that are shared across a Greenplum system.
+
+## pg_exttable
+此系统表用于追踪由`CREATE EXTERNAL TABLE`命令创建的外部表和WEB表。
+
+## pg_filespace
+此来不及包含了在GP系统中创建的文件空间信息。
+
+The **pg_filespace** table contains information about the filespaces created in a Greenplum Database system. Every system contains a default filespace, **pg_system**, which is a collection of all the data directory locations created at system initialization time.
+
+## pg\_filespace\_entry
+文件空间需要一个系统位置去存储它的数据库文件。
+
+A tablespace requires a file system location to store its database files. In Greenplum Database, the master and each segment (primary and mirror) needs its own distinct storage location. This collection of file system locations for all components in a Greenplum system is referred to as a filespace. The **pg\_filespace\_entry** table contains information about the collection of file system locations across a Greenplum Database system that comprise a Greenplum Database filespace.
+
+## pg_index
+此系统表包含了部分的索引信息，剩余的其他大部分在***pg_class***表中。
+
+The **pg_index** system catalog table contains part of the information about indexes. The rest is mostly in ***pg_class***.
+
+## pg_inherits
+此系统表记录了表之间的继承的层次结构。
+
+The **pg_inherits** system catalog table records information about table inheritance hierarchies. There is one entry for each direct child table in the database. (Indirect inheritance can be determined by following chains of entries.) In Greenplum Database, inheritance relationships are created by both the `INHERITS` clause (standalone inheritance) and the `PARTITION BY` clause (partitioned child table inheritance) of `CREATE TABLE`.
+
+## pg_language
+此系统表注册了你能在写函数或存储过程中所能使用的语言信息。
+
+The **pg_language** system catalog table registers languages in which you can write functions or stored procedures. It is populated by `CREATE LANGUAGE`.
+
+## pg_largeobject
+此系统表持有了标记为大对象的数据。
+
+The **pg_largeobject** system catalog table holds the data making up 'large objects'. A large object is identified by an OID assigned when it is created. Each large object is broken into segments or 'pages' small enough to be conveniently stored as rows in ***pg_largeobject***. The amount of data per page is defined to be `LOBLKSIZE` (which is currently `BLCKSZ`/4, or typically 8K).
+
+## pg_listener
+此系统表支持`LISTEN`和`NOTIFY`命令信息。
+
+The **pg_listener** system catalog table supports the `LISTEN` and `NOTIFY` commands. A listener creates an entry in **pg_listener** for each notification name it is listening for. A notifier scans and updates each matching entry to show that a notification has occurred. The notifier also sends a signal (using the PID recorded in the table) to awaken the listener from sleep.
+
+## pg_locks
+此视图用来获取由GP数据库打开的事务锁的信息。
+
+The **pg_locks** view provides access to information about the locks held by open transactions within Greenplum Database.
+
+## pg_namespace
+此系统表存储了命名空间信息。
+
+The **pg_namespace** system catalog table stores namespaces. A namespace is the structure underlying SQL schemas: each namespace can have a separate collection of relations, types, etc. without name conflicts.
+
+## pg_opclass
+此系统表定义了操作类获取方法的目录信息。
+
+The **pg_opclass** system catalog table defines index access method operator classes. Each operator class defines semantics for index columns of a particular data type and a particular index access method. Note that there can be multiple operator classes for a given data type/access method combination, thus supporting multiple behaviors. The majority of the information defining an operator class is actually not in its **pg_opclass** row, but in the associated rows in ***pg_amop*** and ***pg_amproc***. Those rows are considered to be part of the operator class definition — this is not unlike the way that a relation is defined by a single ***pg_class*** row plus associated rows in ***pg_attribute*** and other tables.
+
+## pg_operator
+此系统表存储了操作符的相关信息，包含内建的和通过`CREATE OPERATOR`命令创建的操作符。
+
+The **pg_operator** system catalog table stores information about operators, both built-in and those defined by `CREATE OPERATOR`. Unused column contain zeroes. For example, oprleft is zero for a prefix operator.
+
+## pg_partition
+此系统表用来追踪分区表以及它们之间的继承关系。
+
+The **pg_partition** system catalog table is used to track partitioned tables and their inheritance level relationships. Each row of **pg_partition** represents either the level of a partitioned table in the partition hierarchy, or a subpartition template description. The value of the attribute paristemplate determines what a particular row represents.
+
+## pg_partition_columns
+此系统视图用来展示分区表的分区列的相关信息。
+
+## pg_partition_encoding
+此系统表描述了对分区模板所能使用的压缩选项信息。
+
+## pg_partition_rule
+此系统目录表用来追踪分区表它们的检查约束和数据规则信息。
+
+The **pg_partition_rule** system catalog table is used to track partitioned tables, their check constraints, and data containment rules. Each row of **pg_partition_rule** represents either a leaf partition (the bottom level partitions that contain data), or a branch partition (a top or mid-level partition that is used to define the partition hierarchy, but does not contain any data).
+
+## pg\_partition\_templates
+此系统视图用来展示由子分区模板创建的子分区信息。
+
+## pg_partitions
+此系统视图用来展示分区表的结构信息。
+
+## pg_pltemplate
+此系统目录表存储了存储过程的模板信息。
+
+The **pg_pltemplate** system catalog table stores template information for procedural languages. A template for a language allows the language to be created in a particular database by a simple `CREATE LANGUAGE` command, with no need to specify implementation details. Unlike most system catalogs, **pg_pltemplate** is shared across all databases of Greenplum system: there is only one copy of **pg_pltemplate** per system, not one per database. This allows the information to be accessible in each database as it is needed.
+
+## pg_proc
+此系统目录表存储了函数的相关信息，包含内建的函数和使用`CREATE FUNCTION`创建的函数。
+
+The **pg_proc** system catalog table stores information about functions (or procedures), both built-in functions and those defined by `CREATE FUNCTION`. The table contains data for aggregate and window functions as well as plain functions. If proisagg is true, there should be a matching row in ***pg_aggregate***. If proiswin is true, there should be a matching row in ***pg_window***.
+
+## pg_resourcetype
+此系统目录表包含了GP资源队列的扩展属性信息。
+
+The **pg_resourcetype** system catalog table contains information about the extended attributes that can be assigned to Greenplum Database resource queues. Each row details an attribute and inherent qualities such as its default setting, whether it is required, and the value to disable it (when allowed).
+
+## pg_resqueue
+此系统目录表包含了GP数据库资源队列负载管理参数的相关信息。
+
+The **pg_resqueue** system catalog table contains information about Greenplum Database resource queues, which are used for the workload management feature. This table is populated only on the master. This table is defined in the ***pg_global*** tablespace, meaning it is globally shared across all databases in the system.
+
+## pg\_resqueue\_attributes
+此视图允许管理员查看资源队列，如它的同时活动语句数限制、查询资源限制、优先级等。
+
+## pg_resqueuecapability
+此系统目录表包含GP数据库资源队列的扩展属性、或者容量信息。
+
+The **pg_resqueuecapability** system catalog table contains information about the extended attributes, or capabilities, of existing Greenplum Database resource queues. Only resource queues that have been assigned an extended capability, such as a priority setting, are recorded in this table. This table is joined to the ***pg_resqueue*** table by resource queue object ID, and to the ***pg_resourcetype*** table by resource type ID (`restypid`).
+
+## pg_rewrite
+此系统目录表存储了表和视图的重写规则。
+
+The **pg_rewrite** system catalog table stores rewrite rules for tables and `views.pg_class.relhasrules` must be true if a table has any rules in this catalog.
+
+## pg_roles
+此视图提供数据库角色的访问信息。
+
+The view **pg_roles** provides access to information about database roles. This is simply a publicly readable view of ***pg_authid*** that blanks out the password field. This view explicitly exposes the OID column of the underlying table, since that is needed to do joins to other catalogs.
+
+## pg_shdepend
+此系统目录表记录了数据库对象和共享对象之间的依赖关系，像角色之类的。
+
+The **pg_shdepend** system catalog table records the dependency relationships between database objects and shared objects, such as roles. This information allows Greenplum Database to ensure that those objects are unreferenced before attempting to delete them. See also ***pg_depend***, which performs a similar function for dependencies involving objects within a single database. Unlike most system catalogs, **pg_shdepend** is shared across all databases of Greenplum system: there is only one copy of **pg_shdepend** per system, not one per database.
+
+## pg_shdescription
+此系统表存储了共享数据库对象的可选描述（备注）信息。
+
+The **pg_shdescription** system catalog table stores optional descriptions (comments) for shared database objects. Descriptions can be manipulated with the `COMMENT` command and viewed with `psql`'s `\d` meta-commands. See also ***pg_description***, which performs a similar function for descriptions involving objects within a single database. Unlike most system catalogs, **pg_shdescription** is shared across all databases of a Greenplum system: there is only one copy of **pg_shdescription** per system, not one per database.
+
+## pg\_stat\_activity
+此视图展示了每个服务进程、相关的用户会话详情、查询信息。
+
+The view **pg\_stat\_activity** shows one row per server process and details about it associated user session and query. The columns that report data on the current query are available unless the parameter `stats\_command\_string` has been turned off. Furthermore, these columns are only visible if the user examining the view is a superuser or the same as the user owning the process being reported on.
+
+## pg\_stat\_last\_operation
+此表追踪数据库对象的元数据信息。
+
+## pg\_stat\_last\_shoperation
+此表追踪全局对象的元数据信息。
+
+## pg\_stat\_operations
+此视图展示了在数据库对象上执行的最后的操作详细信息。
+
+## pg\_stat\_partition\_operations
+此视图展示了在分区表上执行的最后的操作信息。
+
+## pg\_stat\_replication
+此视图包含用来GP数据库主节点映像操作的walsender进程的元数据信息。
+
+## pg_statistic
+此系统目录表存储了数据库内容的统计数据信息。
+
+The **pg_statistic** system catalog table stores statistical data about the contents of the database. Entries are created by `ANALYZE` and subsequently used by the query optimizer. There is one entry for each table column that has been analyzed. Note that all the statistical data is inherently approximate, even assuming that it is up-to-date.
+
+**pg_statistic** also stores statistical data about the values of index expressions. These are described as if they were actual data columns; in particular, starelid references the index. No entry is made for an ordinary non-expression index column, however, since it would be redundant with the entry for the underlying table column.
+
+## pg\_stat\_resqueues
+此视图允许管理员查通过时间查看资源队列的指标信息。
+
+The **pg\_stat\_resqueues** view allows administrators to view metrics about a resource queue's workload over time. To allow statistics to be collected for this view, you must enable the `stats_queue_level` server configuration parameter on the Greenplum Database master instance. Enabling the collection of these metrics does incur a small performance penalty, as each statement submitted through a resource queue must be logged in the system catalog tables.
+
+## pg\_stat\_resqueues
+此视图允许用户通过时间查看资源队列的负载指标。
+
+The **pg\_stat\_resqueues** view allows administrators to view metrics about a resource queue's workload over time. To allow statistics to be collected for this view, you must enable the `stats_queue_level` server configuration parameter on the Greenplum Database master instance. Enabling the collection of these metrics does incur a small performance penalty, as each statement submitted through a resource queue must be logged in the system catalog tables.
+
+## pg_tablespace
+此系统目录表存储有可用的表空间信息。
+
+The **pg_tablespace** system catalog table stores information about the available tablespaces. Tables can be placed in particular tablespaces to aid administration of disk layout. Unlike most system catalogs, **pg_tablespace** is shared across all databases of a Greenplum system: there is only one copy of **pg_tablespace** per system, not one per database.
+
+## pg_trigger
+此系统目录表存储表上的触发器信息。
+> GP不支持触发器。
+
+## pg_type
+此系统目录表存储数据类型相关的信息。
+
+The **pg_type** system catalog table stores information about data types. Base types (scalar types) are created with `CREATE TYPE`, and domains with `CREATE DOMAIN`. A composite type is automatically created for each table in the database, to represent the row structure of the table. It is also possible to create composite types with `CREATE TYPE AS`.
+
+## pg\_type\_encoding
+此系统目录表包含列的存储类型信息。
+
+## pg\_user\_mapping
+此目录表存储本地用户到远程用户的映射。必须有管理员权限才能查看此目录表。
+
+## pg_window
+此表存储了窗口函数的相关信息。
+
+The **pg_window** table stores information about window functions. Window functions are often used to compose complex OLAP (online analytical processing) queries. Window functions are applied to partitioned result sets within the scope of a single query expression. A window partition is a subset of rows returned by a query, as defined in a special `OVER()` clause. Typical window functions are `rank`, `dense_rank`, and `row_number`. Each entry in **pg_window** is an extension of an entry in ***pg_proc***. The ***pg_proc*** entry carries the window function's name, input and output data types, and other information that is similar to ordinary functions.
