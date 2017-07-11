@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>config - avc-spark-etl Documentation - com.avcdata.etl.export.config</title>
+          <meta name="description" content="config - avc - spark - etl Documentation - com.avcdata.etl.export.config" />
+          <meta name="keywords" content="config avc spark etl Documentation com.avcdata.etl.export.config" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'com.avcdata.etl.export.config.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.avcdata">avcdata</a>.<a href="../../package.html" class="extype" name="com.avcdata.etl">etl</a>.<a href="../package.html" class="extype" name="com.avcdata.etl.export">export</a></p>
+        <h1>config</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">config</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.avcdata.etl.export.config.ExportESConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportESConfigextendsProductwithSerializable"></a>
+      <a id="ExportESConfig:ExportESConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportESConfig.html"><span class="name">ExportESConfig</span></a><span class="params">(<span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="indexName">indexName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="typeName">typeName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="deleteKeys">deleteKeys: <a href="../../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="configs">configs: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">导出至ES的配置</p>
+    </li><li name="com.avcdata.etl.export.config.ExportJDBCConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportJDBCConfigextendsSerializablewithProduct"></a>
+      <a id="ExportJDBCConfig:ExportJDBCConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportJDBCConfig.html"><span class="name">ExportJDBCConfig</span></a><span class="params">(<span name="connectUri">connectUri: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="username">username: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="password">password: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="table">table: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="updateKey">updateKey: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="deleteKey">deleteKey: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="columns">columns: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="insertSQL">insertSQL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="transactional">transactional: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="batch">batch: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="batchSize">batchSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">数据库数据导入</p>
+    </li><li name="com.avcdata.etl.export.config.ExportK2MConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportK2MConfigextendsSerializablewithProduct"></a>
+      <a id="ExportK2MConfig:ExportK2MConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportK2MConfig.html"><span class="name">ExportK2MConfig</span></a><span class="params">(<span name="mongoClientURI">mongoClientURI: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="collectionName">collectionName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="deleteKeys">deleteKeys: <a href="../../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="zookeeperList">zookeeperList: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="topic">topic: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="commonConnectURI">commonConnectURI: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="commonUsername">commonUsername: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="commonPassword">commonPassword: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Kafka至Mongo</p>
+    </li><li name="com.avcdata.etl.export.config.ExportKafkaConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportKafkaConfigextendsSerializablewithProduct"></a>
+      <a id="ExportKafkaConfig:ExportKafkaConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportKafkaConfig.html"><span class="name">ExportKafkaConfig</span></a><span class="params">(<span name="zookeeperList">zookeeperList: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="topic">topic: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Kafka导出配置</p>
+    </li><li name="com.avcdata.etl.export.config.ExportMongoConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportMongoConfigextendsSerializablewithProduct"></a>
+      <a id="ExportMongoConfig:ExportMongoConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportMongoConfig.html"><span class="name">ExportMongoConfig</span></a><span class="params">(<span name="clientURI">clientURI: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="collectionName">collectionName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="deleteKeys">deleteKeys: <a href="../../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">导出至MONGO的配置</p>
+    </li><li name="com.avcdata.etl.export.config.ExportRedisConfig" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportRedisConfigextendsProductwithSerializable"></a>
+      <a id="ExportRedisConfig:ExportRedisConfig"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportRedisConfig.html"><span class="name">ExportRedisConfig</span></a><span class="params">(<span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="port">port: <span class="extype" name="scala.Int">Int</span></span>, <span name="password">password: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="db">db: <span class="extype" name="scala.Int">Int</span></span>, <span name="key">key: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">导入至Redis配置</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.avcdata.etl.export.config.ExportCsvConfigOption" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportCsvConfigOption"></a>
+      <a id="ExportCsvConfigOption:ExportCsvConfigOption"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportCsvConfigOption$.html"><span class="name">ExportCsvConfigOption</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">导出CSV命令行选项命令名称</p>
+    </li><li name="com.avcdata.etl.export.config.ExportJDBCConfigOption" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportJDBCConfigOption"></a>
+      <a id="ExportJDBCConfigOption:ExportJDBCConfigOption"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportJDBCConfigOption$.html"><span class="name">ExportJDBCConfigOption</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">导出JDBC命令行选项命令名称</p>
+    </li><li name="com.avcdata.etl.export.config.ExportType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExportType"></a>
+      <a id="ExportType:ExportType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ExportType$.html"><span class="name">ExportType</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">导出类型定义</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>

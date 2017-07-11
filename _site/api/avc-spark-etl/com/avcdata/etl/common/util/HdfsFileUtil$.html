@@ -1,0 +1,676 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>HdfsFileUtil - avc-spark-etl Documentation - com.avcdata.etl.common.util.HdfsFileUtil</title>
+          <meta name="description" content="HdfsFileUtil - avc - spark - etl Documentation - com.avcdata.etl.common.util.HdfsFileUtil" />
+          <meta name="keywords" content="HdfsFileUtil avc spark etl Documentation com.avcdata.etl.common.util.HdfsFileUtil" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../../index.html';
+            var hash = 'com.avcdata.etl.common.util.HdfsFileUtil$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../../../../lib/object_big.png" />
+        <p id="owner"><a href="../../../../package.html" class="extype" name="com">com</a>.<a href="../../../package.html" class="extype" name="com.avcdata">avcdata</a>.<a href="../../package.html" class="extype" name="com.avcdata.etl">etl</a>.<a href="../package.html" class="extype" name="com.avcdata.etl.common">common</a>.<a href="package.html" class="extype" name="com.avcdata.etl.common.util">util</a></p>
+        <h1>HdfsFileUtil</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HdfsFileUtil</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>HDFS文件读取</p><p>Author   : wangxp</p><p>DateTime : 2016/4/14 14:08
+</p></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="com.avcdata.etl.common.util.HdfsFileUtil"><span>HdfsFileUtil</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#allowSnapshot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allowSnapshot(path:org.apache.hadoop.fs.Path,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="allowSnapshot(Path,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allowSnapshot</span><span class="params">(<span name="path">path: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Allow snapshot on a directory.</p><div class="fullcomment"><div class="comment cmt"><p>Allow snapshot on a directory.
+</p></div><dl class="paramcmts block"><dt class="param">path</dt><dd class="cmt"><p>The path of the directory where snapshots will be taken.
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#appendLine" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="appendLine(filePath:String,fileName:String,line:String,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="appendLine(String,String,String,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">appendLine</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="fileName">fileName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="line">line: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">追加数据至指定的文件
+</p><div class="fullcomment"><div class="comment cmt"><p>追加数据至指定的文件
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件路径</p></dd><dt class="param">fileName</dt><dd class="cmt"><p>文件名</p></dd><dt class="param">line</dt><dd class="cmt"><p>需要追加的内容
+</p></dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#copy" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="copy(srcPath:org.apache.hadoop.fs.Path,destPath:org.apache.hadoop.fs.Path,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="copy(Path,Path,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">copy</span><span class="params">(<span name="srcPath">srcPath: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="destPath">destPath: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">拷贝源文件至目标文件
+</p>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#createDir" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="createDir(dirPath:String,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="createDir(String,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createDir</span><span class="params">(<span name="dirPath">dirPath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">创建目录
+</p>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#createSnapshot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="createSnapshot(path:String,conf:org.apache.hadoop.conf.Configuration):org.apache.hadoop.fs.Path"></a>
+      <a id="createSnapshot(String,Configuration):Path"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createSnapshot</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Create a snapshot
+</p><div class="fullcomment"><div class="comment cmt"><p>Create a snapshot
+</p></div><dl class="paramcmts block"><dt class="param">path</dt><dd class="cmt"><p>The directory where snapshots will be taken.
+</p></dd><dt>returns</dt><dd class="cmt"><p>the snapshot path.
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#delete" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="delete(filePath:String,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="delete(String,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">delete</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">删除文件
+</p><div class="fullcomment"><div class="comment cmt"><p>删除文件
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件路径</p></dd><dt class="param">conf</dt><dd class="cmt"><p>HDFS配置
+</p></dd><dt>returns</dt><dd class="cmt"><p>删除是否成功
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#deletePath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="deletePath(filePath:org.apache.hadoop.fs.Path,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="deletePath(Path,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deletePath</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#deleteSnapshot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="deleteSnapshot(path:String,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="deleteSnapshot(String,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">deleteSnapshot</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Delete a snapshot of a directory
+</p><div class="fullcomment"><div class="comment cmt"><p>Delete a snapshot of a directory
+</p></div><dl class="paramcmts block"><dt class="param">path</dt><dd class="cmt"><p>The directory that the to-be-deleted snapshot belongs to
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#disallowSnapshot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="disallowSnapshot(path:org.apache.hadoop.fs.Path,conf:org.apache.hadoop.conf.Configuration):Unit"></a>
+      <a id="disallowSnapshot(Path,Configuration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">disallowSnapshot</span><span class="params">(<span name="path">path: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Disallow snapshot on a directory.</p><div class="fullcomment"><div class="comment cmt"><p>Disallow snapshot on a directory.
+</p></div><dl class="paramcmts block"><dt class="param">path</dt><dd class="cmt"><p>The path of the snapshottable directory.
+</p></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#exists" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exists(filePath:String,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="exists(String,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exists</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">判断文件是否存在
+</p><div class="fullcomment"><div class="comment cmt"><p>判断文件是否存在
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件路径</p></dd><dt class="param">conf</dt><dd class="cmt"><p>HDFS配置
+</p></dd><dt>returns</dt><dd class="cmt"><p>文件是否存在
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#existsChildFile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="existsChildFile(filePath:String,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="existsChildFile(String,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">existsChildFile</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">判断当前文件夹下是否存在子文件
+</p><div class="fullcomment"><div class="comment cmt"><p>判断当前文件夹下是否存在子文件
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件夹路径</p></dd><dt class="param">conf</dt><dd class="cmt"><p>配置对象
+</p></dd><dt>returns</dt><dd class="cmt"><p>是否存在子文件
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#filterPathFiles" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="filterPathFiles(pathPattern:String,fileNamePattern:String,conf:org.apache.hadoop.conf.Configuration):Seq[org.apache.hadoop.fs.Path]"></a>
+      <a id="filterPathFiles(String,String,Configuration):Seq[Path]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">filterPathFiles</span><span class="params">(<span name="pathPattern">pathPattern: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="fileNamePattern">fileNamePattern: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <a href="../../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="org.apache.hadoop.fs.Path">Path</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">获取指定路径中符合过滤条件的文件信息
+</p>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#read" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="read(filePath:String,conf:org.apache.hadoop.conf.Configuration):Seq[String]"></a>
+      <a id="read(String,Configuration):Seq[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">read</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <a href="../../../../../scala/package.html#Seq[+A]=Seq[A]" class="extmbr" name="scala.Seq">Seq</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">自适应读取HDFS或本地系统文件
+</p><div class="fullcomment"><div class="comment cmt"><p>自适应读取HDFS或本地系统文件
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件路径</p></dd><dt class="param">conf</dt><dd class="cmt"><p>配置对象
+</p></dd><dt>returns</dt><dd class="cmt"><p>文件内容
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#readPropertiesToMap" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="readPropertiesToMap(filePath:String,conf:org.apache.hadoop.conf.Configuration):Map[String,String]"></a>
+      <a id="readPropertiesToMap(String,Configuration):Map[String,String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">readPropertiesToMap</span><span class="params">(<span name="filePath">filePath: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">读取配置文件为MAP
+</p><div class="fullcomment"><div class="comment cmt"><p>读取配置文件为MAP
+</p></div><dl class="paramcmts block"><dt class="param">filePath</dt><dd class="cmt"><p>文件路径</p></dd><dt class="param">conf</dt><dd class="cmt"><p>配置对象
+</p></dd><dt>returns</dt><dd class="cmt"><p>文件流
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#rename" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="rename(src:String,dest:String,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="rename(String,String,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rename</span><span class="params">(<span name="src">src: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="dest">dest: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">重命名文件/目录
+</p><div class="fullcomment"><div class="comment cmt"><p>重命名文件/目录
+</p></div><dl class="paramcmts block"><dt class="param">src</dt><dd class="cmt"><p>源文件/目录</p></dd><dt class="param">dest</dt><dd class="cmt"><p>目的文件/目录</p></dd><dt class="param">conf</dt><dd class="cmt"><p>Hadoop配置
+</p></dd><dt>returns</dt><dd class="cmt"><p>重命名是否成功
+</p></dd></dl></div>
+    </li><li name="com.avcdata.etl.common.util.HdfsFileUtil#renamePath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="renamePath(src:org.apache.hadoop.fs.Path,dest:org.apache.hadoop.fs.Path,conf:org.apache.hadoop.conf.Configuration):Boolean"></a>
+      <a id="renamePath(Path,Path,Configuration):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">renamePath</span><span class="params">(<span name="src">src: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="dest">dest: <span class="extype" name="org.apache.hadoop.fs.Path">Path</span></span>, <span name="conf">conf: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span> = <span class="symbol"><span class="name"><a href="../../../../../org/package.html">new Configuration()</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">重命名文件/目录
+</p><div class="fullcomment"><div class="comment cmt"><p>重命名文件/目录
+</p></div><dl class="paramcmts block"><dt class="param">src</dt><dd class="cmt"><p>源文件/目录</p></dd><dt class="param">dest</dt><dd class="cmt"><p>目的文件/目录</p></dd><dt class="param">conf</dt><dd class="cmt"><p>Hadoop配置
+</p></dd><dt>returns</dt><dd class="cmt"><p>重命名是否成功
+</p></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <a href="../../../../../scala/package.html#AnyRef=Object" class="extmbr" name="scala.AnyRef">AnyRef</a></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+      <script defer="defer" type="text/javascript" id="jquery-js" src="../../../../../lib/jquery.js"></script><script defer="defer" type="text/javascript" id="jquery-ui-js" src="../../../../../lib/jquery-ui.js"></script><script defer="defer" type="text/javascript" id="tools-tooltip-js" src="../../../../../lib/tools.tooltip.js"></script><script defer="defer" type="text/javascript" id="template-js" src="../../../../../lib/template.js"></script>
+    </body>
+      </html>
