@@ -2,7 +2,7 @@
 layout:     post
 title:      "Distributed Systems Architecture"
 subtitle:   "Spark Memory Management"
-date:       2017-07-16
+date:       2017-07-17
 author:     "xp"
 header-img: "img/post-bg-digital-native.jpg"
 header-mask: 0.3
