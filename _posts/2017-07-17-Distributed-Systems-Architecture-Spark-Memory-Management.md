@@ -43,7 +43,7 @@ Spark executor至少**1.5 * Reserved Memory = 450MB**的堆内存，应用将失
   2. **User Memory**. 这部分内存池是在分配***Spark Memory***后剩余的空间，并且这部分内存完全由你喜欢的方式去使用。你可以存储在RDD转换中会用到的所有数据。例如，你可以通过使用mapPartitions转换操作管理hash表重写Spark的aggregation函数，实现数据的聚合操作，这会消耗被称之为***User Memory***的内存。在Spark 1.6.0中，这部分内存池可以用(“_Java Heap_” – “_Reserved Memory_”) * (1.0 – _spark.memory.fraction_)公式来计算，默认它等于 (“_Java Heap_” – 300MB) * 0.25。例如，如果你有4GB的堆内存，那你就有949MB的***User Memory***内存。再次重申一遍，这部分***User Memory***内存存储什么样的内容和怎么使用完全由你而定，Spark完全不会管你在这部分内存中的使用是否超出了内存的界限。不过你自己得小心，以免超过此内存界限而引起OOM错误。
   3. **Spark Memory**. 最后，这部分内存池是由Spark自己管理的。它的空间大小可以由(“***Java Heap***” – “***Reserved Memory***”) * ***spark.memory.fraction***计算而来，默认在Spark 1.6.0中它的值为(“_Java Heap_” – 300MB) * 0.75。举个例子，若你有4GB的堆内存，那这部分内存的大小就是2847MB。这个池被分成2个区域 - ***Storage Memory***和***Execution Memory***，它们之间的边界由_spark.memory.storageFraction_进行设定，默认值是0.5。新的高级的内存管理模式它们俩的内存边界是不固定的，会因为内存的压力而边界会随之改变。稍后我会讨论这个边界是如何“改变”的，现在让我们聚焦在这部分内存的使用上：
 
-   1. **Storage Memory**. 这个池用来存储Spark的存储数据和序列化后的数据的做“unroll”操作临时展开空间。“广播”变量也会以缓存块的形式存在这个池中。为了防止你的好奇，这里有[unroll][7]的代码。如你所见，它不需要足够的可以内存空间去展开内存块数据，如果期望的持久化方式允许它放在drive中，那么它将未展开的分区直接放在drive中。对于广播变量，它一直是以_MEMORY_AND_DISK_持久化级别保存。
+   1. **Storage Memory**. 这个池用来存储Spark的存储数据和序列化后的数据的做“unroll”操作临时展开空间。“广播”变量也会以缓存块的形式存在这个池中。为了防止你的好奇，这里有[unroll][7]的代码。如你所见，它不需要足够的可以内存空间去展开内存块数据，如果期望的持久化方式允许它放在drive中，那么它将未展开的分区直接放在drive中。对于广播变量，它一直是以**MEMORY\_AND\_DISK**持久化级别保存。
     
     2. **Execution Memory**. 这个池用来存储在执行Spark任务过程中所产生的对象。举个例子，它被用来存储[shuffle intermediate buffer on the Map side][8]，也被用来存储在hash聚合过程中产生的hash表。这个池在没有足够内存可以使用的时候，会将数据溢写到磁盘，但是这里面的块不能被其他的线程（任务线程）强制驱逐出去。
 
