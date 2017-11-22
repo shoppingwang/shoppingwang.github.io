@@ -58,7 +58,8 @@ usage: Spark4HiveQLExecutor
  -s,--batch-size <batch-size>                 SQL batch size for table
                                               DML.
  -T,--export-type <export-type>               The target type(none, jdbc,
-                                              csv, hive) of export,
+                                              csv, hive, redis, kafka, es, 
+                                              mongo) of export,
                                               default is jdbc.
  -t,--table <table-name>                      Table to populate.
  -u,--username <username>                     Set authentication username.
@@ -73,7 +74,7 @@ usage: Spark4HiveQLExecutor
 ## 通用参数说明
 - **-h,--help**：打印命令使用帮助详细信息。
 - **-f,--sql-file**：需要执行的Hive SQL文件。
-- **-T,--export-type**：SQL执行结果的导出类型，默认为***jdbc***，另支持***none***、***csv***、***hive***模式，后续将对这几种导出模式作说明。
+- **-T,--export-type**：SQL执行结果的导出类型，默认为***jdbc***，另支持***none***、***csv***、***hive***等模式，后续将对这几种主要导出模式作说明。
 - **-p,--sql-param**：需要传入SQL文件的参数，例如`--sql-param execDate=20160701`，若有多个SQL参数需要传入，则多次使用`--sql-param`参数，`注意`：不能使用工具的关键字，例如`table`等。
 
 
@@ -121,6 +122,7 @@ spark-submit \
 --driver-java-options "-Dlog4j.configuration=classpath:log4j.properties" \
 --class com.avcdata.etl.launcher.Spark4HiveQLExecutor \
 etl-launcher-0.0.1-jar-with-dependencies.jar \
+--export-type jdbc \
 --sql-file hdfs:///user/hue/shichangluopanAPP/sql/avc_marketcompass_brandcompetition.hql \
 --connect-uri 'jdbc:mysql://192.168.100.200:3306/AVCData?useUnicode=true&characterEncoding=utf-8' \
 --username dbUser \
@@ -135,5 +137,3 @@ etl-launcher-0.0.1-jar-with-dependencies.jar \
 --sql-param 'relativeEndWeekOffset=-7'
 ```
 
-## 其他
-后续会根据项目实际情况需求，是否增加Redis通用导出模式。
