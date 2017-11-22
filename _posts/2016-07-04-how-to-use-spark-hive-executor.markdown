@@ -14,7 +14,7 @@ tags:
     - Tool
 ---
 
-> 此工具主要实现了通过执行[Hive SQL](http://hive.apache.org)，将SQL执行后的结果导入至支持JDBC的RDBMS中。
+> 此工具主要实现了通过执行[Hive SQL](http://hive.apache.org)，将SQL执行后的结果导入至支持JDBC的RDBMS或其他支持的目标存储中。
 
 
 ## 支持的命令行参数及格式
@@ -65,8 +65,6 @@ usage: Spark4HiveQLExecutor
  -u,--username <username>                     Set authentication username.
     --update-sql <update-sql>                 The self-define SQL for
                                               update operation.
- -v,--verbose <verbose>                       Print more information while
-                                              working.
 ```
 
 下面将逐一说明参数的用法及使用场景。
@@ -81,14 +79,13 @@ usage: Spark4HiveQLExecutor
 ## jdbc模式参数说明
 此模式为默认执行模式，在未指定`-T,--export-type`参数或参数的值为`jdbc`的情况下将对SQL文件最后一行的执行结果导入指定的数据库中。
 
-- **--export-config-file**：指定导入数据库的默认连接信息的文件名，此文件中的连接信息将被以下命令行指定的同名信息所覆盖。
+- **--export-config-file**：指定导入默认配置信息的文件名，此文件中的连接信息将被以下命令行指定的同名信息所覆盖。
 - **-C,--connect-uri**：导入数据库的JDBC连接信息，例如：`--connect-uri "jdbc:mysql://192.168.100.200:3306/test?useUnicode=true&characterEncoding=utf-8"`。
 - **-t,--table**：需要导入数据的表名。
 - **--insert-sql**：自定义使用的插入SQL
 - **-u,--username**：数据库用户名。
 - **-P,--password**：数据库密码。
-- **-v,--verbose**：是否打印SQL详细执行结果信息。
-- **--update-sql**：自定义使用的更新SQL
+- **--update-sql**：自定义使用的更新SQL。
 - **-k,--update-key**：指定导入表的主键，多列以`,`分隔，若指定，则会删除已经存在相同主键的数据记录然后导入数据，否则直接将数据导入至指定表中。
 - **--delete-key**：指定删除表数据的主键，多列以`,`分隔，若指定，则以删除键删除匹配的数据记录，否则删除键的值为`--update-key`的值。
 - **-m,--update-mode**：支持`updateonly`和`allowinsert`两种模式，默认为`allowinsert`模式，区别在于`allowinsert`模式会更新和插入新数据，而`updateonly`只会更新具有相同主键的数据。
