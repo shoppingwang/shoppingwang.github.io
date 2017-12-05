@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Spark Structured Streaming与Kafka集成分析 - Kafka数据源篇"
-subtitle:   "Tuning Spark Applications"
+title:      "Apache Spark Structured Streaming"
+subtitle:   "Spark Structured Streaming与Kafka集成分析 - Kafka数据源篇"
 date:       2017-12-04
 author:     "xp"
 header-img: "img/post-bg-js-module.jpg"
@@ -23,7 +23,7 @@ Structured streaming能集成Kafka作为source和sink，意味着我们能从Kaf
 
 对于写数据来说，还是非常简单的。不过我们也需要去定义bootstrap servers，但这也仅仅是我们必须要定义的唯一一个参数。第二个参数项，topic，它告诉我们数据应该写到哪里去，不过这个参数是可选的。是因为如果我们每条记录都带有topic信息的话，那么我们就不需要去配置全局的topic参数。
 
-下面地使用Kafka structured streaming的简单样例代码：
+下面是使用Kafka structured streaming的简单样例代码：
     
     sparkSession.readStream.format("kafka")
       .options(configuration.getStructuredStreamOptions())
