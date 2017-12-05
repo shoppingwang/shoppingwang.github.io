@@ -55,7 +55,7 @@ Structured streaming能集成Kafka作为source和sink，意味着我们能从Kaf
 
    [2]: http://www.waitingforcode.com/public/images/articles/spark_structured_streaming_kafka_integration.png
 
-Spark structured streaming仍然以微批处理的方式在工作。它们是被_org.apache.spark.sql.execution.streaming.StreamExecution_这个类管理的，更具体的说，是由它的实现_org.apache.spark.sql.execution.streaming.StreamExecutionThread#StreamExecutionThread_类来管理的。在内部，它在每指定的时间隔或者只调用一次（OneTimeExecutor）它的私有方法runBatches()来触发数据的获取。在_constructNextBatch()_调用之前，StreamExecutio和**kafka source**会进行一些交互（为第个source获取偏移量信息）。
+Spark structured streaming仍然以微批处理的方式在工作。它们是被_org.apache.spark.sql.execution.streaming.StreamExecution_这个类管理的，更具体的说，是由它的实现_org.apache.spark.sql.execution.streaming.StreamExecutionThread#StreamExecutionThread_类来管理的。在内部，它在每指定的时间隔或者只调用一次（OneTimeExecutor）它的私有方法runBatches()来触发数据的获取。在_constructNextBatch()_调用之前，StreamExecution和**kafka source**会进行一些交互（为第个source获取偏移量信息）。
 
 StreamExecution做的第一件事是和Kafka交互获取偏移量信息，在这个例子中，是返回_(topic partition, offset)_的值对。这些值对是被Kafka source调用_KafkaOffsetReader_中的_fetchLatestOffsets()_方法获取的。这里也就是指定消费偏移量的地方。它将调用KafkaConsumer的一些简单方法（poll、assignment、pause、seekToEnd和position）来获取这些偏移量。
 
