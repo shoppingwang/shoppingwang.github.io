@@ -50,7 +50,6 @@ Structured streaming能集成Kafka作为source和sink，意味着我们能从Kaf
 ## Preparing offsets 
 
 在探索细节实现细节之前，我们先看看下面的这张Spark structured streaming和Kafka模块之间的交互图：
-![](img/spark_structured_streaming_kafka_integration.png)
 
 ![][2]
 
