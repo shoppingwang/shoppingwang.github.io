@@ -13,7 +13,7 @@ tags:
 
 > From: [Dataset in Spark SQL](http://www.waitingforcode.com/apache-spark-sql/dataset-in-spark-sql/read)
 
-本文章专注于Dataset的讲解。第一部分定义了Dataset在结构化和半结构化数据的使用抽象。第二部分展示了Dataset的演化历程并给出它和RDD在内部的联系。最后一部分展示了如何去从各种各样的源去创建Dataset的示例代码。
+本文章专注于Dataset的讲解。第一部分定义了Dataset在结构化和半结构化数据的使用抽象。第二部分展示了Dataset的演化历程并给出它和RDD在内部的联系。最后一部分展示了如何从各种各样的源去创建Dataset的示例代码。
 
 ## Dataset definition 
 
@@ -35,15 +35,15 @@ Spark的 _org.apache.spark.sql.Dataset_ 有如下特征要点：
 
 ## Dataset and RDD relationship 
 
-历史上的Dataset是由 _SchemaRDD_ 演化而来的。SchemaRDD是 _RDD_ 类型化 _Row_ 了的对象的扩展。如它的名字所展示的一样，可以把它想象成一个结构化的RDD（带有schema的RDD）。在我们分析它的API（例如在[commit deleting SchemaRDD from Spark][3]中）的时候，我们能很容易的发现它成功的原因是因为它使用一些简单的概念。它关联了 _LogicalPlan_ 类，实际上是 _QueryExecution_ 的一部分。相同的QueryExecution依次组成Dataset。
+历史上的Dataset是由 _SchemaRDD_ 演化而来的。SchemaRDD是 _RDD_ 类型化 _Row_ 了的对象的扩展。跟它的名字一样，可以把它想象成一个结构化的RDD（带有schema的RDD）。在我们分析它的API（例如在[commit deleting SchemaRDD from Spark][3]中）的时候，我们能很容易的发现它成功的原因是因为它使用一些简单的概念。它关联了 _LogicalPlan_ 类，实际上是 _QueryExecution_ 的一部分。相同的QueryExecution依次组成Dataset。
 
    [3]: https://github.com/apache/spark/commit/119f45d61d7b48d376cca05e1b4f0c7fcf65bfa8#diff-1b97e54687301e5840bb97e576f83ee6
 
-与此同时，Spark 1.3在API上带来了一些改变。特别是在[SPARK-5097][4]中。然后SchemaRDD就被 _DataFrame_ 所替代了。重新设计的API，DataFrame不在和RDD之间有任何的耦合关系。它是一个简单的对象，由一个SQLContext和上面已经提及的QueryExecution所组成。RDD变成了DataFrame中一个延迟计算的成员。
+与此同时，Spark 1.3在API上带来了一些改变。特别是在[SPARK-5097][4]中。然后SchemaRDD就被 _DataFrame_ 所替代了。重新设计的API，DataFrame不再和RDD之间有任何的耦合关系。它是一个简单的对象，由一个SQLContext和上面已经提及的QueryExecution所组成，而RDD变成了DataFrame中一个延迟计算的成员。
 
    [4]: https://issues.apache.org/jira/browse/SPARK-5097
 
-Spark 1.6介绍了Dataset并且在下个版本中（2.0）DataFrame被转换成了 _Dataset<Row>_ 的别名。Dataset除了一些在API上的改变，还带来了另外一个重要的提升 - _org.apache.spark.sql.Encoder_ ，Spark有效的内部格式，能有效的提升性能。
+Spark 1.6介绍了Dataset并且在下个版本中（2.0）DataFrame被转换成了 _Dataset\<Row\>_ 的别名。Dataset除了一些在API上的改变，还带来了另外一个重要的提升 \- _org.apache.spark.sql.Encoder_ ，Spark有效的内部格式，能有效的提升性能。
 
 即使Dataset和RDDs之间只有很少的耦合，但它还是使用RDD来执行相应的计算。在Spark SQL中物理执行操作使用 _org.apache.spark.sql.execution.SparkPlan_ 来实现。负责真正执行的方法会显示的调用RDD进行相关的操作：
     
