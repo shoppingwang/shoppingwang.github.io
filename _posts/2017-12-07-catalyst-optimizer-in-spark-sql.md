@@ -14,47 +14,47 @@ tags:
 
 > From: [Catalyst Optimizer in Spark SQL](http://www.waitingforcode.com/apache-spark-sql/catalyst-optimizer-in-spark-sql/read)
 
-This technique is similar to relational database query planning and is executed by Catalyst Optimizer. The first short part defines it. The second part explains the workflow related to query plan. The last part shows 2 queries and the steps of their optimization. 
+Catalyst Optimizer的技术类似于关系型数据库的查询计划和执行。第一小部分对它进行了定义。第二部分阐述了工作流和查询计划的关联关系。最后一部分展示了两个查询和它们优化的步骤。
 
-An important element helping Dataset to perform better is **Catalyst Optimizer** (CO), an internal query optimizer. It "translates" transformations used to build the Dataset to physical plan of execution. Thus, it's similar to [DAG scheduler][1] used to create physical plan of execution of RDD. 
+**Catalyst Optimizer** （CO）对帮助Dataset提升执行效率操作是一个很重要的影响因素，这是一个内部的查询优化器。它把在构建在Dataset上的转换操作“翻译”成对应的物理执行计划。因此，它和用来创建RDD的物理执行计划的[DAG scheduler][1]是很相似的。
 
    [1]: http://www.waitingforcode.com/apache-spark/directed-acyclic-graph-in-spark/read#dag_scheduler
 
-CO is precious to Dataset in terms of performance. Since it understands the structure of used data and operations made on it, the optimizer can make some decisions helping to reduce time execution. Thanks to functional programming constructions (pattern matching and quasiquotes), is open to custom optimizations ([feature still experimental at the time of writing][2]). 
+在性能方面，CO对Dataset来说是十分重要的。自从它能理解使用数据的结构和在它上面执行的操作，这个优化器就能执行一些决策来帮助减少执行的时间。感谢函数式编程的出现（模式匹配和quasiquotes），它使自定义执行优化成为可能。（[feature still experimental at the time of writing][2]）。
 
    [2]: https://github.com/apache/spark/blob/689de920056ae20fe203c2b6faf5b1462e8ea73c/sql/core/src/main/scala/org/apache/spark/sql/ExperimentalMethods.scala
 
-From the big picture perspective, CO translates query to **abstract syntax tree** (AST) that nodes are represented by operations made to executed a query. CO will try to optimize them by applying a set of predefined rules, as for example combining 3 filters into a single one. Because tree nodes are immutable, rules application creates a new tree, being always more optimized than the previous one. 
+从大的方面来说，CO把查询翻译成**abstract syntax tree**（AST），AST的节点就代表着执行一个查询所需要的操作。CO将会尝试应用一系列预定义的规则来优化查询节点，举例说合并3个过滤器为1个。因为树的节点是不可变的，规则应用后会创建一个新的总是经过优化后的比之前更好的一颗树。
 
-Before explaining what CO exactly does, some of concepts it uses must be detailed before: 
+在解释CO具体做了什么之前，我们必须先清楚我们使用的一些概念的细节：
 
-  * **logical plan** - series of algebraic or language constructs, as for example: SELECT, GROUP BY or UNION keywords in SQL. It's usually represented as a tree where nodes are the constructs.
-  * **physical plan** - similar to logical because also represented as a tree. But the difference is that physical plan concerns low level operations.
-  * **unoptimized/optimized plans** - a plan is considered as unoptimized when CO hasn't worked on it yet. The plan becomes optimized when CO passed on it and made some optimizations (e.g.: merging filter() methods, replacing some instructions by another ones, most performant).
+  * **logical plan** - 一系列的代数或者语言构造，例如：在SQL中的SELECT、GROUP BY或者UNION关键词。它通常代表了一颗树由节点构成的树。
+  * **physical plan** - 和逻辑计划相似，因为它也是由一颗树来表示的。它和逻辑执行计划的不同地方在于它是更低级的操作。
+  * **unoptimized/optimized plans** - 未经优化的计划可以认为CO还没有对其进行任何操作。一个已经被CO处理和执行一些优化操作后的查询就变成了优化查询计划。（例如：合并filter()方法、替换一些基础参数、改善大部分的性能）。
 
-More exactly, CO works on 3 items listed before. It helps to move from unoptimized logical query plan to optimized physical plan, achieving that in below steps: 
+更具体的来说，CO是在上面提到的3个列表项中工作的。它把未经优化的逻辑查询计划演变成优化后的物理查询计划，达到此目的由以下步骤组成：
 
-  1. CO tries to optimize logical query plan through predefined rule-based optimizations. The optimization can consists on:
-    * predicate or projection pushdown - helps to eliminate data not respecting preconditions earlier in the computation.
-    * rearrange filter
-    * conversion of decimals operations to long integer operations
-    * replacement of some RegEx expressions by Java's methods _startsWith(String)_ or _contains(String)_
-    * if-else clauses simplification
-  2. Optimized logical plan is created.
-  3. CO constructs multiple physical plans from optimized logical plan. A physical plan defines how data will be computed. The plans are also optimized. The optimization can concern: merging different filter(), sending predicate/projection pushdown directly to datasource to eliminate some data at data source level.
-  4. CO determines which physical plan has the lowest cost of execution and choses it as the physical plan used for the computation. CO also has a concept of metrics used to estimate the cost of plans.
-  5. CO generates bytecode for the best physical plan. The generation is made thanks to Scala's feature called _quasiquotes_. This step is optimized by _cost-based optimization _
-  6. Once a physical plan is defined, it's executed and retrieved data is put to Dataset.
+  1. CO通过使用预先定义的基于规则的优化方法来优化逻辑查询计划。这些优化操作由以下这些项组成：
+    * 谓词或投影下推 - 在计算过程中提前消除不符合预置条件的数据
+    * 重新排列过滤器
+    * 转换小数操作为长整型数操作
+    * 使用Java的方法 _startsWith(String)_ 或者 _contains(String)_ 来替换某些正则表达式
+    * 简化if-else从句
+  2. 创建被优化后的逻辑计划。
+  3. CO从优化后的逻辑计划来构建多个物理计划。一个物理计划定义了数据是如何被计算的，这个计划也是被优化过的。优化的点应关注：合并不同的filter()、在数据源层面向数据源直接发送谓词/投影下推操作来消除不相关的数据。
+  4. CO决定从执行成本层面来决定哪一个物理计划被选中并被执行。CO也有一个指标的概念用来估计计划执行的成本。
+  5. CO将会为最优的物理计划生成相应的字节码。这种生成技术得归功于Scala的被称作 _quasiquotes_ 的特性。这一步是由 _cost-based optimization_ 进行优化的。
+  6. 一旦一个物理计划被定义，它就会被执行并且返回数据给Dataset。
 
 ### Cost-based optimization 
 
-**Cost-based optimization** - the optimizer looks at all possible scenarios to execute given query. It assigns a _cost_ for each of these scenarios. This parameter indicates the efficiency of given scenario. The scenario having the lowest cost is further chosen and executed.  
+**Cost-based optimization** - 对给定的查询，这种优化器看起来能适应所有的可能的场景。它会给每一个这样子的场景附加一个 _cost_ 值。这个参数指明了指定场景下的执行效率。在此场景下拥有最低成本消耗的查询将会被选中和执行。
   
-In RDBMS it often uses metrics which can represent for example: the number of indexed elements under given key or simply the number of rows in a table.  
+在RDBMS中经常会使用例如在指定key下被索引元素的数量、表中的行的数量来代表执行依赖的指标参考。
   
-It's different from rule-based optimization which simply applies a set of rules to statement. In Dataset generation, only the 4th step is cost-based optimization. The others optimized steps are rule-based. 
+它和基于规则优化器的不同在于，基于规则的优化器只是简单的在语句上应用一系列优化规则。在数据集产生时，只有4个步骤是基于成本优化操作的。其他的优化操作是基于规则的。
 
-To see what happens when operations on structured data is made in Spark, below example is used: 
+为了了解在Spark的结构化数据操作过程中发生了什么，我们使用如下的例子：
     
     private static final SparkSession SESSION = SparkSession.builder() 
       .master("local[1]")
@@ -98,15 +98,15 @@ To see what happens when operations on structured data is made in Spark, below e
     
     
 
-As you can see, it gets a list of maximally 3 categories corresponding to defined criteria. The tree representing such defined expression looks like in below picture: 
+如你所见，它获取了和符合标准的最大3个categories的元素列表。代表已定义表达式的树看起来像下面的图片一样：
 
 ![][3]
 
    [3]: http://www.waitingforcode.com/public/images/articles/spark_sql_co.png
 
-To see what leaves compose the tree, Dataset's _logicalPlan()_ proves to be useful. 
+为了了解树的叶子是由什么组成的，Dataset的 _logicalPlan()_ 的输出信息会更有用。
 
-Another useful command helping to understand Catalyst's optimisations also comes from Dataset class and is called _explain(boolean)_. Its boolean parameter determines the verbosity of the output. If it's set to true, the output will contain not only physical plan, but also all phases of logical plans (parsed, analyzed and optimized). The output for our query looks like: 
+另外一个有用的来帮助理解Catalyst优化操作的命令是Dataset类和调用它的 _explain(boolean)_ 。它的boolean参数用来决定是否输出详细的信息。如果这个参数设置为true，那么它的输出不仅仅包含物理计划，同时也包含所有的逻辑计划阶段（parsed、analyzed、optimized）。我们的查询的执行计划输出类似于下面这样：
     
     == Parsed Logical Plan ==
     GlobalLimit 3
@@ -136,7 +136,7 @@ Another useful command helping to understand Catalyst's optimisations also comes
     
     
 
-As you can see in "Physical Plan" part, execution workflow is composed of database query eliminating categories those names is equal to "mushrooms". The rest of work is done on Spark's level. To see that it's true, we can enable log queries. For the case of analyzed MySQL database, below query should be executed at database's level: 
+如你在“Physical Plan”中所看到的那样，执行计划流是由消除了categories数据的名称列等于“mushrooms”的数据库查询组成。剩下的工作就是在Spark的层面来完成了。我们来分析一下MySQL数据库的例子，下面的这些查询应该在数据库层面被执行：
     
     2017-02-04T08:53:44.152193Z         5 Query     SET character_set_results = NULL
     2017-02-04T08:53:44.152380Z         5 Query     SET autocommit=1
@@ -144,7 +144,7 @@ As you can see in "Physical Plan" part, execution workflow is composed of databa
     
     
 
-At analyze of plans explanation, we can see that optimized logical plan combined two filters defined separetly in 2 _where(String)_ methods. To detect which rule was applied to merge them we can take a look at Spark's logs, and more specifically, at entries containing "=== Applying Rule" text. For described example we can find below entry: 
+我们对计划解释进行分析，我们可以看到优化后的逻辑计划把两个分开定义的 _where(String)_ 进行了组合。我为了搞清哪一个规则被应用于合并它们，我们可以去查看Spark的日志，更具体的来说，是查看包含“=== Applying Rule”的这条文本。由上所术的例子我们能找到如下的日志条目：
     
     === Applying Rule org.apache.spark.sql.catalyst.optimizer.CombineFilters ===
      GlobalLimit 3                                                                  GlobalLimit 3
@@ -157,7 +157,7 @@ At analyze of plans explanation, we can see that optimized logical plan combined
     
     
 
-Let's how analyze **the second query**, but only from the point of physical plan: 
+看看我们如何分析 **the second query**，但是仅仅对物理计划的点：
     
     @Test
     public void should_get_data_from_bigger_table() {
@@ -175,7 +175,7 @@ Let's how analyze **the second query**, but only from the point of physical plan
     
     
 
-The output generated by _explain()_ is: 
+由 _explain()_ 生成的输出：
     
     == Physical Plan ==
     TakeOrderedAndProject(limit=3, orderBy=[name#1 DESC NULLS LAST], output=[id#0,name#1])
@@ -184,15 +184,15 @@ The output generated by _explain()_ is:
     
     
 
-Thus, corresponding query looks like: 
+然而，相关的查询看起来像这样：
     
     SELECT `id`,`name` FROM meals WHERE ((NOT (`name` = 'mushrooms'))) AND ((NOT (`name` LIKE 'Ser%')))
     
     
 
-It seems a little bit strange that LIMIT and SORT weren't pushed down to database. Especialy when the query operates on a table with 14400 rows. Instead, ordering and results limit are done through generated code applied on retrieved RDDs. It's also visible in logs: 
+由于LIMIT和SORT没有下推到database，这看起来有些奇怪。特别是当这个查询操作是在一个有14400行数据的表上执行的时候。反过来说，排序和结果的限定在返回的RDD里已经应用通过生成的代码了。这个也可以在日志中看到：
 
-show generated ordering
+展示生成的排序：
     
     /* 001 */ public SpecificOrdering generate(Object[] references) {
     /* 002 */   return new SpecificOrdering(references);
@@ -251,9 +251,9 @@ show generated ordering
     
     
 
-To get data ordered and limited, Spark uses RDD _takeOrdered(Integer)_ method. It can be seen by adding debugging breakpoints or by analyzing JSON event log, activated by _spark.eventLog.enabled_ and _spark.eventLog.dir_ properties. The part about generated RDDs is placed inside _SparkListenerStageCompleted_ event: 
+为了获取排序和限制后的数据，Spark使用RDD的 _takeOrdered(Integer)_ 方法。激活 _spark.eventLog.enabled_ 和 _spark.eventLog.dir_ 参数，通过调试断点或者分析JSON的事件日志可以看到相应的数据。下面这个关于生成RDD的部分已经被放置到 _SparkListenerStageCompleted_ 事件中了： 
 
-show SparkListenerStageCompleted event data
+展示SparkListenerStageCompleted事件数据
     
     {
       "Event":"SparkListenerStageCompleted",
@@ -342,4 +342,4 @@ show SparkListenerStageCompleted event data
     
     
 
-This post provides a little insight on Spark Catalyst Optimizer used in Spark SQL module. The first part defines shortly the main information about it. The second part goes more into details and shows the workflow of transforming parsed query to optimized physical plan. The last part, through 2 examples of different query complexity, shows how CO really behaves. It proves all that was described previously - pushdown features as well as dynamic generation of code. 
+这篇文章提供了一些在SPARK SQL模块中使用Catalyst Optimizer的内部信息。第一部分简短的定义了相关的主要信息。第二部分展示了更多的详细信息并且展示了转换工作流如何将查询优化为物理计划的。最后一部分，通过2个不同查询复杂度的例子，展示了CO的真实行为。它证述了所有如上所述 - 下推特征和动态代码生成也一样（同被证述）。
