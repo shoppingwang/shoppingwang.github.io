@@ -99,13 +99,13 @@ Catalyst Optimizer的技术类似于关系型数据库的查询计划和执行�
     
     
 
-如你所见，它获取了和符合标准的最大3个categories的元素列表。代表已定义表达式的树看起来像下面的图片一样：
+如你所见，它获取了符合标准的至多3个categories元素的列表。代表已定义表达式的树看起来应该如下图所示：
 
 ![][3]
 
    [3]: http://www.waitingforcode.com/public/images/articles/spark_sql_co.png
 
-为了了解树的叶子是由什么组成的，Dataset的 _logicalPlan()_ 的输出信息会更有用。
+想要了解树的叶子是由什么组成的，Dataset的 _logicalPlan()_ 的输出信息会更有用。
 
 另外一个有用的来帮助理解Catalyst优化操作的命令是Dataset类和调用它的 _explain(boolean)_ 。它的boolean参数用来决定是否输出详细的信息。如果这个参数设置为true，那么它的输出不仅仅包含物理计划，同时也包含所有的逻辑计划阶段（parsed、analyzed、optimized）。我们的查询的执行计划输出类似于下面这样：
     
@@ -137,7 +137,7 @@ Catalyst Optimizer的技术类似于关系型数据库的查询计划和执行�
     
     
 
-如你在“Physical Plan”中所看到的那样，执行计划流是由消除了categories数据的名称列等于“mushrooms”的数据库查询组成。剩下的工作就是在Spark的层面来完成了。我们来分析一下MySQL数据库的例子，下面的这些查询应该在数据库层面被执行：
+如你在“Physical Plan”中所看到的那样，执行计划流是由消除了categories数据源的名称为name列值等于“mushrooms”的数据库查询组成。接下来的工作就是在Spark的层面来完成了。我们来分析一下MySQL数据库的例子，下面的这些查询应该在数据库层面被执行：
     
     2017-02-04T08:53:44.152193Z         5 Query     SET character_set_results = NULL
     2017-02-04T08:53:44.152380Z         5 Query     SET autocommit=1
@@ -145,7 +145,7 @@ Catalyst Optimizer的技术类似于关系型数据库的查询计划和执行�
     
     
 
-我们对计划解释进行分析，我们可以看到优化后的逻辑计划把两个分开定义的 _where(String)_ 进行了组合。我为了搞清哪一个规则被应用于合并它们，我们可以去查看Spark的日志，更具体的来说，是查看包含“=== Applying Rule”的这条文本。由上所术的例子我们能找到如下的日志条目：
+我们对计划的解释进行分析，我们可以看到优化后的逻辑计划把两个分开定义的 _where(String)_ 进行了组合。我为了搞清哪一个规则被应用于合并它们，可以去查看Spark的日志，更具体的来说，是查看包含“=== Applying Rule”的这条文本。由上所述的，我们能找到如下的日志条目：
     
     === Applying Rule org.apache.spark.sql.catalyst.optimizer.CombineFilters ===
      GlobalLimit 3                                                                  GlobalLimit 3
@@ -191,7 +191,7 @@ Catalyst Optimizer的技术类似于关系型数据库的查询计划和执行�
     
     
 
-由于LIMIT和SORT没有下推到database，这看起来有些奇怪。特别是当这个查询操作是在一个有14400行数据的表上执行的时候。反过来说，排序和结果的限定在返回的RDD里已经应用通过生成的代码了。这个也可以在日志中看到：
+由于LIMIT和SORT没有下推到database，这看起来有些奇怪。特别是当这个查询操作是在一个有14400行数据的表上执行的时候。换句话说，排序和结果的限定在返回的RDD里已经应用通过生成的代码了。这个也可以在日志中看到：
 
 展示生成的排序：
     
