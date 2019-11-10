@@ -102,3 +102,11 @@ tags:
 ||<span style="color: green;">中证200</span>|<span style="color: green;">16.27</span>|<span style="color: green;">15.09</span>|<span style="color: green;">15.68</span>|
 ||<span style="color: blue;">中证医疗</span>|<span style="color: blue;">30.33</span>|<span style="color: blue;">53.24</span>|<span style="color: blue;">41.79</span>|
 ||<span style="color: blue;">500医药</span>|<span style="color: blue;">60.56</span>|<span style="color: blue;">15.6</span>|<span style="color: blue;">38.08</span>|
+||<span style="color: blue;">全指金融</span>|<span style="color: blue;">58.13</span>|<span style="color: blue;">17.12</span>|<span style="color: blue;">37.62</span>|
+||<span style="color: blue;">中证银行</span>|<span style="color: blue;">42.13</span>|<span style="color: blue;">19.31</span>|<span style="color: blue;">30.72</span>|
+||<span style="color: blue;">证券公司</span>|<span style="color: blue;">49.88</span>|<span style="color: blue;">27.1</span>|<span style="color: blue;">38.49</span>|
+||<span style="color: red;">央视50</span>|<span style="color: red;">82.79</span>|<span style="color: red;">60.89</span>|<span style="color: red;">71.84</span>|
+||<span style="color: blue;">上证180</span>|<span style="color: blue;">39.15</span>|<span style="color: blue;">23.17</span>|<span style="color: blue;">31.16</span>|
+||<span style="color: red;">深证100</span>|<span style="color: red;">49.76</span>|<span style="color: red;">60.64</span>|<span style="color: red;">55.2</span>|
+||<span style="color: blue;">深证成指</span>|<span style="color: blue;">51.35</span>|<span style="color: blue;">30.33</span>|<span style="color: blue;">40.84</span>|
+||<span style="color: blue;">创业板指</span>|<span style="color: blue;">51.14</span>|<span style="color: blue;">41.23</span>|<span style="color: blue;">46.19</span>|
