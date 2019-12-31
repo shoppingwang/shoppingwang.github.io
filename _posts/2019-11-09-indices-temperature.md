@@ -77,41 +77,41 @@ tags:
 
 | 日期 | 指数名称 | PE温度 | PB温度 | 指数温度 |
 | --- | --- | --- | --- | --- |
-|2019/12/27|<span style="color: white; background-color: blue;">沪深300</span>|<span style="color: white; background-color: blue;">45.64</span>|<span style="color: white; background-color: blue;">28.7</span>|<span style="color: white; background-color: blue;">37.17</span>|
-||<span style="color: white; background-color: green;">300价值</span>|<span style="color: white; background-color: green;">31.03</span>|<span style="color: white; background-color: green;">16.98</span>|<span style="color: white; background-color: green;">24.0</span>|
-||<span style="color: white; background-color: green;">红利指数</span>|<span style="color: white; background-color: green;">23.85</span>|<span style="color: white; background-color: green;">12.86</span>|<span style="color: white; background-color: green;">18.36</span>|
-||<span style="color: white; background-color: green;">中证红利</span>|<span style="color: white; background-color: green;">24.94</span>|<span style="color: white; background-color: green;">16.45</span>|<span style="color: white; background-color: green;">20.7</span>|
-||<span style="color: white; background-color: green;">中证500</span>|<span style="color: white; background-color: green;">19.11</span>|<span style="color: white; background-color: green;">10.62</span>|<span style="color: white; background-color: green;">14.87</span>|
-||<span style="color: white; background-color: green;">养老产业</span>|<span style="color: white; background-color: green;">8.01</span>|<span style="color: white; background-color: green;">51.07</span>|<span style="color: white; background-color: green;">29.54</span>|
-||<span style="color: white; background-color: blue;">深证F60</span>|<span style="color: white; background-color: blue;">35.96</span>|<span style="color: white; background-color: blue;">54.8</span>|<span style="color: white; background-color: blue;">45.38</span>|
-||<span style="color: white; background-color: blue;">深证F120</span>|<span style="color: white; background-color: blue;">33.46</span>|<span style="color: white; background-color: blue;">42.5</span>|<span style="color: white; background-color: blue;">37.98</span>|
-||<span style="color: blue;">上证50</span>|<span style="color: blue;">40.66</span>|<span style="color: blue;">24.29</span>|<span style="color: blue;">32.47</span>|
-||<span style="color: red;">上证消费</span>|<span style="color: red;">65.17</span>|<span style="color: red;">97.42</span>|<span style="color: red;">81.29</span>|
-||<span style="color: red;">上证医药</span>|<span style="color: red;">72.25</span>|<span style="color: red;">39.41</span>|<span style="color: red;">55.83</span>|
-||<span style="color: blue;">800医药</span>|<span style="color: blue;">53.77</span>|<span style="color: blue;">18.36</span>|<span style="color: blue;">36.06</span>|
-||<span style="color: red;">300医药</span>|<span style="color: red;">88.76</span>|<span style="color: red;">57.96</span>|<span style="color: red;">73.36</span>|
-||<span style="color: red;">300成长</span>|<span style="color: red;">85.65</span>|<span style="color: red;">97.57</span>|<span style="color: red;">91.61</span>|
-||<span style="color: blue;">基本面50</span>|<span style="color: blue;">45.25</span>|<span style="color: blue;">28.46</span>|<span style="color: blue;">36.86</span>|
-||<span style="color: red;">中证消费</span>|<span style="color: red;">65.34</span>|<span style="color: red;">93.17</span>|<span style="color: red;">79.26</span>|
-||<span style="color: blue;">中证医药</span>|<span style="color: blue;">68.62</span>|<span style="color: blue;">26.19</span>|<span style="color: blue;">47.4</span>|
-||<span style="color: red;">医药100</span>|<span style="color: red;">61.14</span>|<span style="color: red;">53.63</span>|<span style="color: red;">57.39</span>|
-||<span style="color: blue;">全指可选</span>|<span style="color: blue;">80.71</span>|<span style="color: blue;">16.55</span>|<span style="color: blue;">48.63</span>|
-||<span style="color: red;">全指消费</span>|<span style="color: red;">66.9</span>|<span style="color: red;">95.29</span>|<span style="color: red;">81.1</span>|
-||<span style="color: blue;">全指医药</span>|<span style="color: blue;">50.74</span>|<span style="color: blue;">24.05</span>|<span style="color: blue;">37.39</span>|
-||<span style="color: red;">深证红利</span>|<span style="color: red;">44.12</span>|<span style="color: red;">64.79</span>|<span style="color: red;">54.45</span>|
-||<span style="color: green;">深证价值</span>|<span style="color: green;">34.58</span>|<span style="color: green;">21.85</span>|<span style="color: green;">28.21</span>|
-||<span style="color: blue;">中证100</span>|<span style="color: blue;">49.36</span>|<span style="color: blue;">31.18</span>|<span style="color: blue;">40.27</span>|
-||<span style="color: green;">中证200</span>|<span style="color: green;">17.1</span>|<span style="color: green;">17.78</span>|<span style="color: green;">17.44</span>|
-||<span style="color: blue;">中证医疗</span>|<span style="color: blue;">26.43</span>|<span style="color: blue;">70.72</span>|<span style="color: blue;">48.58</span>|
-||<span style="color: blue;">500医药</span>|<span style="color: blue;">56.78</span>|<span style="color: blue;">20.81</span>|<span style="color: blue;">38.8</span>|
-||<span style="color: blue;">全指金融</span>|<span style="color: blue;">63.6</span>|<span style="color: blue;">20.2</span>|<span style="color: blue;">41.9</span>|
-||<span style="color: blue;">中证银行</span>|<span style="color: blue;">44.34</span>|<span style="color: blue;">19.25</span>|<span style="color: blue;">31.8</span>|
-||<span style="color: blue;">证券公司</span>|<span style="color: blue;">62.8</span>|<span style="color: blue;">35.2</span>|<span style="color: blue;">49.0</span>|
-||<span style="color: red;">央视50</span>|<span style="color: red;">81.25</span>|<span style="color: red;">58.71</span>|<span style="color: red;">69.98</span>|
-||<span style="color: blue;">上证180</span>|<span style="color: blue;">42.29</span>|<span style="color: blue;">24.5</span>|<span style="color: blue;">33.39</span>|
-||<span style="color: red;">深证100</span>|<span style="color: red;">57.22</span>|<span style="color: red;">68.37</span>|<span style="color: red;">62.8</span>|
-||<span style="color: blue;">深证成指</span>|<span style="color: blue;">53.41</span>|<span style="color: blue;">37.39</span>|<span style="color: blue;">45.4</span>|
-||<span style="color: blue;">创业板指</span>|<span style="color: blue;">43.84</span>|<span style="color: blue;">53.35</span>|<span style="color: blue;">48.59</span>|
+|2019/12/31|<span style="color: white; background-color: blue;">沪深300</span>|<span style="color: white; background-color: blue;">48.1</span>|<span style="color: white; background-color: blue;">30.6</span>|<span style="color: white; background-color: blue;">39.35</span>|
+||<span style="color: white; background-color: green;">300价值</span>|<span style="color: white; background-color: green;">31.99</span>|<span style="color: white; background-color: green;">17.5</span>|<span style="color: white; background-color: green;">24.74</span>|
+||<span style="color: white; background-color: green;">红利指数</span>|<span style="color: white; background-color: green;">24.13</span>|<span style="color: white; background-color: green;">12.99</span>|<span style="color: white; background-color: green;">18.56</span>|
+||<span style="color: white; background-color: green;">中证红利</span>|<span style="color: white; background-color: green;">25.55</span>|<span style="color: white; background-color: green;">16.83</span>|<span style="color: white; background-color: green;">21.19</span>|
+||<span style="color: white; background-color: green;">中证500</span>|<span style="color: white; background-color: green;">19.99</span>|<span style="color: white; background-color: green;">11.41</span>|<span style="color: white; background-color: green;">15.7</span>|
+||<span style="color: white; background-color: blue;">养老产业</span>|<span style="color: white; background-color: blue;">9.62</span>|<span style="color: white; background-color: blue;">56.93</span>|<span style="color: white; background-color: blue;">33.27</span>|
+||<span style="color: white; background-color: blue;">深证F60</span>|<span style="color: white; background-color: blue;">40.44</span>|<span style="color: white; background-color: blue;">58.99</span>|<span style="color: white; background-color: blue;">49.71</span>|
+||<span style="color: white; background-color: blue;">深证F120</span>|<span style="color: white; background-color: blue;">37.83</span>|<span style="color: white; background-color: blue;">46.48</span>|<span style="color: white; background-color: blue;">42.15</span>|
+||<span style="color: blue;">上证50</span>|<span style="color: blue;">42.33</span>|<span style="color: blue;">25.33</span>|<span style="color: blue;">33.83</span>|
+||<span style="color: red;">上证消费</span>|<span style="color: red;">67.48</span>|<span style="color: red;">97.9</span>|<span style="color: red;">82.69</span>|
+||<span style="color: red;">上证医药</span>|<span style="color: red;">78.1</span>|<span style="color: red;">45.07</span>|<span style="color: red;">61.59</span>|
+||<span style="color: blue;">800医药</span>|<span style="color: blue;">60.36</span>|<span style="color: blue;">22.23</span>|<span style="color: blue;">41.3</span>|
+||<span style="color: red;">300医药</span>|<span style="color: red;">92.14</span>|<span style="color: red;">63.44</span>|<span style="color: red;">77.79</span>|
+||<span style="color: red;">300成长</span>|<span style="color: red;">87.92</span>|<span style="color: red;">98.18</span>|<span style="color: red;">93.05</span>|
+||<span style="color: blue;">基本面50</span>|<span style="color: blue;">46.74</span>|<span style="color: blue;">29.62</span>|<span style="color: blue;">38.18</span>|
+||<span style="color: red;">中证消费</span>|<span style="color: red;">68.95</span>|<span style="color: red;">94.71</span>|<span style="color: red;">81.83</span>|
+||<span style="color: red;">中证医药</span>|<span style="color: red;">74.47</span>|<span style="color: red;">30.57</span>|<span style="color: red;">52.52</span>|
+||<span style="color: red;">医药100</span>|<span style="color: red;">67.51</span>|<span style="color: red;">59.93</span>|<span style="color: red;">63.72</span>|
+||<span style="color: blue;">全指可选</span>|<span style="color: blue;">82.38</span>|<span style="color: blue;">17.54</span>|<span style="color: blue;">49.96</span>|
+||<span style="color: red;">全指消费</span>|<span style="color: red;">71.66</span>|<span style="color: red;">96.7</span>|<span style="color: red;">84.18</span>|
+||<span style="color: blue;">全指医药</span>|<span style="color: blue;">55.93</span>|<span style="color: blue;">27.97</span>|<span style="color: blue;">41.95</span>|
+||<span style="color: red;">深证红利</span>|<span style="color: red;">45.46</span>|<span style="color: red;">69.08</span>|<span style="color: red;">57.27</span>|
+||<span style="color: green;">深证价值</span>|<span style="color: green;">35.54</span>|<span style="color: green;">24.33</span>|<span style="color: green;">29.94</span>|
+||<span style="color: blue;">中证100</span>|<span style="color: blue;">51.56</span>|<span style="color: blue;">32.93</span>|<span style="color: blue;">42.25</span>|
+||<span style="color: green;">中证200</span>|<span style="color: green;">18.19</span>|<span style="color: green;">19.13</span>|<span style="color: green;">18.66</span>|
+||<span style="color: red;">中证医疗</span>|<span style="color: red;">28.91</span>|<span style="color: red;">74.14</span>|<span style="color: red;">51.52</span>|
+||<span style="color: blue;">500医药</span>|<span style="color: blue;">61.45</span>|<span style="color: blue;">24.64</span>|<span style="color: blue;">43.05</span>|
+||<span style="color: blue;">全指金融</span>|<span style="color: blue;">66.68</span>|<span style="color: blue;">22.15</span>|<span style="color: blue;">44.41</span>|
+||<span style="color: blue;">中证银行</span>|<span style="color: blue;">44.03</span>|<span style="color: blue;">19.08</span>|<span style="color: blue;">31.56</span>|
+||<span style="color: red;">证券公司</span>|<span style="color: red;">68.75</span>|<span style="color: red;">39.31</span>|<span style="color: red;">54.03</span>|
+||<span style="color: red;">央视50</span>|<span style="color: red;">83.0</span>|<span style="color: red;">61.84</span>|<span style="color: red;">72.42</span>|
+||<span style="color: blue;">上证180</span>|<span style="color: blue;">44.32</span>|<span style="color: blue;">25.87</span>|<span style="color: blue;">35.1</span>|
+||<span style="color: red;">深证100</span>|<span style="color: red;">60.89</span>|<span style="color: red;">72.74</span>|<span style="color: red;">66.81</span>|
+||<span style="color: blue;">深证成指</span>|<span style="color: blue;">55.72</span>|<span style="color: blue;">40.44</span>|<span style="color: blue;">48.08</span>|
+||<span style="color: red;">创业板指</span>|<span style="color: red;">46.05</span>|<span style="color: red;">55.45</span>|<span style="color: red;">50.75</span>|
 |2019/12/16|<span style="color: white; background-color: blue;">沪深300</span>|<span style="color: white; background-color: blue;">42.34</span>|<span style="color: white; background-color: blue;">25.98</span>|<span style="color: white; background-color: blue;">34.16</span>|
 ||<span style="color: white; background-color: green;">300价值</span>|<span style="color: white; background-color: green;">28.42</span>|<span style="color: white; background-color: green;">15.29</span>|<span style="color: white; background-color: green;">21.86</span>|
 ||<span style="color: white; background-color: green;">红利指数</span>|<span style="color: white; background-color: green;">30.46</span>|<span style="color: white; background-color: green;">15.3</span>|<span style="color: white; background-color: green;">22.88</span>|
